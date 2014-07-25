@@ -7,7 +7,7 @@ CREATE TABLE `USER` (
   `GENDER` char(1) COLLATE utf8_bin DEFAULT NULL COMMENT 'M/F',
   `AGE` int(11) DEFAULT NULL,
   `ID_CARD` varchar(18) COLLATE utf8_bin DEFAULT NULL,
-  `TEACHER` varchar(45) COLLATE utf8_bin DEFAULT NULL,
+  `COACH` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `TEST_STATUS` varchar(1) COLLATE utf8_bin DEFAULT NULL,
   `IM_ID` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `ZONE` varchar(45) COLLATE utf8_bin DEFAULT NULL,

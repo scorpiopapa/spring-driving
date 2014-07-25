@@ -88,5 +88,5 @@ public class MobileController extends ExceptionController {
 	public LogoutView logout(@ApiBodyObject @Valid @RequestBody LogoutForm form) throws Exception {
 		return service.logout(form);
 	}
-	
+
 }

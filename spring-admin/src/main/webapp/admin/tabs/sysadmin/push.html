@@ -37,7 +37,7 @@ function doPush(){
 	
 	$.ajax({
 		type : "post",
-		url : appName + 'push.json',
+		url : appName + 'broadcast.json',
 		data : form,
 		success : function(data) {
 			if(data.code == 0){

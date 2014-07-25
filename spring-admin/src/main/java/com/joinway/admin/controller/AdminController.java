@@ -50,7 +50,7 @@ public class AdminController extends ExceptionController {
 	@RequestMapping(value="register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Login
-	@Audit("admin register")
+	@Audit
 	@InputLog
 	@OutputLog
 	public LoginView register(@ApiBodyObject @Valid RegisterForm form) throws Exception {
@@ -66,7 +66,7 @@ public class AdminController extends ExceptionController {
 	@RequestMapping(value="login", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Login
-	@Audit("admin login")
+	@Audit
 	@InputLog
 	@OutputLog
 	public LoginView login(@ApiBodyObject @Valid LoginForm form) throws Exception {
@@ -82,7 +82,7 @@ public class AdminController extends ExceptionController {
 	@RequestMapping(value="login/context", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@SecurityCheck
-	@Audit("admin user context")
+	@Audit
 	@InputLog
 	@OutputLog
 	public LoginView getLoginContext() throws ValidationException {
@@ -98,7 +98,7 @@ public class AdminController extends ExceptionController {
 
 	@RequestMapping(value="logout", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	@Audit("admin logout")
+	@Audit
 	@Logout
 	@InputLog
 	@OutputLog
@@ -118,7 +118,7 @@ public class AdminController extends ExceptionController {
 	@RequestMapping(value="navigator", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@SecurityCheck
-	@Audit("admin navigator")
+	@Audit
 	@InputLog
 	@OutputLog
 	public TreeMenuView navigator() throws Exception {
@@ -126,12 +126,12 @@ public class AdminController extends ExceptionController {
 		return service.getNavigatorMenus(SessionHelper.getUserContext().getUserId());
 	}
 	
-	@RequestMapping(value="push", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="broadcast", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	@Audit("admin push")
+	@Audit
 	@InputLog
 	@OutputLog
-	public PushView push(@ApiBodyObject @Valid PushAllForm form) throws Exception {
+	public PushView broadcast(@ApiBodyObject @Valid PushAllForm form) throws Exception {
 		return service.push(form);
 	}
 

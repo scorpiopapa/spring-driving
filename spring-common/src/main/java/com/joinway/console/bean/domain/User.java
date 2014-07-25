@@ -27,7 +27,7 @@ public class User extends DomainEntity {
 	
 	String idCard;
 	
-	String teacher;
+	String coach;
 	
 	String testStatus;
 	
@@ -127,12 +127,12 @@ public class User extends DomainEntity {
 		this.idCard = idCard;
 	}
 
-	public String getTeacher() {
-		return teacher;
+	public String getCoach() {
+		return coach;
 	}
 
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
+	public void setCoach(String teacher) {
+		this.coach = teacher;
 	}
 
 	public String getTestStatus() {
