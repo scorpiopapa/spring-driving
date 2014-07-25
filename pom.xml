@@ -6,7 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>spring-admin</module>
-  	<module>spring-console</module>
   	<module>spring-mobile</module>
   	<module>spring-common</module>
   </modules>
