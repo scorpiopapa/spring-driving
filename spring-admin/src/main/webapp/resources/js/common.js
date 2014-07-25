@@ -84,7 +84,6 @@ function showAddDialog(jformId, jdlgId, title){
 	$(jdlgId).dialog('open');
 }
 
-
 function showEditDialog(jgridId, jformId, jdlgId, title, callback){
 	var rows = $(jgridId).datagrid('getSelections');
 
@@ -104,11 +103,9 @@ function showEditDialog(jgridId, jformId, jdlgId, title, callback){
 	} 
 }
 
-
 function closeDialog(jdlgId) {
 	$(jdlgId).dialog('close')
 }
-
 
 function saveItem(jgridId, jformId, jdlgId, tableName) {
 	//console.log(tableName);
@@ -172,3 +169,22 @@ function clearCriteria(jparentId){
 function clearInput(jinputId){
 	$(jinputId).val('');
 }
+
+function push(form, url){
+	$.ajax({
+		type : "post",
+		url : appName + url,
+		data : form,
+		success : function(data) {
+			if(data.code == 0){
+				showInformationMessage('发送成功')
+			}else{
+				showErrorMessage('发送失败');
+			}
+		},
+		error: function(){
+			showErrorMessage('发送失败');
+		}
+	});
+}
+

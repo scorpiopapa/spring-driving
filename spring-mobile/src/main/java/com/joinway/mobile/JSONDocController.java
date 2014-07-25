@@ -33,7 +33,8 @@ public class JSONDocController {
 
 		List<String> packages = new ArrayList<String>();
 		
-		packages.add(this.getClass().getPackage().getName());
+		packages.add("com.joinway");
+		
 		return JSONDocUtils.getApiDoc(version, basePath, packages);
 	}
 }

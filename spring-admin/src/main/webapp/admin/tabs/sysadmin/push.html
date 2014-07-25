@@ -25,37 +25,18 @@ $(function() {
 	});
 });
 */
-function doPush(){
+function doBroadcast(jcntId){
 	var form = new Object();
-	//form.message = editor.text();
-	//form.html = editor.html();
+	form.text = $(jcntId).val();
+	form.userId = localStorage.userId;	
 	
-	form.text = $('#push_content').val();
-	form.userId = localStorage.userId;
-	
-	console.log(form);
-	
-	$.ajax({
-		type : "post",
-		url : appName + 'broadcast.json',
-		data : form,
-		success : function(data) {
-			if(data.code == 0){
-				showInformationMessage('发送成功')
-			}else{
-				showErrorMessage('发送失败');
-			}
-		},
-		error: function(){
-			showErrorMessage('发送失败');
-		}
-	});
-
+	push(form, 'broadcast.json');
 }
-
+/*
 function doClearKindEditor(){
 	editor.html('');
 }
+*/
 </script>
 <!-- <form>
 	<textarea name="content" style="width:1050px;height:600px;visibility:hidden;" placeholder="最多5000字"></textarea><br/>
@@ -63,5 +44,5 @@ function doClearKindEditor(){
 	<input type="button" value="清空" onclick="doClearKindEditor()">
 </form> -->
 <textarea id="push_content" rows=10 cols=80></textarea>
-<input type="button" value="发送" onclick="doPush()">
+<input type="button" value="发送" onclick="doBroadcast('#push_content')">
 <input type="button" value="清空" onclick="clearInput('#push_content')">

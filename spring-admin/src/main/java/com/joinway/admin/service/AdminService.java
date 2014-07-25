@@ -1,10 +1,11 @@
 package com.joinway.admin.service;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.joinway.admin.bean.domain.AdminUser;
 import com.joinway.admin.bean.domain.TreeMenu;
 import com.joinway.admin.bean.form.LoginForm;
+import com.joinway.admin.bean.form.MessivePushForm;
 import com.joinway.admin.bean.form.PushAllForm;
 import com.joinway.admin.bean.form.RegisterForm;
 import com.joinway.admin.bean.view.LoginView;
@@ -29,9 +31,9 @@ import com.joinway.appx.service.MessagePushService;
 import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
+import com.joinway.console.bean.domain.User;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.utils.CipherUtils;
-import com.joinway.web.utils.FrameworkHelper;
 
 @Service
 public class AdminService {
@@ -111,7 +113,7 @@ public class AdminService {
 		return view;
 	}
 
-	@Transactional(propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+	@Transactional(rollbackFor=Throwable.class)
 	public PushView push(PushAllForm form) throws Exception {
 		AdminUser au = tableRepository.find(form.getUserId(), AdminUser.class);
 		
@@ -120,17 +122,25 @@ public class AdminService {
 		return new PushView();
 	}
 	
-//	String createHtmlMessageDir(){
-//		String pushDir = FrameworkHelper.getHttpServletRequest().getServletContext().getRealPath("/") + "push";
-//		File dir = new File(pushDir);
-//		
-//		if(!dir.exists()){
-//			log.info("directory {} doesn't exist, create a new one", dir);
-//			dir.mkdirs();
-//		}
-//		
-//		return pushDir;
-//	}
+	@Transactional(rollbackFor=Throwable.class)
+	public PushView messivePush(MessivePushForm form) throws Exception {
+		AdminUser au = tableRepository.find(form.getUserId(), AdminUser.class);
+		
+		String[] userIds = StringUtils.split(form.getTargetUserIds(), ",");
+		List<String> rids = new ArrayList<>();
+		
+		for(String userId : userIds){
+			User user = tableRepository.find(Integer.valueOf(userId), User.class);
+			
+			if(user != null && StringUtils.isNotBlank(user.getImId())){
+				rids.add(user.getImId());
+			}
+		}
+		
+		pushService.messiveBroadcast(form.getText(), au.getLoginName(), rids.toArray(new String[]{}));
+		
+		return new PushView();
+	}
 	
 	LoginView createLoginView(AdminUser adminUser) {
 		LoginView view = new LoginView();

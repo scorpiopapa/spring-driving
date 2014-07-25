@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.joinway.admin.bean.UserContext;
 import com.joinway.admin.bean.form.LoginForm;
+import com.joinway.admin.bean.form.MessivePushForm;
 import com.joinway.admin.bean.form.PushAllForm;
 import com.joinway.admin.bean.form.RegisterForm;
 import com.joinway.admin.bean.view.LoginView;
@@ -31,7 +32,6 @@ import com.joinway.web.audit.annotation.Audit;
 import com.joinway.web.security.annotation.Login;
 import com.joinway.web.security.annotation.Logout;
 import com.joinway.web.security.annotation.SecurityCheck;
-import com.joinway.web.utils.FrameworkHelper;
 
 /**
  * 建议把session相关操作的代码放到controller里，service保持无状态
@@ -122,7 +122,6 @@ public class AdminController extends ExceptionController {
 	@InputLog
 	@OutputLog
 	public TreeMenuView navigator() throws Exception {
-//		log.info("------------------{}--------------------", FrameworkHelper.getHttpServletRequest().getServletContext());
 		return service.getNavigatorMenus(SessionHelper.getUserContext().getUserId());
 	}
 	
@@ -135,6 +134,15 @@ public class AdminController extends ExceptionController {
 		return service.push(form);
 	}
 
+	@RequestMapping(value="broadcast/messive", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@Audit
+	@InputLog
+	@OutputLog
+	public PushView messivePush(@ApiBodyObject @Valid MessivePushForm form) throws Exception {
+		return service.messivePush(form);
+	}
+	
 	void preLogin(String userName){
 		UserContext uc = SessionHelper.getUserContext(true);
 		// set login user name anyway for audit usage

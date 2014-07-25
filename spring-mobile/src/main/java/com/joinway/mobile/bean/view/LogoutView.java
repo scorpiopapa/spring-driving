@@ -6,7 +6,7 @@ import org.jsondoc.core.annotation.ApiObjectField;
 import com.joinway.bean.logging.annotation.LogMask;
 import com.joinway.bean.view.View;
 
-@ApiObject(name = "LoginView", description = "登出成功返回结果")
+@ApiObject(name = "LogoutView", description = "登出成功返回结果")
 public class LogoutView extends View {
 
 	/**

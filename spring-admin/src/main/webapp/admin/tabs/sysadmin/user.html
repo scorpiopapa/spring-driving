@@ -55,6 +55,38 @@ function doPostEditUser(row){
 		$('#user_male').removeAttr('checked');
 	}
 }
+
+function showPushUserMessageDialog(){
+	var rows = $('#user_grid').datagrid('getSelections');
+
+	if(!rows || rows.length == 0){
+		showWarningMessage('请至少选择一行');
+	}else{
+		$('#user_push_dlg').dialog({
+			title: '发送消息',
+			modal: true
+		});
+		
+		$('#user_push_dlg').dialog('open');
+	} 	
+}
+
+function doPushUserMessage(jcntId){
+	var form = new Object();
+	form.text = $('#user_push_content').val();
+	form.userId = localStorage.userId;	
+	
+	var rows = $('#user_grid').datagrid('getSelections');
+   	var ids = '';
+   	for(var i = 0; i < rows.length; i++){
+   		ids += rows[i].id + ',';
+   	}
+   	ids = ids.substring(0, ids.length - 1);
+   	console.log(ids);
+   	
+   	form.targetUserIds = ids;
+   	push(form, 'broadcast/messive.json');
+}
 </script>
 <table id="user_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#user_toolbar'">
     <thead>
@@ -73,10 +105,11 @@ function doPostEditUser(row){
 </table>
 <div id="user_toolbar" style="padding:5px;height:auto">
     <div style="margin-bottom:5px">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#user_form', '#user_dlg')">添加</a>
+<!--         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#user_form', '#user_dlg')">添加</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#user_grid', '#user_form', '#user_dlg', null, doPostEditUser)">编辑</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshUser()">刷新</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#user_grid', userTable)">删除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#user_grid', userTable)">删除</a> -->
+        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="showPushUserMessageDialog()">发送</a>
     </div>
         <!-- 手机号 <input id="user_text" class="easyui-numberbox" data-options="min:0,precision:0"/> -->
   	手机号 <input id="user_text" type="text"/>
@@ -122,4 +155,10 @@ function doPostEditUser(row){
  <div id="user_dlg_buttons">
      <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveItem('#user_grid', '#user_form', '#user_dlg', userTable)">保存</a>
      <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeDialog('#user_dlg')">取消</a>
+ </div>
+
+<div id="user_push_dlg" class="easyui-dialog" style="width:700px;height:300px;padding:10px 20px" closed="true">
+	<textarea id="user_push_content" rows=10 cols=80></textarea><br/>
+	<input type="button" value="发送" onclick="doPushUserMessage()">
+	<input type="button" value="清空" onclick="clearInput('#user_push_content')"> 
  </div>

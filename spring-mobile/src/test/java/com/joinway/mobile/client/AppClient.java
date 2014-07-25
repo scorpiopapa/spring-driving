@@ -8,14 +8,15 @@ public class AppClient {
 
 	static final HttpClientAdaptor client = new HttpClientAdaptor();
 	
-	static final String BASE_URL = "http://localhost:8080/mobile-service";
+//	static final String BASE_URL = "http://localhost:8080/mobile-service";
+	static final String BASE_URL = "http://115.28.198.131:8000/spring-mobile";
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-//		login();
-		register();
+		login();
+//		register();
 //		menu();
 //		logout();
 //		Object o = null;
@@ -26,20 +27,26 @@ public class AppClient {
 	static void register() throws Exception {
 		RegisterForm form = new RegisterForm();
 		form.setCellPhone("13998420001");
-		form.setName("lee123");
+		form.setName("lee1235");
 		form.setPassword("123456");
+		form.setUserName("lee");
 		
-		client.post(form, BASE_URL + "/register.json");
+		client.post(form, BASE_URL + "/register");
 //		client.post(BASE_URL + "/register", new PostParameterBuilder().add("name", "lee").add("password", "123").list());
 	}
 
 	static void login() throws Exception {
 		LoginForm form = new LoginForm();
-		form.setName("lee123");
-		form.setPassword("123456");
+//		form.setName("lee1235");
+//		form.setPassword("123456");
+//		form.setMobileType("A");
+//		form.setImId("123");
+		
+		form.setName("123");
+		form.setPassword("123");
 		form.setMobileType("A");
 		form.setImId("123");
-		
+
 		client.post(form, BASE_URL + "/login.json");
 	}
 
