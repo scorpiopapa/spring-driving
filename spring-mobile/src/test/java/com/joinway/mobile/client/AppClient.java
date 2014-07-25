@@ -14,8 +14,8 @@ public class AppClient {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		login();
-//		register();
+//		login();
+		register();
 //		menu();
 //		logout();
 //		Object o = null;

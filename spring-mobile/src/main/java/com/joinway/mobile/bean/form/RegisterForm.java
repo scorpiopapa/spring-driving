@@ -1,5 +1,6 @@
 package com.joinway.mobile.bean.form;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
 
@@ -19,6 +20,11 @@ public class RegisterForm extends AuthForm {
 	@CellPhone
 	@LogMask
 	String cellPhone;
+	
+	@ApiObjectField(description = "真实姓名")
+	@NotBlank
+	@LogMask
+	String userName;
 	
 	public String getName() {
 		return name;
@@ -42,6 +48,14 @@ public class RegisterForm extends AuthForm {
 
 	public void setCellPhone(String cellPhone) {
 		this.cellPhone = cellPhone;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

@@ -54,7 +54,8 @@ public class MobileService {
 		User user = new User();
 		user.setId(loginUser.getId());
 		user.setCellPhone(form.getCellPhone());
-		user.setName(form.getName());
+		user.setName(form.getUserName());
+		
 		tableRepository.insert(user);
 		
 		LoginView view = new LoginView();
