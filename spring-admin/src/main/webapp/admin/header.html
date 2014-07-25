@@ -1,0 +1,11 @@
+<script type="text/javascript">
+function logout(){
+	$.get(appName + 'logout.json', function(data) {
+		//console.log(data);
+		window.location.href = 'login.html';
+	});
+};
+
+</script>
+<a id="header_logout" href="javascript:void(0)" onclick="logout()">退出</a>
+

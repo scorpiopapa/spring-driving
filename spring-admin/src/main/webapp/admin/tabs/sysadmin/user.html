@@ -1,0 +1,125 @@
+<style type="text/css">
+#user_form {
+margin: 0;
+padding: 10px 30px;
+}
+
+.user_item {
+margin-bottom: 5px;
+}
+
+.user_item label {
+display: inline-block;
+width: 80px;
+}
+</style>
+
+<script type="text/javascript" src="../resources/js/common.js"></script>
+<script type="text/javascript">
+var userTable = 'user';
+
+$(function() {
+	initDataGrid('#user_grid', appName + 'search/' + userTable + '.json');
+});
+
+function doSearchUser() {
+	searchDataGrid('#user_grid', {
+		cellPhone : $('#user_text').val()
+	});
+}
+
+function doRefreshUser() {
+	refreshDataGrid('#user_grid', {
+		cellPhone : ''
+	});
+}
+
+function formatGender(val, row){
+	var value = val;
+	if(val == 'F'){
+		value = '女'
+	}else if(val == 'M'){
+		value = '男'
+	}
+	
+	return value;
+}
+
+function doPostEditUser(row){
+	if(row.gender == 'F'){
+		$('#user_female').attr('checked', 'checked1');
+	}else if(row.gender == 'M'){
+		$('#user_male').attr('checked', 'checked');
+	}else{
+		$('#user_female').removeAttr('checked');
+		$('#user_male').removeAttr('checked');
+	}
+}
+</script>
+<table id="user_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#user_toolbar'">
+    <thead>
+        <tr>
+        <th data-options="field:'ck'" checkbox="true"></th>
+            <th data-options="field:'id'">ID</th>
+            <th data-options="field:'cellPhone'">手机号</th>
+            <th data-options="field:'phone'">固话</th>
+            <th data-options="field:'name'">姓名</th>
+            <th data-options="field:'gender',formatter:formatGender">性别</th>
+            <th data-options="field:'zone'">所在地区</th>
+            <th data-options="field:'address'">地址</th>
+            <th data-options="field:'comment'">备注</th>
+        </tr>
+    </thead>
+</table>
+<div id="user_toolbar" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#user_form', '#user_dlg')">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#user_grid', '#user_form', '#user_dlg', null, doPostEditUser)">编辑</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshUser()">刷新</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#user_grid', userTable)">删除</a>
+    </div>
+        <!-- 手机号 <input id="user_text" class="easyui-numberbox" data-options="min:0,precision:0"/> -->
+  	手机号 <input id="user_text" type="text"/>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUser()">查询</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#user_toolbar')">清除</a>
+</div>
+
+<div id="user_dlg" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
+     <form id="user_form" method="post" novalidate>
+         <div class="user_item">
+             <label>手机号</label>
+             <input name="cellPhone" >
+             <input name="id" type="hidden">
+         </div>
+         <div class="user_item">
+             <label>固话</label>
+             <input name="phone" >
+         </div>
+         <div class="user_item">
+             <label>姓名</label>
+             <input name="name" >
+         </div>
+         <div class="user_item">
+             <label>性别</label>
+             <!-- <input name="gender" > -->
+             <input id="user_male" name="gender" type="radio" value="M">男
+             <input id="user_female" name="gender" type="radio" value="F">女
+         </div>
+         <div class="user_item">
+             <label>所在地区</label>
+             <input name="zone" >
+         </div>
+         <div class="user_item">
+             <label>地址</label>
+             <input name="address" >
+         </div>
+         <div class="user_item">
+             <label>备注</label>
+             <input name="comment" >
+         </div>
+     </form>
+ </div>
+ <div id="dlg-buttons">
+     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveItem('#user_grid', '#user_form', '#user_dlg', userTable)">保存</a>
+     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeDialog('#user_dlg')">取消</a>
+ </div>

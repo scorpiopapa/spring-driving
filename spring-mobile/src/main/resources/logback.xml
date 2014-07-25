@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<conversionRule conversionWord="logger" converterClass="com.joinway.web.logging.LoggingConverter" />
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date [%X{com.joinway.audit.flow}] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<prudent>true</prudent>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.home}/logs/app.%d{yyyy-MM}.log</fileNamePattern>
+			<maxHistory>6</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date [%X{com.joinway.audit.flow}] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.home}/logs/app_error.%d{yyyy-MM}.log</fileNamePattern>
+			<maxHistory>6</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %-4relative [%X{com.joinway.audit.flow}] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.joinway" level="debug" />
+	<logger name="cn.jpush" level="debug" />
+
+	<root level="info">
+	<if condition='!isDefined("spring.profiles.active")'>
+		<then>
+				<appender-ref ref="STDOUT" />
+		</then>
+		<else>
+				<appender-ref ref="FILE" />
+				<appender-ref ref="ERROR" />
+		</else>
+	</if>
+	</root>
+
+</configuration>
