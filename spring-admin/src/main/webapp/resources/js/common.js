@@ -171,6 +171,11 @@ function clearInput(jinputId){
 }
 
 function push(form, url){
+	if(!form || !form.text){
+		showErrorMessage("通知内容不能为空");
+		return;
+	}
+
 	$.ajax({
 		type : "post",
 		url : appName + url,

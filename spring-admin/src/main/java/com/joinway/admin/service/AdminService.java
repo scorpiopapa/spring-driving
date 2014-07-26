@@ -124,7 +124,7 @@ public class AdminService {
 	public PushView push(PushAllForm form) throws Exception {
 		AdminUser au = tableRepository.find(form.getUserId(), AdminUser.class);
 		
-		pushService.broadcast(form.getText(), au.getLoginName());
+		pushService.broadcast(form.getTitle(), form.getText(), au.getLoginName());
 
 		return new PushView();
 	}
@@ -144,7 +144,7 @@ public class AdminService {
 			}
 		}
 		
-		pushService.messiveBroadcast(form.getText(), au.getLoginName(), devices);
+		pushService.messiveBroadcast(form.getTitle(), form.getText(), au.getLoginName(), devices);
 		
 		return new PushView();
 	}

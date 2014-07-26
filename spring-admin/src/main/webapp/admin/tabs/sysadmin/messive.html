@@ -75,6 +75,7 @@ function showPushUserMessageDialog(){
 
 function doPushUserMessage(jcntId){
 	var form = new Object();
+	form.title = $('#user_title').val();
 	form.text = $('#user_push_content').val();
 	form.userId = localStorage.userId;	
 	
@@ -161,6 +162,7 @@ function doPushUserMessage(jcntId){
  </div>
 
 <div id="user_push_dlg" class="easyui-dialog" style="width:700px;height:300px;padding:10px 20px" closed="true">
+	<input id="user_title" type="text" placeholder="标题" size="40"/><br/>
 	<textarea id="user_push_content" rows=10 cols=80></textarea><br/>
 	<input type="button" value="发送" onclick="doPushUserMessage()">
 	<input type="button" value="清空" onclick="clearInput('#user_push_content')">

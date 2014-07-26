@@ -16,6 +16,8 @@ public class PushAllForm extends Form {
 	@Min(1)
 	int userId;
 	
+	String title;
+	
 	@NotBlank
 	String text;
 
@@ -33,6 +35,14 @@ public class PushAllForm extends Form {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 }
