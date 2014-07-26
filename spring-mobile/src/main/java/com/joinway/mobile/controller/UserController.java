@@ -24,13 +24,14 @@ import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.bean.logging.annotation.OutputLog;
 import com.joinway.mobile.bean.view.UserView;
 import com.joinway.mobile.service.UserService;
+import com.joinway.web.audit.ExceptionController;
 import com.joinway.web.audit.annotation.Audit;
 
 @Api(name = "User", description = "手机用户相关接口")
 @Controller
 @RequestMapping("user")
 @Validated
-public class UserController {
+public class UserController extends ExceptionController {
 
 	@Autowired UserService service;
 	
