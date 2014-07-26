@@ -1,0 +1,20 @@
+#!/bin/sh
+
+TOMCAT_HOME=/home/appuser/tomcat
+
+$TOMCAT_HOME/bin/shutdown.sh
+
+echo "remove old packages ..."
+rm -rf $TOMCAT_HOME/webapps/spring-mobile
+rm -rf $TOMCAT_HOME/webapps/spring-mobile.war
+rm -rf $TOMCAT_HOME/webapps/spring-admin
+rm -rf $TOMCAT_HOME/webapps/spring-admin.war
+
+echo "copy wars ..."
+cp $HOME/code/spring-driving/trunk/spring-mobile/target/spring-mobile.war $TOMCAT_HOME/webapps
+cp $HOME/code/spring-driving/trunk/spring-mobile/target/spring-admin.war $TOMCAT_HOME/webapps
+
+echo "copy done!"
+$TOMCAT_HOME/bin/startup.sh
+
+tail -f $TOMCAT_HOME/logs/catalina.out
