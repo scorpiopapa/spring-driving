@@ -3,6 +3,7 @@ package com.joinway.mobile.push;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import cn.jpush.api.JPushClient;
@@ -14,8 +15,9 @@ import cn.jpush.api.push.model.notification.Notification;
 
 public class JPushTest {
 
+	@Ignore
 	@Test public void test1() throws Exception {
-		JPushClient client = new JPushClient("6234661038a43726dc32fe40", "d5468e2738cd06e4520eef17");
+		JPushClient client = new JPushClient("6234661038a43726dc32fe40", "d5468e2738cd06e4520eef17", false, 86400);
 //		PushResult result = client.sendNotificationAll("你好2");
 //		PushResult result = client.sendMessageAll("test");
 		
@@ -25,7 +27,7 @@ public class JPushTest {
 		PushResult result = client.sendPush(PushPayload.newBuilder()
 												.setNotification(Notification.android("test", null, extras))
 												.setAudience(Audience.all())
-												.setPlatform(Platform.all())
+												.setPlatform(Platform.android())
 												.build());
 		System.out.println(result);
 		

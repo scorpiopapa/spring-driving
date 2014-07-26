@@ -29,7 +29,7 @@ public class NoticeController {
     @Audit()
     @InputLog
     public ModelAndView acknowledge(@PathVariable("page") @NotBlank String page, @RequestParam("userId") @Min(1) int userId) throws Exception {
-        String pushDir = repository.getValue(SystemRepository.PushDir);
+        String pushDir = repository.getStringValue(SystemRepository.PushDir);
         
         service.acknowledge(page, userId);
         
