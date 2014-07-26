@@ -32,7 +32,7 @@ public class MobileService {
 	public LoginView register(RegisterForm form) throws Exception {
 		LoginUser loginUser = appRepository.findLoginUser(form.getName());
 		if(loginUser != null){
-			throw new DuplicateDataException("user has already registered");
+			throw new DuplicateDataException("用户已注册");
 		}
 		
 		/*
@@ -69,7 +69,7 @@ public class MobileService {
 	public LoginView login(LoginForm form) throws Exception {
 		LoginUser loginUser = appRepository.findLoginUser(form.getName(), CipherUtils.encrypt(form.getPassword()));
 		if(loginUser == null){
-			throw new ValidationException("user doesn't exist");
+			throw new ValidationException("用户名或密码错误");
 		}
 		
 		/*
@@ -101,7 +101,7 @@ public class MobileService {
 		LoginUser loginUser = tableRepository.find(form.getUserId(), LoginUser.class);
 		
 		if(loginUser == null){
-			throw new ValidationException("user doesn't exist");
+			throw new ValidationException("用户不存在");
 		}
 		
 		/*

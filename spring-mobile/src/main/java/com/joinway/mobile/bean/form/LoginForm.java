@@ -1,5 +1,7 @@
 package com.joinway.mobile.bean.form;
 
+import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.NotBlank;
 import org.jsondoc.core.annotation.ApiObject;
 import org.jsondoc.core.annotation.ApiObjectField;
@@ -20,7 +22,7 @@ public class LoginForm extends AuthForm {
 	String imId;
 	
 	@ApiObjectField(description = "手机类型:A-Android;I-IOS")
-	@NotBlank
+	@Pattern(regexp="^A|I$")
 	@LogMask
 	String mobileType;
 	

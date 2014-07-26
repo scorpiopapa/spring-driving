@@ -17,7 +17,7 @@ public class UserService {
 		User user = repository.find(userId, User.class);
 		
 		if(user == null){
-			throw new ValidationException("user doesn't exist");
+			throw new ValidationException("用户不存在");
 		}
 		
 		UserView view = new UserView();

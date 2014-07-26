@@ -26,6 +26,7 @@ import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
 import com.joinway.admin.repository.AdminRepository;
 import com.joinway.admin.utils.UIHelper;
+import com.joinway.appx.bean.UserDevice;
 import com.joinway.appx.repository.SystemRepository;
 import com.joinway.appx.service.MessagePushService;
 import com.joinway.bean.exception.DuplicateDataException;
@@ -127,17 +128,17 @@ public class AdminService {
 		AdminUser au = tableRepository.find(form.getUserId(), AdminUser.class);
 		
 		String[] userIds = StringUtils.split(form.getTargetUserIds(), ",");
-		List<String> rids = new ArrayList<>();
+		List<UserDevice> devices = new ArrayList<>();
 		
 		for(String userId : userIds){
 			User user = tableRepository.find(Integer.valueOf(userId), User.class);
 			
 			if(user != null && StringUtils.isNotBlank(user.getImId())){
-				rids.add(user.getImId());
+				devices.add(new UserDevice(user.getImId(), user.getCellPhoneType()));
 			}
 		}
 		
-		pushService.messiveBroadcast(form.getText(), au.getLoginName(), rids.toArray(new String[]{}));
+		pushService.messiveBroadcast(form.getText(), au.getLoginName(), devices);
 		
 		return new PushView();
 	}

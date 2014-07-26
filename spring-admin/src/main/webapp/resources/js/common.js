@@ -145,9 +145,9 @@ function deleteItem(jgridId, tableName){
 	            $.post(appName + 'delete/' + tableName + '.json', {id:ids}, function(data){
 	            console.log(data.code);
 	                if (data.code != 0){
-	                showErrorMessage('删除失败');
+	                	showErrorMessage('删除失败');
 	                }else{
-	                refreshDataGrid(jgridId);
+	                	refreshDataGrid(jgridId);
 	                }
 	            }, 'json');
 		    }
@@ -174,13 +174,17 @@ function push(form, url){
 	$.ajax({
 		type : "post",
 		url : appName + url,
+		async: false,
 		data : form,
 		success : function(data) {
+			showInformationMessage('发送完毕');
+			/*
 			if(data.code == 0){
-				showInformationMessage('发送成功')
+				showInformationMessage('发送完毕')
 			}else{
-				showErrorMessage('发送失败');
+				showErrorMessage('发送完毕');
 			}
+			*/
 		},
 		error: function(){
 			showErrorMessage('发送失败');

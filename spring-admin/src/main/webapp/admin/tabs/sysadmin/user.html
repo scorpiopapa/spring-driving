@@ -62,6 +62,8 @@ function showPushUserMessageDialog(){
 	if(!rows || rows.length == 0){
 		showWarningMessage('请至少选择一行');
 	}else{
+		$('#user_push_content').val('');
+		
 		$('#user_push_dlg').dialog({
 			title: '发送消息',
 			modal: true
@@ -86,6 +88,8 @@ function doPushUserMessage(jcntId){
    	
    	form.targetUserIds = ids;
    	push(form, 'broadcast/messive.json');
+   	
+   	//closeDialog('#user_push_dlg');
 }
 </script>
 <table id="user_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#user_toolbar'">
@@ -109,12 +113,12 @@ function doPushUserMessage(jcntId){
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#user_grid', '#user_form', '#user_dlg', null, doPostEditUser)">编辑</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshUser()">刷新</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#user_grid', userTable)">删除</a> -->
-        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="showPushUserMessageDialog()">发送</a>
     </div>
         <!-- 手机号 <input id="user_text" class="easyui-numberbox" data-options="min:0,precision:0"/> -->
   	手机号 <input id="user_text" type="text"/>
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUser()">查询</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#user_toolbar')">清除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushUserMessageDialog()">发送</a>
 </div>
 
 <div id="user_dlg" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px" closed="true" buttons="#user_dlg_buttons">
@@ -134,7 +138,6 @@ function doPushUserMessage(jcntId){
          </div>
          <div class="user_item">
              <label>性别</label>
-             <!-- <input name="gender" > -->
              <input id="user_male" name="gender" type="radio" value="M">男
              <input id="user_female" name="gender" type="radio" value="F">女
          </div>
@@ -160,5 +163,5 @@ function doPushUserMessage(jcntId){
 <div id="user_push_dlg" class="easyui-dialog" style="width:700px;height:300px;padding:10px 20px" closed="true">
 	<textarea id="user_push_content" rows=10 cols=80></textarea><br/>
 	<input type="button" value="发送" onclick="doPushUserMessage()">
-	<input type="button" value="清空" onclick="clearInput('#user_push_content')"> 
- </div>
+	<input type="button" value="清空" onclick="clearInput('#user_push_content')">
+</div>

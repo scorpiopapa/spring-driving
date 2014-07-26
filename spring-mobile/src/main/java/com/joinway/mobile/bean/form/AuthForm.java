@@ -15,7 +15,7 @@ public abstract class AuthForm extends Form {
 	 */
 	private static final long serialVersionUID = -6643400074363702461L;
 
-	@ApiObjectField(description = "用户登录账号,3到20个字符")
+	@ApiObjectField(description = "用户登录账号,6到20个字符")
 	@Length(min=3,max=20)
 	@LogMask
 	String name;

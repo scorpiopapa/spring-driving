@@ -39,4 +39,8 @@ public class JPushTest {
 	@Test public void test2(){
 		System.out.println(System.getProperty("user.home"));
 	}
+	
+	@Test public void test3(){
+		System.out.println("你好".length());
+	}
 }
