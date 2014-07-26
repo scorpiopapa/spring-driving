@@ -29,12 +29,12 @@
 			AND STATUS = 'Y'
 	</select>
 	
-<!-- 	<select id="selectUserTreeMenus" resultMap="TreeMenu">
+	<select id="selectUserTreeMenus" resultMap="TreeMenu">
 		SELECT T.* FROM TREE_MENU T
 			RIGHT JOIN ROLE_MENU_MAP RMM ON RMM.MENU_ID = T.ID
 			RIGHT JOIN USER_ROLE UR ON UR.ROLE_ID = RMM.ROLE_ID
-			RIGHT JOIN ROLE R ON R.ROLE_ID = UR.ROLE_ID
-			RIGHT JOIN LOGIN_USER LU ON LU.ID = UR.USER_ID
-		WHERE T.STATUS = 'Y' AND LU.ID = #{userId}
-	</select> -->
+			RIGHT JOIN ROLE R ON R.ID = UR.ROLE_ID
+			RIGHT JOIN ADMIN_USER AU ON AU.ID = UR.USER_ID
+		WHERE T.STATUS = 'Y' AND AU.ID = #{userId}
+	</select>
 </mapper>

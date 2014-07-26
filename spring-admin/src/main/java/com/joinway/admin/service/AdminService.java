@@ -24,6 +24,7 @@ import com.joinway.admin.bean.view.LogoutView;
 import com.joinway.admin.bean.view.Menu;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
+import com.joinway.admin.constant.DBConstants;
 import com.joinway.admin.repository.AdminRepository;
 import com.joinway.admin.utils.UIHelper;
 import com.joinway.appx.bean.UserDevice;
@@ -33,8 +34,11 @@ import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.console.bean.domain.User;
+import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.utils.CipherUtils;
+import com.joinway.utils.data.Filter;
+import com.joinway.utils.data.bean.Condition;
 
 @Service
 public class AdminService {
@@ -99,12 +103,14 @@ public class AdminService {
 		List<TreeMenu> trees = null;
 
 		trees = tableRepository.find(TreeMenu.class);
-//		if (isSuperUser(userId)) {
-//			trees = tableRepository.find(TreeMenu.class);
-//			trees = Filter.create(trees, Condition.create("status", DBConstants.YES)).result();
-//		} else {
-//			trees = repository.findUserTreeMenus(userId);
-//		}
+		AdminUser au = tableRepository.find(userId, AdminUser.class);
+		
+		if ("super".equals(au.getLoginName())) {
+			trees = tableRepository.find(TreeMenu.class);
+			trees = Filter.create(trees, Condition.create("status", DBValueConstants.YES)).result();
+		} else {
+			trees = repository.findUserTreeMenus(userId);
+		}
 
 		TreeMenuView view = new TreeMenuView();
 
