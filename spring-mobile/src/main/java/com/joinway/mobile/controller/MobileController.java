@@ -32,7 +32,7 @@ import com.joinway.mobile.service.MobileService;
 import com.joinway.web.audit.ExceptionController;
 import com.joinway.web.audit.annotation.Audit;
 
-@Api(name = "Mobile Controller", description = "手机 用户登录，登出")
+@Api(name = "Mobile", description = "手机 用户登录，登出")
 @Controller
 @RequestMapping("")
 @Validated
