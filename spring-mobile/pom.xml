@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.joinway</groupId>
     <artifactId>spring-driving</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>
   <artifactId>spring-mobile</artifactId>
   <packaging>war</packaging>
@@ -24,22 +24,22 @@
 		<dependency>
 			<groupId>com.joinway</groupId>
 			<artifactId>appx</artifactId>
-			<version>1.1-SNAPSHOT</version>
+			<version>1.1.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.joinway</groupId>
 			<artifactId>utils</artifactId>
-			<version>1.1-SNAPSHOT</version>
+			<version>1.1.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.joinway</groupId>
 			<artifactId>net</artifactId>
-			<version>1.1-SNAPSHOT</version>
+			<version>1.1.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.joinway</groupId>
 			<artifactId>spring-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
