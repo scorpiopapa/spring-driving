@@ -171,6 +171,11 @@ function clearInput(jinputId){
 }
 
 function push(form, url){
+	if(!form || !form.title){
+		showErrorMessage('通知标题不能为空');
+		return;
+	}
+	
 	if(!form || !form.text){
 		showErrorMessage("通知内容不能为空");
 		return;
