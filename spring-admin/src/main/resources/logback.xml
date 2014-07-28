@@ -58,6 +58,7 @@
 		<else>
 				<appender-ref ref="FILE" />
 				<appender-ref ref="ERROR" />
+				<appender-ref ref="SQL" />
 		</else>
 	</if>
 	</root>
