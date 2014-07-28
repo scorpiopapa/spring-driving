@@ -8,15 +8,15 @@ public class AppClient {
 
 	static final HttpClientAdaptor client = new HttpClientAdaptor();
 	
-//	static final String BASE_URL = "http://localhost:8080/mobile-service";
-	static final String BASE_URL = "http://115.28.198.131:8000/spring-mobile";
+	static final String BASE_URL = "http://localhost:8080/spring-mobile";
+//	static final String BASE_URL = "http://115.28.198.131:8000/spring-mobile";
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		login();
-//		register();
+//		login();
+		register();
 //		menu();
 //		logout();
 //		Object o = null;
@@ -27,7 +27,7 @@ public class AppClient {
 	static void register() throws Exception {
 		RegisterForm form = new RegisterForm();
 		form.setCellPhone("13998420001");
-		form.setName("lee1235");
+		form.setName("lee12356");
 		form.setPassword("123456");
 		form.setUserName("lee");
 		

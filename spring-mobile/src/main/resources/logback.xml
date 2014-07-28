@@ -21,6 +21,16 @@
 		</encoder>
 	</appender>
 
+	<appender name="SQL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${user.home}/logs/${log.name}_sql.%d{yyyy-MM}.log</fileNamePattern>
+			<maxHistory>6</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%date %-4relative [%X{com.joinway.audit.flow}] %-5level %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
 	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>ERROR</level>
@@ -36,7 +46,10 @@
 
 	<logger name="com.joinway" level="debug" />
 	<logger name="cn.jpush" level="debug" />
-
+	<logger name="com.joinway.mobile.mapper" level="debug" addtivity="false">
+		<appender-ref ref="SQL"/>
+	</logger>
+	
 	<root level="info">
 	<if condition='!isDefined("spring.profiles.active")'>
 		<then>

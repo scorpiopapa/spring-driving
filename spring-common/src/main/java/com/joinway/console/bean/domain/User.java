@@ -1,5 +1,7 @@
 package com.joinway.console.bean.domain;
 
+import java.util.Date;
+
 import com.joinway.bean.db.annotation.DomainField;
 import com.joinway.bean.db.type.CaseFormat;
 import com.joinway.db.bean.domain.DomainEntity;
@@ -39,6 +41,8 @@ public class User extends DomainEntity {
 	
 	String comment;
 
+	Date registerTime;
+	
 	public String getCellPhone() {
 		return cellPhone;
 	}
@@ -141,6 +145,14 @@ public class User extends DomainEntity {
 
 	public void setTestStatus(String testStatus) {
 		this.testStatus = testStatus;
+	}
+
+	public Date getRegisterTime() {
+		return registerTime;
+	}
+
+	public void setRegisterTime(Date registerTime) {
+		this.registerTime = registerTime;
 	}
 	
 }

@@ -23,6 +23,13 @@
 	<!-- javax和hibernate validation 验证支持类-->
 	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" />
 	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/view" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="2" />
+	</bean>
+
 	<!-- -->
 	<mvc:interceptors>
 		<bean class="com.joinway.web.audit.FlowInterceptor"/>

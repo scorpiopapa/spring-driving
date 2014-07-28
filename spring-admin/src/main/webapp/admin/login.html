@@ -14,6 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="../resources/jquery-easyui/themes/default/easyui.css">
     	<link rel="stylesheet" type="text/css" href="../resources/jquery-easyui/themes/icon.css">
    		<link rel="stylesheet" type="text/css" href="../resources/jquery-easyui/demo/demo.css">
+   		<link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
    		
    		<script type="text/javascript" src="../resources/jquery-easyui/jquery.min.js"></script>
 		<script type="text/javascript" src="../resources/jquery-easyui/jquery.easyui.min.js"></script>
@@ -51,7 +52,32 @@ function login(){
 	</head>
 
 	<body>
-		<div class="easyui-panel" style="width:400px;padding:10px;">
+		<div class="main">
+			<div class="mainBg">
+				<div class="logo"></div>
+				<div class="login">
+					<div class="formT">
+						<form id="login_form" method="get">
+							<div class="form1">
+								<h3>账号</h3>
+								<input id="name" name="name" type="text" class="input1"/>
+								<!-- <div class="rightBtn"><img src="images/right.png"/></div> -->
+						    </div>
+							<div class="form1">
+								<h3>密码</h3>
+								<input id="password" name="password" type="password" class="input1"/>
+								<!-- <div class="rightBtn" ><img src="images/wrong.png"/></div> -->
+							</div>
+						</form>
+					</div> 
+				<div class="btn">
+					<img alt="登录" src="../resources/images/btn.png" onclick="login();">
+				</div>
+				</div>
+			</div>
+		</div>
+
+<!-- 		<div class="easyui-panel" style="width:400px;padding:10px;">
 	        <form id="login_form">
 	            <table>
 	                <tr>
@@ -61,20 +87,16 @@ function login(){
 	                <tr>
 	                    <td>密码:</td>
 	                    <td><input id="password" name="password" type="password"></input></td>
-	                    <!-- <td><input id="password" name="password" type="text"></input></td> -->
+	                    <td><input id="password" name="password" type="text"></input></td>
 	                </tr>
 	                <tr>
-	                    <!-- <td><input type="submit" value="提交"/></td> -->
+	                    <td><input type="submit" value="提交"/></td>
 	                    <td><input type="button" value="提交" onclick="login()"/></td>
 	                    <td><input type="reset" value="清除"/></td>
-	                    <!-- <td><input type="button" value="清除1"/></td> -->
+	                    <td><input type="button" value="清除1"/></td>
 	                </tr>
-<!-- 	                <tr>
-	                	<td><a href="register.html">注册</a></td>
-	                	<td></td>
-	                </tr> -->
 	            </table>
 	        </form>
-	    </div>
+	    </div> -->
 	</body>
 </html>

@@ -55,6 +55,7 @@ public class MobileService {
 		user.setId(loginUser.getId());
 		user.setCellPhone(form.getCellPhone());
 		user.setName(form.getUserName());
+		user.setRegisterTime(today);
 		
 		tableRepository.insert(user);
 		
