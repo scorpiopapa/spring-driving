@@ -7,6 +7,10 @@ APP_JAR=spring-common-1.0.jar
 
 $TOMCAT_HOME/bin/shutdown.sh
 
+echo "restore tomcat libs ..."
+rm -rf $TOMCAT_HOME/lib
+cp -r $TOMCAT_HOME/lib.bak $TOMCAT_HOME/lib
+
 if [ "$1" == "solo" ]
 then
   for VAR in $APPS
@@ -20,9 +24,6 @@ then
   done
   
 else
-  echo "override tomcat libs ..."
-  rm -rf $TOMCAT_HOME/lib
-  cp -r $TOMCAT_HOME/lib.bak $TOMCAT_HOME/lib
   
   for VAR in $APPS
   do
