@@ -46,9 +46,17 @@
 
 	<logger name="com.joinway" level="debug" />
 	<logger name="cn.jpush" level="debug" />
-	<logger name="com.joinway.admin.mapper" level="debug" addtivity="false">
+
+	<if condition='isDefined("spring.profiles.active")'>
+		<then>
+	<logger name="com.joinway.mobile.mapper" level="debug" additivity="false">
 		<appender-ref ref="SQL"/>
 	</logger>
+	<logger name="com.joinway.db.mapper" level="debug" additivity="false">
+		<appender-ref ref="SQL"/>
+	</logger>
+		</then>
+	</if>
 
 	<root level="info">
 	<if condition='!isDefined("spring.profiles.active")'>
