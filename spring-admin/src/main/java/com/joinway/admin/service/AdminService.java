@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.joinway.admin.bean.domain.AdminUser;
 import com.joinway.admin.bean.domain.TreeMenu;
 import com.joinway.admin.bean.form.LoginForm;
-import com.joinway.admin.bean.form.MessivePushForm;
+import com.joinway.admin.bean.form.MassPushForm;
 import com.joinway.admin.bean.form.PushAllForm;
 import com.joinway.admin.bean.form.RegisterForm;
 import com.joinway.admin.bean.view.LoginView;
@@ -24,7 +24,6 @@ import com.joinway.admin.bean.view.LogoutView;
 import com.joinway.admin.bean.view.Menu;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
-import com.joinway.admin.constant.DBConstants;
 import com.joinway.admin.repository.AdminRepository;
 import com.joinway.admin.utils.UIHelper;
 import com.joinway.appx.bean.UserDevice;
@@ -33,6 +32,7 @@ import com.joinway.appx.service.MessagePushService;
 import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
+import com.joinway.console.bean.domain.LoginUser;
 import com.joinway.console.bean.domain.User;
 import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
@@ -130,21 +130,24 @@ public class AdminService {
 	}
 	
 	@Transactional(rollbackFor=Throwable.class)
-	public PushView messivePush(MessivePushForm form) throws Exception {
+	public PushView massPush(MassPushForm form) throws Exception {
 		AdminUser au = tableRepository.find(form.getUserId(), AdminUser.class);
 		
-		String[] userIds = StringUtils.split(form.getTargetUserIds(), ",");
+		String[] targetUserIds = StringUtils.split(form.getTargetUserIds(), ",");
 		List<UserDevice> devices = new ArrayList<>();
 		
-		for(String userId : userIds){
+		for(String userId : targetUserIds){
 			User user = tableRepository.find(Integer.valueOf(userId), User.class);
+			LoginUser loginUser = tableRepository.find(Integer.valueOf(userId), LoginUser.class);
 			
-			if(user != null && StringUtils.isNotBlank(user.getImId())){
-				devices.add(new UserDevice(user.getImId(), user.getCellPhoneType()));
+			if(loginUser != null && user != null){
+				devices.add(new UserDevice(loginUser.getLoginName(), user.getCellPhoneType()));
+			}else{
+				log.warn("user id {}  was not found", userId);
 			}
 		}
 		
-		pushService.messiveBroadcast(form.getTitle(), form.getText(), au.getLoginName(), devices);
+		pushService.massBroadcast(form.getTitle(), form.getText(), au.getLoginName(), devices);
 		
 		return new PushView();
 	}

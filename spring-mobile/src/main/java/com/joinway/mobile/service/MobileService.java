@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
+import com.joinway.console.bean.domain.LoginUser;
 import com.joinway.console.bean.domain.User;
 import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
-import com.joinway.mobile.bean.domain.LoginUser;
 import com.joinway.mobile.bean.form.LoginForm;
 import com.joinway.mobile.bean.form.LogoutForm;
 import com.joinway.mobile.bean.form.RegisterForm;
@@ -24,13 +24,13 @@ import com.joinway.utils.CipherUtils;
 @Service
 public class MobileService {
 
-	@Autowired MobileRepository appRepository;
+	@Autowired MobileRepository mobileRepository;
 	
 	@Autowired TableRepository tableRepository;
 	
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView register(RegisterForm form) throws Exception {
-		LoginUser loginUser = appRepository.findLoginUser(form.getName());
+		LoginUser loginUser = mobileRepository.findLoginUser(form.getName().toLowerCase());
 		if(loginUser != null){
 			throw new DuplicateDataException("用户已注册");
 		}
@@ -68,7 +68,7 @@ public class MobileService {
 	
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView login(LoginForm form) throws Exception {
-		LoginUser loginUser = appRepository.findLoginUser(form.getName(), CipherUtils.encrypt(form.getPassword()));
+		LoginUser loginUser = mobileRepository.findLoginUser(form.getName(), CipherUtils.encrypt(form.getPassword()));
 		if(loginUser == null){
 			throw new ValidationException("用户名或密码错误");
 		}

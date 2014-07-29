@@ -3,7 +3,7 @@ package com.joinway.mobile.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.joinway.mobile.bean.domain.LoginUser;
+import com.joinway.console.bean.domain.LoginUser;
 
 @Repository
 public interface MobileMapper {

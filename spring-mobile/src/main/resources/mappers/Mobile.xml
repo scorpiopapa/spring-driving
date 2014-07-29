@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.joinway.mobile.mapper.MobileMapper">
 
-	<resultMap id="LoginUser" type="com.joinway.mobile.bean.domain.LoginUser">
+	<resultMap id="LoginUser" type="com.joinway.console.bean.domain.LoginUser">
 		<id column="ID" property="id"/>
 		<result column="LOGIN_NAME" property="loginName"/>
 		<result column="PASSWORD" property="password"/>
@@ -15,7 +15,7 @@
 
 	<select id="selectLoginUser" resultMap="LoginUser">
 		SELECT * FROM LOGIN_USER 
-			WHERE UPPER(LOGIN_NAME) = UPPER(#{name})
+			WHERE LOGIN_NAME = #{name}
 		<if test="password != null">
 			AND PASSWORD = #{password}
 		</if>

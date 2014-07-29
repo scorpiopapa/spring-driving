@@ -27,7 +27,7 @@ public class AppClient {
 	static void register() throws Exception {
 		RegisterForm form = new RegisterForm();
 		form.setCellPhone("13998420001");
-		form.setName("lee12356");
+		form.setName("你好你好你好");
 		form.setPassword("123456");
 		form.setUserName("lee");
 		

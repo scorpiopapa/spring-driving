@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.joinway.admin.bean.UserContext;
 import com.joinway.admin.bean.form.LoginForm;
-import com.joinway.admin.bean.form.MessivePushForm;
+import com.joinway.admin.bean.form.MassPushForm;
 import com.joinway.admin.bean.form.PushAllForm;
 import com.joinway.admin.bean.form.RegisterForm;
 import com.joinway.admin.bean.view.LoginView;
@@ -139,8 +139,8 @@ public class AdminController extends ExceptionController {
 	@Audit
 	@InputLog
 	@OutputLog
-	public PushView messivePush(@ApiBodyObject @Valid MessivePushForm form) throws Exception {
-		return service.messivePush(form);
+	public PushView massPush(@ApiBodyObject @Valid MassPushForm form) throws Exception {
+		return service.massPush(form);
 	}
 	
 	void preLogin(String userName){

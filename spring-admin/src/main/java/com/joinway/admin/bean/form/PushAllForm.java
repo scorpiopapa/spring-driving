@@ -13,6 +13,9 @@ public class PushAllForm extends Form {
 	 */
 	private static final long serialVersionUID = 1834597870964496690L;
 
+	/**
+	 * 发送通知的管理员id
+	 */
 	@Min(1)
 	int userId;
 	

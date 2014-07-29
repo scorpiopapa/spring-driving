@@ -1,7 +1,7 @@
 package com.joinway.admin.bean.form;
 
 
-public class MessivePushForm extends PushAllForm {
+public class MassPushForm extends PushAllForm {
 
 	/**
 	 * 
