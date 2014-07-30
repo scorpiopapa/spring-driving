@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.joinway.bean.exception.ValidationException;
-import com.joinway.console.bean.domain.User;
+import com.joinway.console.bean.domain.DriveTrainee;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.mobile.bean.view.UserView;
 
@@ -14,7 +14,7 @@ public class UserService {
 	@Autowired TableRepository repository;
 	
 	public UserView getUser(int userId) throws Exception {
-		User user = repository.find(userId, User.class);
+		DriveTrainee user = repository.find(userId, DriveTrainee.class);
 		
 		if(user == null){
 			throw new ValidationException("用户不存在");

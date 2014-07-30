@@ -16,7 +16,7 @@ width: 80px;
 
 <script type="text/javascript" src="../resources/js/common.js"></script>
 <script type="text/javascript">
-var userTable = 'user';
+var userTable = 'drive_trainee';
 
 $(function() {
 	initDataGrid('#mass_grid', appName + 'search/' + userTable + '.json');
@@ -89,7 +89,7 @@ function doPushUserMessage(jcntId){
    	console.log(ids);
    	
    	form.targetUserIds = ids;
-   	push(form, 'broadcast/messive.json');
+   	push(form, 'push/mass.json');
    	
    	//closeDialog('#mass_push_dlg');
 }
@@ -98,7 +98,7 @@ function doPushUserMessage(jcntId){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-            <th data-options="field:'id'">ID</th>
+            <th data-options="field:'id'">编号</th>
             <th data-options="field:'cellPhone'">手机号</th>
             <th data-options="field:'phone'">固话</th>
             <th data-options="field:'name'">姓名</th>

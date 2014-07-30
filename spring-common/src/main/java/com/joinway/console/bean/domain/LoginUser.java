@@ -23,13 +23,14 @@ public class LoginUser extends DomainEntity{
 	@LogIgnore
 	String password;
 	
+	@DomainField(CaseFormat.Upper)
+	String cellPhoneType;
+
 	int loginCount;
 	
 	String enableStatus = DBValueConstants.YES;
 	
 	String loginStatus = DBValueConstants.NO;
-	
-	Date createTime;
 	
 	Date lastLoginTime;
 
@@ -47,14 +48,6 @@ public class LoginUser extends DomainEntity{
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
 	}
 
 	public Date getLastLoginTime() {
@@ -87,6 +80,14 @@ public class LoginUser extends DomainEntity{
 
 	public void setLoginStatus(String loginStatus) {
 		this.loginStatus = loginStatus;
+	}
+
+	public String getCellPhoneType() {
+		return cellPhoneType;
+	}
+
+	public void setCellPhoneType(String cellPhoneType) {
+		this.cellPhoneType = cellPhoneType;
 	}
 
 }

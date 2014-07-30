@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.console.bean.domain.LoginUser;
-import com.joinway.console.bean.domain.User;
+import com.joinway.console.bean.domain.DriveTrainee;
 import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.mobile.bean.form.LoginForm;
@@ -38,20 +38,18 @@ public class MobileService {
 		/*
 		 * 保存用户注册信息
 		 */
-		Date today = Calendar.getInstance().getTime();
-		
 		loginUser = new LoginUser();
 		loginUser.setLoginName(form.getName());
 		loginUser.setPassword(CipherUtils.encrypt(form.getPassword()));
 		loginUser.setLoginCount(0);
-		loginUser.setCreateTime(today);
 		
 		tableRepository.save(loginUser);
 		
 		/*
 		 * 保存用户信息
 		 */
-		User user = new User();
+		Date today = Calendar.getInstance().getTime();
+		DriveTrainee user = new DriveTrainee();
 		user.setId(loginUser.getId());
 		user.setCellPhone(form.getCellPhone());
 		user.setName(form.getUserName());
@@ -82,12 +80,10 @@ public class MobileService {
 		loginUser.setLoginCount(count + 1);
 		loginUser.setLastLoginTime(today);
 		loginUser.setLoginStatus(DBValueConstants.YES);
+		loginUser.setCellPhoneType(form.getMobileType());
 		tableRepository.save(loginUser);
 		
-		User user = tableRepository.find(loginUser.getId(), User.class);
-		user.setImId(form.getImId());
-		user.setCellPhoneType(form.getMobileType());
-		
+		DriveTrainee user = tableRepository.find(loginUser.getId(), DriveTrainee.class);
 		tableRepository.save(user);
 		
 		LoginView view = new LoginView();

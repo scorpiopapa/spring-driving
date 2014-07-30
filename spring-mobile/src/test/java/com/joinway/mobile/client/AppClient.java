@@ -15,8 +15,8 @@ public class AppClient {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-//		login();
-		register();
+		login();
+//		register();
 //		menu();
 //		logout();
 //		Object o = null;
@@ -26,10 +26,10 @@ public class AppClient {
 
 	static void register() throws Exception {
 		RegisterForm form = new RegisterForm();
-		form.setCellPhone("13998420001");
-		form.setName("你好你好你好");
+		form.setCellPhone("13998429427");
+		form.setName("lee1234");
 		form.setPassword("123456");
-		form.setUserName("lee");
+		form.setUserName("lee1234");
 		
 		client.post(form, BASE_URL + "/register");
 //		client.post(BASE_URL + "/register", new PostParameterBuilder().add("name", "lee").add("password", "123").list());
@@ -42,12 +42,12 @@ public class AppClient {
 //		form.setMobileType("A");
 //		form.setImId("123");
 		
-		form.setName("123");
-		form.setPassword("123");
+		form.setName("lee1234");
+		form.setPassword("123456");
 		form.setMobileType("A");
-		form.setImId("123");
+//		form.setImId("123");
 
-		client.post(form, BASE_URL + "/login.json");
+		client.post(form, BASE_URL + "/login");
 	}
 
 	static void menu() throws Exception {

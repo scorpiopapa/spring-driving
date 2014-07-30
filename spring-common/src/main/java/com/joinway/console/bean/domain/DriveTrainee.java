@@ -6,7 +6,7 @@ import com.joinway.bean.db.annotation.DomainField;
 import com.joinway.bean.db.type.CaseFormat;
 import com.joinway.db.bean.domain.DomainEntity;
 
-public class User extends DomainEntity {
+public class DriveTrainee extends DomainEntity {
 
 	/**
 	 * 
@@ -14,9 +14,6 @@ public class User extends DomainEntity {
 	private static final long serialVersionUID = -1622195219006896158L;
 
 	String cellPhone;
-	
-	@DomainField(CaseFormat.Upper)
-	String cellPhoneType;
 	
 	String phone;
 	
@@ -32,8 +29,6 @@ public class User extends DomainEntity {
 	String coach;
 	
 	String testStatus;
-	
-	String imId;
 	
 	String zone;
 	
@@ -75,14 +70,6 @@ public class User extends DomainEntity {
 		this.gender = gender;
 	}
 
-	public String getImId() {
-		return imId;
-	}
-
-	public void setImId(String imId) {
-		this.imId = imId;
-	}
-
 	public String getZone() {
 		return zone;
 	}
@@ -105,14 +92,6 @@ public class User extends DomainEntity {
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	public String getCellPhoneType() {
-		return cellPhoneType;
-	}
-
-	public void setCellPhoneType(String cellPhoneType) {
-		this.cellPhoneType = cellPhoneType;
 	}
 
 	public int getAge() {

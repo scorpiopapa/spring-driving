@@ -35,7 +35,7 @@ import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.console.bean.domain.LoginUser;
-import com.joinway.console.bean.domain.User;
+import com.joinway.console.bean.domain.DriveTrainee;
 import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.utils.CipherUtils;
@@ -139,11 +139,10 @@ public class AdminService {
 		List<UserDevice> devices = new ArrayList<>();
 		
 		for(String userId : targetUserIds){
-			User user = tableRepository.find(Integer.valueOf(userId), User.class);
 			LoginUser loginUser = tableRepository.find(Integer.valueOf(userId), LoginUser.class);
 			
-			if(loginUser != null && user != null){
-				devices.add(new UserDevice(Integer.valueOf(userId), loginUser.getLoginName(), user.getCellPhoneType()));
+			if(loginUser != null){
+				devices.add(new UserDevice(Integer.valueOf(userId), loginUser.getLoginName(), loginUser.getCellPhoneType()));
 			}else{
 				log.warn("user id {}  was not found", userId);
 			}
@@ -156,7 +155,7 @@ public class AdminService {
 	
 	@Transactional(rollbackFor=Throwable.class)
 	public UserAcceptanceView userNoticeHistory(UserNoticeHistoryForm form){
-		
+		return null;
 	}
 	
 	LoginView createLoginView(AdminUser adminUser) {
