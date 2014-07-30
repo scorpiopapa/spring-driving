@@ -1,0 +1,96 @@
+<style type="text/css">
+#pushlog_form {
+margin: 0;
+padding: 10px 30px;
+}
+
+.pushlog_item {
+margin-bottom: 5px;
+}
+
+.pushlog_item label {
+display: inline-block;
+width: 80px;
+}
+</style>
+
+<script type="text/javascript" src="../resources/js/common.js"></script>
+<script type="text/javascript">
+var pushlogTable = 'push_log';
+
+$(function() {
+	initDataGrid('#pushlog_grid', appName + 'search/' + pushlogTable + '.json');
+});
+
+/**
+ * 修改查询条件
+ */
+function doSearchPushlog() {
+	searchDataGrid('#pushlog_grid', {
+		title : $('#pushlog_text').val()
+	});
+}
+
+/**
+ * 修改刷新条件
+ */
+function doRefreshPushlog() {
+	refreshDataGrid('#pushlog_grid', {
+		title : ''
+	});
+}
+
+function formatPushTarget(val, row){
+	var value = val;
+	if(val == 'B'){
+		value = '广播'
+	}else if(val == 'M'){
+		value = '群发'
+	}
+	
+	return value;
+}
+
+function showPushDetail(){
+	var rows = $('#pushlog_grid').datagrid('getSelections');
+
+	if(!rows || rows.length == 0){
+		showWarningMessage('请选择要查看的行');
+	}else if(rows.length > 1){
+		showWarningMessage('只能选择一行查看');
+	}else{
+		var page = rows[0].page;
+		console.log(page);
+		
+		var tab = $(jtabId);
+		$('#tab').tabs('add', {
+			title: rows[0].title,
+			href: node.attribute.url,
+			closable: true
+		});
+	} 
+
+}
+</script>
+<table id="pushlog_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#pushlog_toolbar'">
+    <thead>
+        <tr>
+        <th data-options="field:'ck'" checkbox="true"></th>
+            <th data-options="field:'id'">编号</th>
+            <th data-options="field:'title'">标题</th>
+            <th data-options="field:'text'">内容</th>
+            <th data-options="field:'target',formatter:formatPushTarget">类型</th>
+            <th data-options="field:'sendTime'">发送时间</th>
+            <th data-options="field:'sendBy'">发送者</th>
+            <th data-options="field:'page',hidden:'true'"></th>
+        </tr>
+    </thead>
+</table>
+<div id="pushlog_toolbar" style="padding:5px;height:auto">
+  <!-- 添加查询条件  -->      
+        标题<input id="pushlog_text" type="text"/>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchRole()">查询</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#pushlog_toolbar')">清除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushDetail()">查看</a>
+</div>
+
