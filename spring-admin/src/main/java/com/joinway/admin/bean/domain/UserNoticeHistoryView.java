@@ -2,7 +2,14 @@ package com.joinway.admin.bean.domain;
 
 import java.util.Date;
 
-public class UserNoticeHistory {
+import com.joinway.db.bean.domain.DomainEntity;
+
+public class UserNoticeHistoryView extends DomainEntity {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5681020546395127003L;
 
 	int userId;
 	
@@ -14,6 +21,8 @@ public class UserNoticeHistory {
 	
 	Date acceptTime;
 
+	String pageName;
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -52,6 +61,14 @@ public class UserNoticeHistory {
 
 	public void setAcceptTime(Date acceptTime) {
 		this.acceptTime = acceptTime;
+	}
+
+	public String getPageName() {
+		return pageName;
+	}
+
+	public void setPageName(String pageName) {
+		this.pageName = pageName;
 	}
 	
 }

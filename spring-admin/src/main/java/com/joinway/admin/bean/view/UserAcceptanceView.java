@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.joinway.bean.view.View;
 
+@Deprecated
 public class UserAcceptanceView extends View {
 
 	/**

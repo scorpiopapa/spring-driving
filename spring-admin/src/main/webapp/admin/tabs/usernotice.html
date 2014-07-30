@@ -16,18 +16,18 @@ width: 80px;
 
 <script type="text/javascript" src="../resources/js/common.js"></script>
 <script type="text/javascript">
-var usernoticeTable = 'user_notice_log';
+var usernoticeTable = 'user_notice_history_view';
 
 $(function() {
-	initDataGrid('#usernotice_grid', appName + 'search/' + usernoticeTable + '.json');
+	initDataGrid('#usernotice_grid', appName + 'search/' + usernoticeTable + '.json?pageName=' + resendPage);
 });
 
 /**
  * 修改查询条件
  */
-function doSearchUsernotice() {
+function doSearchUserNotice() {
 	searchDataGrid('#usernotice_grid', {
-		name : $('#usernotice_text').val()
+		cellPhone : $('#usernotice_text').val()
 	});
 }
 
@@ -36,26 +36,65 @@ function doSearchUsernotice() {
  */
 function doRefreshUsernotice() {
 	refreshDataGrid('#usernotice_grid', {
-		name : ''
+		cellPhone : ''
 	});
+}
+
+function formatReceiveType(val, row){
+	var value = val;
+	if(val == 'Y'){
+		value = '已接收'
+	}else{
+		value = '未接收'
+	}
+	
+	return value;
+}
+
+function doResend(){
+	var rows = $('#usernotice_grid').datagrid('getSelections');
+
+	if(!rows || rows.length == 0){
+		showWarningMessage('请选择要重发的行');
+	}else{
+		/*
+        var userIds = '';
+        for(var i = 0; i < rows.length; i++){
+        	userIds += rows[i].userId + ',';
+        }
+        userIds = userIds.substring(0, ids.length - 1);
+        console.log(ids);
+		
+		$.post(appName + 'push/resend.json', {id:ids}, function(data){
+	        console.log(data.code);
+	            if (data.code != 0){
+	            	showErrorMessage('删除失败');
+	            }else{
+	            	refreshDataGrid(jgridId);
+	            }
+	    }, 'json');	
+		*/
+	} 
 }
 </script>
 <table id="usernotice_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#usernotice_toolbar'">
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-        	<th data-options="field:'id',hidden:'true'"></th>
-            <th data-options="field:'name'">用户名称</th>
+        	<th data-options="field:'id'">编号</th>
+            <th data-options="field:'name'">姓名</th>
             <th data-options="field:'cellPhone'">手机号码</th>
-            <th data-options="field:'status'">接收状态</th>
+            <th data-options="field:'status',formatter:formatReceiveType">接收状态</th>
             <th data-options="field:'acceptTime'">接收时间</th>
+            <th data-options="field:'userId',hidden:'true'"></th>
         </tr>
     </thead>
 </table>
 <div id="usernotice_toolbar" style="padding:5px;height:auto">
   <!-- 添加查询条件  -->      
-        名称<input id="usernotice_text" type="text"/>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchRole()">查询</a>
+        手机号码<input id="usernotice_text" type="text"/>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUserNotice()">查询</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#usernotice_toolbar')">清除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="doResend()">重发</a>
 </div>
 

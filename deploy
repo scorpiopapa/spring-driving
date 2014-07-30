@@ -15,11 +15,11 @@ if [ "$1" == "solo" ]
 then
   for VAR in $APPS
   do
-  echo "remove old packages ..."
+  echo "remove old packages ${VAR} ..."
     rm -rf $TOMCAT_HOME/webapps/$VAR
     rm -rf $TOMCAT_HOME/webapps/${VAR}.war
     
-    echo "copy wars ..."
+    echo "copy wars ${VAR} ..."
     cp $CODE_BASE/$VAR/target/${VAR}.war $TOMCAT_HOME/webapps
   done
   

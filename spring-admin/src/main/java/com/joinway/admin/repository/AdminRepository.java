@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.joinway.admin.bean.domain.AdminUser;
 import com.joinway.admin.bean.domain.TreeMenu;
+import com.joinway.admin.bean.domain.UserNoticeHistoryView;
 import com.joinway.admin.mapper.AdminMapper;
 
 @Repository
@@ -29,4 +30,8 @@ public class AdminRepository {
 	public AdminUser findAdminUser(String name){
 		return mapper.selectAdminUser(name, null);
 	}
+	
+//	public List<UserNoticeHistory> find(String page){
+//		return mapper.selectUserNoticeHistory(page);
+//	}
 }

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.joinway.admin.bean.domain.AdminUser;
 import com.joinway.admin.bean.domain.TreeMenu;
+import com.joinway.admin.bean.domain.UserNoticeHistoryView;
 import com.joinway.admin.bean.form.LoginForm;
 import com.joinway.admin.bean.form.MassPushForm;
 import com.joinway.admin.bean.form.PushAllForm;
@@ -25,17 +26,17 @@ import com.joinway.admin.bean.view.LogoutView;
 import com.joinway.admin.bean.view.Menu;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
-import com.joinway.admin.bean.view.UserAcceptanceView;
 import com.joinway.admin.repository.AdminRepository;
 import com.joinway.admin.utils.UIHelper;
 import com.joinway.appx.bean.UserDevice;
+import com.joinway.appx.bean.view.DataGridRecord;
+import com.joinway.appx.bean.view.DataGridView;
 import com.joinway.appx.repository.SystemRepository;
 import com.joinway.appx.service.MessagePushService;
 import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.console.bean.domain.LoginUser;
-import com.joinway.console.bean.domain.DriveTrainee;
 import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.utils.CipherUtils;
@@ -153,10 +154,14 @@ public class AdminService {
 		return new PushView();
 	}
 	
-	@Transactional(rollbackFor=Throwable.class)
-	public UserAcceptanceView userNoticeHistory(UserNoticeHistoryForm form){
-		return null;
-	}
+//	@Transactional(rollbackFor=Throwable.class)
+//	public DataGridView getUserNoticeHistory(UserNoticeHistoryForm form){
+//		List<UserNoticeHistory> his = repository.find(StringUtils.trimToEmpty(form.getPage()));
+//		
+//		DataGridRecord record = new DataGridRecord(his, his.size());
+//		
+//		
+//	}
 	
 	LoginView createLoginView(AdminUser adminUser) {
 		LoginView view = new LoginView();

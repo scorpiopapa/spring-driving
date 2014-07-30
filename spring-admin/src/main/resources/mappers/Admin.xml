@@ -37,11 +37,14 @@
 			RIGHT JOIN ADMIN_USER AU ON AU.ID = UR.USER_ID
 		WHERE T.STATUS = 'Y' AND AU.ID = #{userId}
 	</select>
+	
 <!-- 	<select id="selectUserNoticeHistory" resultType="com.joinway.admin.bean.domain.UserNoticeHistory">
-		SELECT UNL.STATUS
+		SELECT UNL.USER_ID userId
+			, UNL.STATUS
 			, UNL.ACCEPT_TIME acceptTime
+			, DT.NAME
 		FROM USER_NOTICE_LOG UNL
-			LEFT JOIN 
-			
+			LEFT JOIN DRIVE_TRAINEE DT ON UNL.USER_ID = DT.USER_ID
+		WHERE PAGE = #{page}			
 	</select> -->
 </mapper>

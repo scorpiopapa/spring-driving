@@ -1,6 +1,10 @@
 var appName = '';	// app root context
 
+// tab容器的id
 var jtabId = '#tab';
+
+// 要重发消息的页面标识
+var resendPage;
 
 function showErrorMessage(text, title){
 	var t = typeof(title) != 'undefined' && title != null ? title : '错误';

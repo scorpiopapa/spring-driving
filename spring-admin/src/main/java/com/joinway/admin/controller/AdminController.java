@@ -23,9 +23,9 @@ import com.joinway.admin.bean.view.LoginView;
 import com.joinway.admin.bean.view.LogoutView;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
-import com.joinway.admin.bean.view.UserAcceptanceView;
 import com.joinway.admin.service.AdminService;
 import com.joinway.admin.utils.SessionHelper;
+import com.joinway.appx.bean.view.DataGridView;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.bean.logging.annotation.OutputLog;
@@ -145,14 +145,14 @@ public class AdminController extends ExceptionController {
 		return service.massPush(form);
 	}
 	
-	@RequestMapping(value="user/history", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	@Audit
-	@InputLog
-	@OutputLog
-	public UserAcceptanceView userNoticeHistory(@ApiBodyObject @Valid UserNoticeHistoryForm form) throws Exception {
-		return service.userNoticeHistory(form);
-	}
+//	@RequestMapping(value="user/notice", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+//	@ResponseBody
+//	@Audit
+//	@InputLog
+//	@OutputLog
+//	public DataGridView userNoticeHistory(@ApiBodyObject @Valid UserNoticeHistoryForm form) throws Exception {
+//		return service.getUserNoticeHistory(form);
+//	}
 
 	void preLogin(String userName){
 		UserContext uc = SessionHelper.getUserContext(true);

@@ -99,7 +99,7 @@ function doPushUserMessage(jcntId){
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
             <th data-options="field:'id'">编号</th>
-            <th data-options="field:'cellPhone'">手机号</th>
+            <th data-options="field:'cellPhone'">手机号码</th>
             <th data-options="field:'phone'">固话</th>
             <th data-options="field:'name'">姓名</th>
             <th data-options="field:'gender',formatter:formatGender">性别</th>
@@ -118,7 +118,7 @@ function doPushUserMessage(jcntId){
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#mass_grid', userTable)">删除</a> -->
     </div>
         <!-- 手机号 <input id="mass_text" class="easyui-numberbox" data-options="min:0,precision:0"/> -->
-  	手机号 <input id="mass_text" type="text"/>
+  	手机号码 <input id="mass_text" type="text"/>
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUser()">查询</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#mass_toolbar')">清除</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushUserMessageDialog()">发送</a>
