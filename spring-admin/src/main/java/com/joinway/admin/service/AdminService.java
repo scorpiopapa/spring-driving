@@ -19,11 +19,13 @@ import com.joinway.admin.bean.form.LoginForm;
 import com.joinway.admin.bean.form.MassPushForm;
 import com.joinway.admin.bean.form.PushAllForm;
 import com.joinway.admin.bean.form.RegisterForm;
+import com.joinway.admin.bean.form.UserNoticeHistoryForm;
 import com.joinway.admin.bean.view.LoginView;
 import com.joinway.admin.bean.view.LogoutView;
 import com.joinway.admin.bean.view.Menu;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
+import com.joinway.admin.bean.view.UserAcceptanceView;
 import com.joinway.admin.repository.AdminRepository;
 import com.joinway.admin.utils.UIHelper;
 import com.joinway.appx.bean.UserDevice;
@@ -141,7 +143,7 @@ public class AdminService {
 			LoginUser loginUser = tableRepository.find(Integer.valueOf(userId), LoginUser.class);
 			
 			if(loginUser != null && user != null){
-				devices.add(new UserDevice(loginUser.getLoginName(), user.getCellPhoneType()));
+				devices.add(new UserDevice(Integer.valueOf(userId), loginUser.getLoginName(), user.getCellPhoneType()));
 			}else{
 				log.warn("user id {}  was not found", userId);
 			}
@@ -150,6 +152,11 @@ public class AdminService {
 		pushService.massBroadcast(form.getTitle(), form.getText(), au.getLoginName(), devices);
 		
 		return new PushView();
+	}
+	
+	@Transactional(rollbackFor=Throwable.class)
+	public UserAcceptanceView userNoticeHistory(UserNoticeHistoryForm form){
+		
 	}
 	
 	LoginView createLoginView(AdminUser adminUser) {
@@ -180,3 +187,4 @@ public class AdminService {
 //	}
 
 }
+

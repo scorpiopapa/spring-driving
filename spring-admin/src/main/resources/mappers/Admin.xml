@@ -37,4 +37,11 @@
 			RIGHT JOIN ADMIN_USER AU ON AU.ID = UR.USER_ID
 		WHERE T.STATUS = 'Y' AND AU.ID = #{userId}
 	</select>
+<!-- 	<select id="selectUserNoticeHistory" resultType="com.joinway.admin.bean.domain.UserNoticeHistory">
+		SELECT UNL.STATUS
+			, UNL.ACCEPT_TIME acceptTime
+		FROM USER_NOTICE_LOG UNL
+			LEFT JOIN 
+			
+	</select> -->
 </mapper>

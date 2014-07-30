@@ -18,10 +18,12 @@ import com.joinway.admin.bean.form.LoginForm;
 import com.joinway.admin.bean.form.MassPushForm;
 import com.joinway.admin.bean.form.PushAllForm;
 import com.joinway.admin.bean.form.RegisterForm;
+import com.joinway.admin.bean.form.UserNoticeHistoryForm;
 import com.joinway.admin.bean.view.LoginView;
 import com.joinway.admin.bean.view.LogoutView;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
+import com.joinway.admin.bean.view.UserAcceptanceView;
 import com.joinway.admin.service.AdminService;
 import com.joinway.admin.utils.SessionHelper;
 import com.joinway.bean.exception.ValidationException;
@@ -34,7 +36,7 @@ import com.joinway.web.security.annotation.Logout;
 import com.joinway.web.security.annotation.SecurityCheck;
 
 /**
- * 建议把session相关操作的代码放到controller里，service保持无状态
+ * ...session.........controller..service.....
  * @author Administrator
  *
  */
@@ -125,7 +127,7 @@ public class AdminController extends ExceptionController {
 		return service.getNavigatorMenus(SessionHelper.getUserContext().getUserId());
 	}
 	
-	@RequestMapping(value="broadcast", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="push/broadcast", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Audit
 	@InputLog
@@ -134,7 +136,7 @@ public class AdminController extends ExceptionController {
 		return service.push(form);
 	}
 
-	@RequestMapping(value="broadcast/messive", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="push/mass", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Audit
 	@InputLog
@@ -143,6 +145,15 @@ public class AdminController extends ExceptionController {
 		return service.massPush(form);
 	}
 	
+	@RequestMapping(value="user/history", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@Audit
+	@InputLog
+	@OutputLog
+	public UserAcceptanceView userNoticeHistory(@ApiBodyObject @Valid UserNoticeHistoryForm form) throws Exception {
+		return service.userNoticeHistory(form);
+	}
+
 	void preLogin(String userName){
 		UserContext uc = SessionHelper.getUserContext(true);
 		// set login user name anyway for audit usage
@@ -156,7 +167,8 @@ public class AdminController extends ExceptionController {
 		uc.setLoginCount(view.getLoginCount());
 		uc.setUserId(view.getUserId());
 		
-//		// 设置sso
+//		// ..sso
 //		AppContext.set(SecurityConstants.SSO.UID_KEY, uc.getUserId());
 	}
 }
+
