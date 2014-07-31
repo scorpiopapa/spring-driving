@@ -18,14 +18,13 @@ import com.joinway.admin.bean.form.LoginForm;
 import com.joinway.admin.bean.form.MassPushForm;
 import com.joinway.admin.bean.form.PushAllForm;
 import com.joinway.admin.bean.form.RegisterForm;
-import com.joinway.admin.bean.form.UserNoticeHistoryForm;
+import com.joinway.admin.bean.form.ResendForm;
 import com.joinway.admin.bean.view.LoginView;
 import com.joinway.admin.bean.view.LogoutView;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
 import com.joinway.admin.service.AdminService;
 import com.joinway.admin.utils.SessionHelper;
-import com.joinway.appx.bean.view.DataGridView;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.bean.logging.annotation.OutputLog;
@@ -145,14 +144,14 @@ public class AdminController extends ExceptionController {
 		return service.massPush(form);
 	}
 	
-//	@RequestMapping(value="user/notice", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	@Audit
-//	@InputLog
-//	@OutputLog
-//	public DataGridView userNoticeHistory(@ApiBodyObject @Valid UserNoticeHistoryForm form) throws Exception {
-//		return service.getUserNoticeHistory(form);
-//	}
+	@RequestMapping(value="push/resend", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@Audit
+	@InputLog
+	@OutputLog
+	public PushView resendPush(@ApiBodyObject @Valid ResendForm form) throws Exception {
+		return service.resendPush(form);
+	}
 
 	void preLogin(String userName){
 		UserContext uc = SessionHelper.getUserContext(true);
@@ -171,4 +170,5 @@ public class AdminController extends ExceptionController {
 //		AppContext.set(SecurityConstants.SSO.UID_KEY, uc.getUserId());
 	}
 }
+
 

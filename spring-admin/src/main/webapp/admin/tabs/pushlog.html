@@ -61,10 +61,10 @@ function showPushDetail(){
 	}else if(rows[0].target == 'B'){
 		showInformationMessage('不能查看广播明细');
 	}else{
-		var page = rows[0].page;
-		console.log(page);
+		var pageName = rows[0].pageName;
+		console.log(pageName);
 		
-		resendPage = page;
+		resendPage = pageName;
 		
 		var tab = $(jtabId);
 		$('#tab').tabs('add', {
@@ -86,7 +86,7 @@ function showPushDetail(){
             <th data-options="field:'target',formatter:formatPushTarget">类型</th>
             <th data-options="field:'sendTime'">发送时间</th>
             <th data-options="field:'sendBy'">发送者</th>
-            <th data-options="field:'page',hidden:'true'"></th>
+            <th data-options="field:'pageName',hidden:'true'"></th>
         </tr>
     </thead>
 </table>

@@ -21,7 +21,9 @@ public class UserNoticeHistoryView extends DomainEntity {
 	
 	Date acceptTime;
 
-	String pageName;
+//	String pageName;
+	
+	String loginName;
 	
 	public int getUserId() {
 		return userId;
@@ -63,13 +65,22 @@ public class UserNoticeHistoryView extends DomainEntity {
 		this.acceptTime = acceptTime;
 	}
 
-	public String getPageName() {
-		return pageName;
+//	public String getPageName() {
+//		return pageName;
+//	}
+//
+//	public void setPageName(String pageName) {
+//		this.pageName = pageName;
+//	}
+
+	public String getLoginName() {
+		return loginName;
 	}
 
-	public void setPageName(String pageName) {
-		this.pageName = pageName;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 	
 }
+
 

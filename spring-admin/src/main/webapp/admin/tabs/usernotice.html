@@ -57,23 +57,21 @@ function doResend(){
 	if(!rows || rows.length == 0){
 		showWarningMessage('请选择要重发的行');
 	}else{
-		/*
         var userIds = '';
         for(var i = 0; i < rows.length; i++){
         	userIds += rows[i].userId + ',';
         }
-        userIds = userIds.substring(0, ids.length - 1);
-        console.log(ids);
+        userIds = userIds.substring(0, userIds.length - 1);
+        console.log(userIds);
 		
-		$.post(appName + 'push/resend.json', {id:ids}, function(data){
+        var form = new Object();
+        form.userId = localStorage.userId;
+        form.targetUserIds = userIds;
+        form.pageName = resendPage;
+        
+		$.post(appName + 'push/resend.json', form, function(data){
 	        console.log(data.code);
-	            if (data.code != 0){
-	            	showErrorMessage('删除失败');
-	            }else{
-	            	refreshDataGrid(jgridId);
-	            }
 	    }, 'json');	
-		*/
 	} 
 }
 </script>
