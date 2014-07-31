@@ -206,3 +206,14 @@ function push(form, url){
 		}
 	});
 }
+
+function getIdDescOrder(){
+	var order = new Object();
+	order.name = 'id';
+	order.order = 'desc';
+	
+	var orderBy = new Array();
+	orderBy.push(order);
+	
+	return JSON.stringify(orderBy);
+}

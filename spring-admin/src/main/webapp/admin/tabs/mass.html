@@ -19,7 +19,8 @@ width: 80px;
 var userTable = 'drive_trainee';
 
 $(function() {
-	initDataGrid('#mass_grid', appName + 'search/' + userTable + '.json');
+	var orderBy = getIdDescOrder();
+	initDataGrid('#mass_grid', appName + 'search/' + userTable + '.json?orderBy=' + orderBy);
 });
 
 function doSearchUser() {

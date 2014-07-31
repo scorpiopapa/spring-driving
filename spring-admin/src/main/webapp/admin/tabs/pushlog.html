@@ -19,7 +19,8 @@ width: 80px;
 var pushlogTable = 'push_log';
 
 $(function() {
-	initDataGrid('#pushlog_grid', appName + 'search/' + pushlogTable + '.json');
+	var orderBy = getIdDescOrder();
+	initDataGrid('#pushlog_grid', appName + 'search/' + pushlogTable + '.json?orderBy=' + orderBy);
 });
 
 /**
