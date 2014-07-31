@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.joinway.admin.bean.UserContext;
 import com.joinway.admin.bean.domain.AdminUser;
 import com.joinway.admin.bean.domain.TreeMenu;
 import com.joinway.admin.bean.form.LoginForm;
@@ -27,7 +28,7 @@ import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
 import com.joinway.admin.repository.AdminRepository;
 import com.joinway.admin.utils.UIHelper;
-import com.joinway.appx.bean.UserDevice;
+import com.joinway.appx.bean.PushKey;
 import com.joinway.appx.repository.SystemRepository;
 import com.joinway.appx.service.MessagePushService;
 import com.joinway.bean.exception.DuplicateDataException;
@@ -130,49 +131,47 @@ public class AdminService {
 	}
 	
 	@Transactional(rollbackFor=Throwable.class)
-	public PushView massPush(MassPushForm form) throws Exception {
-		List<UserDevice> devices = buildUserDevices(form.getUserId(), form.getTargetUserIds());
+	public PushView massPush(MassPushForm form, UserContext uc) throws Exception {
+		List<PushKey> keys = buildPushKeys(form.getUserId(), form.getTargetUserIds());
 		
-		AdminUser au = tableRepository.find(form.getUserId(), AdminUser.class);
-		pushService.massBroadcast(form.getTitle(), form.getText(), au.getLoginName(), devices);
+		pushService.massBroadcast(form.getTitle(), form.getText(), uc.getLoginName(), keys);
 		
 		return new PushView();
 	}
 	
 	@Transactional(rollbackFor=Throwable.class)
-	public PushView resendPush(ResendForm form) throws Exception {
-		List<UserDevice> devices = buildUserDevices(form.getUserId(), form.getTargetUserIds());
+	public PushView resendPush(ResendForm form, UserContext uc) throws Exception {
+		List<PushKey> devices = buildPushKeys(form.getUserId(), form.getTargetUserIds());
 		
-		AdminUser au = tableRepository.find(form.getUserId(), AdminUser.class);
-		pushService.resendMass(au.getLoginName(), devices, form.getPageName());
+		pushService.resendMass(uc.getLoginName(), devices, form.getPageName());
 		
 		return new PushView();
 	}
 	
-	List<UserDevice> buildUserDevices(int senderId, String receiverUserIds) throws Exception {
-		String[] targetUserIds = StringUtils.split(receiverUserIds, ",");
+	List<PushKey> buildPushKeys(int senderId, String receiverUserIds) throws Exception {
+		String[] userIds = StringUtils.split(receiverUserIds, ",");
 		
-		List<UserDevice> devices = new ArrayList<>();
+		List<PushKey> keys = new ArrayList<>();
 		
-		for(String userId : targetUserIds){
+		for(String userId : userIds){
 			LoginUser loginUser = tableRepository.find(Integer.valueOf(userId), LoginUser.class);
 			
 			if(loginUser != null){
-				devices.add(new UserDevice(Integer.valueOf(userId), loginUser.getLoginName(), loginUser.getCellPhoneType()));
+				keys.add(new PushKey(Integer.valueOf(userId), loginUser.getCellPhoneType()));
 			}else{
 				log.warn("user id {}  was not found", userId);
 			}
 		}
 		
-		return devices;
+		return keys;
 	}
 	
 	LoginView createLoginView(AdminUser adminUser) {
 		LoginView view = new LoginView();
-		view.setUserName(adminUser.getLoginName().toLowerCase());
+		view.setLoginName(adminUser.getLoginName().toLowerCase());
 		view.setLastLoginTime(adminUser.getLastLoginTime());
 		view.setLoginCount(adminUser.getLoginCount());
-		view.setUserId(String.valueOf(adminUser.getId()));
+		view.setUserId(adminUser.getId());
 
 		return view;
 

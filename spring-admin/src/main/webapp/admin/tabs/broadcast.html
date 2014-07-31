@@ -29,9 +29,9 @@ function doBroadcast(jcntId){
 	var form = new Object();
 	form.title = $('#broadcast_title').val();
 	form.text = $('#broadcast_content').val();
-	form.userId = localStorage.userId;	
+	form.userId = UC.userId;	
 	
-	push(form, 'push/broadcast.json');
+	checkAndPush(form, 'push/broadcast.json');
 }
 /*
 function doClearKindEditor(){

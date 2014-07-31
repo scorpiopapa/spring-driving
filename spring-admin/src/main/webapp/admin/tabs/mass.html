@@ -78,7 +78,7 @@ function doPushUserMessage(jcntId){
 	var form = new Object();
 	form.title = $('#mass_push_title').val();
 	form.text = $('#mass_push_content').val();
-	form.userId = localStorage.userId;	
+	form.userId = UC.userId;	
 	
 	var rows = $('#mass_grid').datagrid('getSelections');
    	var ids = '';
@@ -86,10 +86,11 @@ function doPushUserMessage(jcntId){
    		ids += rows[i].id + ',';
    	}
    	ids = ids.substring(0, ids.length - 1);
-   	console.log(ids);
    	
    	form.targetUserIds = ids;
-   	push(form, 'push/mass.json');
+   	console.log(form);
+   	
+   	checkAndPush(form, 'push/mass.json');
    	
    	//closeDialog('#mass_push_dlg');
 }

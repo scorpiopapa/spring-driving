@@ -16,10 +16,10 @@ width: 80px;
 
 <script type="text/javascript" src="../resources/js/common.js"></script>
 <script type="text/javascript">
-var usernoticeTable = 'user_notice_history_view';
+var usernoticeTable = 'user_notice_history_v';
 
 $(function() {
-	initDataGrid('#usernotice_grid', appName + 'search/' + usernoticeTable + '.json?pageName=' + resendPage);
+	initDataGrid('#usernotice_grid', appName + 'search/' + usernoticeTable + '.json?pageName=' + UC.resendPage);
 });
 
 /**
@@ -43,9 +43,9 @@ function doRefreshUsernotice() {
 function formatReceiveType(val, row){
 	var value = val;
 	if(val == 'Y'){
-		value = '已接收'
+		value = '已查看'
 	}else{
-		value = '未接收'
+		value = '未查看'
 	}
 	
 	return value;
@@ -61,17 +61,16 @@ function doResend(){
         for(var i = 0; i < rows.length; i++){
         	userIds += rows[i].userId + ',';
         }
+        
         userIds = userIds.substring(0, userIds.length - 1);
         console.log(userIds);
 		
         var form = new Object();
-        form.userId = localStorage.userId;
+        form.userId = UC.userId;
         form.targetUserIds = userIds;
-        form.pageName = resendPage;
+        form.pageName = UC.resendPage;
         
-		$.post(appName + 'push/resend.json', form, function(data){
-	        console.log(data.code);
-	    }, 'json');	
+        push(form, appName + 'push/resend.json');
 	} 
 }
 </script>

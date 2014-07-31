@@ -90,7 +90,8 @@ public class AdminController extends ExceptionController {
 		LoginView view = new LoginView();
 		
 		UserContext uc = SessionHelper.getUserContext(true);
-		view.setUserName(uc.getUserName());
+		view.setUserId(uc.getUserId());
+		view.setLoginName(uc.getLoginName());
 		view.setLastLoginTime(uc.getLastLoginTime());
 		view.setLoginCount(uc.getLoginCount());
 		
@@ -108,7 +109,7 @@ public class AdminController extends ExceptionController {
 		
 		UserContext uc = SessionHelper.getUserContext();
 		if(uc != null){
-			view.setUserName(uc.getUserName());
+			view.setUserName(uc.getLoginName());
 		}
 		
 		log.info("user logged out");
@@ -141,7 +142,7 @@ public class AdminController extends ExceptionController {
 	@InputLog
 	@OutputLog
 	public PushView massPush(@ApiBodyObject @Valid MassPushForm form) throws Exception {
-		return service.massPush(form);
+		return service.massPush(form, SessionHelper.getUserContext());
 	}
 	
 	@RequestMapping(value="push/resend", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -150,13 +151,13 @@ public class AdminController extends ExceptionController {
 	@InputLog
 	@OutputLog
 	public PushView resendPush(@ApiBodyObject @Valid ResendForm form) throws Exception {
-		return service.resendPush(form);
+		return service.resendPush(form, SessionHelper.getUserContext());
 	}
 
 	void preLogin(String userName){
 		UserContext uc = SessionHelper.getUserContext(true);
 		// set login user name anyway for audit usage
-		uc.setUserName(userName);
+		uc.setLoginName(userName);
 	}
 
 	void postLogin(LoginView view){

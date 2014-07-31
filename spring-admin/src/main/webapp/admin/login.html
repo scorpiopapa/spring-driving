@@ -35,8 +35,7 @@ function login(){
 		data : form,
 		success : function(data) {
 			if(data.code == 0){
-				console.log(data.userId);
-				localStorage.userId = data.userId;
+				//console.log(data.userId);
 				window.location.href = 'main.html';
 			}else{
 				showErrorMessage('用户名或密码错误');

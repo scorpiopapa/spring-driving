@@ -83,8 +83,8 @@ public class MobileService {
 		loginUser.setCellPhoneType(form.getMobileType());
 		tableRepository.save(loginUser);
 		
-		DriveTrainee user = tableRepository.find(loginUser.getId(), DriveTrainee.class);
-		tableRepository.save(user);
+//		DriveTrainee user = tableRepository.find(loginUser.getId(), DriveTrainee.class);
+//		tableRepository.save(user);
 		
 		LoginView view = new LoginView();
 		

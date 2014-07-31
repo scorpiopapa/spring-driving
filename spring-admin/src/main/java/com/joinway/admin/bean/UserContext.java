@@ -15,7 +15,7 @@ public class UserContext extends BaseBean {
 	int userId;
 	
 	@LogMask
-	String userName;
+	String loginName;
 
 	Date lastLoginTime;
 	
@@ -37,12 +37,12 @@ public class UserContext extends BaseBean {
 		this.loginCount = loginCount;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getLoginName() {
+		return loginName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 
 	public int getUserId() {

@@ -3,8 +3,12 @@ var appName = '';	// app root context
 // tab容器的id
 var jtabId = '#tab';
 
-// 要重发消息的页面标识
-var resendPage;
+/**
+ * 用户信息
+ * resendPage - 要重发消息的页面标识
+ * userId - 当前登录用户id
+ */ 
+var UC = UC ? UC : new Object();
 
 function showErrorMessage(text, title){
 	var t = typeof(title) != 'undefined' && title != null ? title : '错误';
@@ -174,7 +178,7 @@ function clearInput(jinputId){
 	$(jinputId).val('');
 }
 
-function push(form, url){
+function checkAndPush(form, url){
 	if(!form || !form.title){
 		showErrorMessage('通知标题不能为空');
 		return;
@@ -185,24 +189,20 @@ function push(form, url){
 		return;
 	}
 
+	push(form, url);
+}
+
+function push(form, url){
 	$.ajax({
 		type : "post",
 		url : appName + url,
-		async: false,
+		//async: false,
 		data : form,
 		success : function(data) {
 			showInformationMessage('发送完毕');
-			/*
-			if(data.code == 0){
-				showInformationMessage('发送完毕')
-			}else{
-				showErrorMessage('发送完毕');
-			}
-			*/
 		},
 		error: function(){
 			showErrorMessage('发送失败');
 		}
 	});
 }
-

@@ -17,11 +17,11 @@ public class LoginView extends View {
 	private static final long serialVersionUID = -7556348699529664324L;
 
 	@ApiObjectField(description = "用户id")
-	String userId;
+	int userId;
 	
 	@ApiObjectField(description = "登录用户名")
 	@LogMask
-	String userName;
+	String loginName;
 
 	@ApiObjectField(description = "最后一次登录时间")
 	Date lastLoginTime;
@@ -29,12 +29,12 @@ public class LoginView extends View {
 	@ApiObjectField(description = "当前登录次数")
 	int loginCount;
 	
-	public String getUserName() {
-		return userName;
+	public String getloginName() {
+		return loginName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 
 	public Date getLastLoginTime() {
@@ -53,11 +53,11 @@ public class LoginView extends View {
 		this.loginCount = loginCount;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.joinway.db.bean.domain.DomainEntity;
 
-public class UserNoticeHistoryView extends DomainEntity {
+public class UserNoticeHistoryV extends DomainEntity {
 
 	/**
 	 * 

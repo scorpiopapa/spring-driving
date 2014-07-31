@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.joinway.admin.bean.domain.AdminUser;
 import com.joinway.admin.bean.domain.TreeMenu;
-import com.joinway.admin.bean.domain.UserNoticeHistoryView;
+import com.joinway.admin.bean.domain.UserNoticeHistoryV;
 import com.joinway.admin.mapper.AdminMapper;
 
 @Repository
