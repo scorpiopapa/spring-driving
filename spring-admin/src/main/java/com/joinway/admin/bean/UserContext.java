@@ -10,7 +10,7 @@ public class UserContext extends BaseBean {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -319274419703518931L;
+	private static final long serialVersionUID = -319274419703518931L; 
 
 	int userId;
 	
