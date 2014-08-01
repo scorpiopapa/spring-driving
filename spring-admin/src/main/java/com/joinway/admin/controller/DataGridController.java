@@ -4,6 +4,8 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiMethod;
 import org.jsondoc.core.annotation.ApiResponseObject;
@@ -29,7 +31,7 @@ import com.joinway.web.audit.ExceptionController;
 import com.joinway.web.audit.annotation.Audit;
 import com.joinway.web.security.annotation.SecurityCheck;
 
-@Api(name = "DataGrid Controller", description = "表格数据编辑")
+@Api(name = "DataGrid Controller", description = "......")
 @Controller
 @RequestMapping("admin")
 @Validated
@@ -40,7 +42,7 @@ public class DataGridController extends ExceptionController {
 	
 	@Autowired DataGridService service;
 	
-	@ApiMethod(path="app/search/{table}", verb=ApiVerb.GET, description="获得数据库表结果集", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="app/search/{table}", verb=ApiVerb.GET, description=".........", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@RequestMapping(value="search/{table}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -52,7 +54,7 @@ public class DataGridController extends ExceptionController {
 		return service.findRecord(table.toUpperCase(), request.getParameterMap());
 	}
 
-	@ApiMethod(path="app/save/{table}", verb=ApiVerb.POST, description="插入数据", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="app/save/{table}", verb=ApiVerb.POST, description="....", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@RequestMapping(value="save/{table}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -64,7 +66,7 @@ public class DataGridController extends ExceptionController {
 		return service.saveTable(table.toUpperCase(), request.getParameterMap());
 	}
 	
-	@ApiMethod(path="app/delete/{table}", verb=ApiVerb.POST, description="删除数据", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="app/delete/{table}", verb=ApiVerb.POST, description="....", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
 	@RequestMapping(value="delete/{table}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -73,7 +75,16 @@ public class DataGridController extends ExceptionController {
 	@OutputLog
 	public TableResultView deleteTable(@PathVariable("table") String table, @RequestParam("id") String ids) {
 //		printParams(request);
-		return service.deleteTable(table.toUpperCase(), ids);
+		TableResultView view;
+		
+		String[] arr = StringUtils.split(StringUtils.trimToEmpty(ids).replaceAll("\\s+", ""), ",");
+		if(ArrayUtils.isNotEmpty(arr)){
+			view = service.deleteTable(table.toUpperCase(), arr);
+		}else{
+			view = new TableResultView();
+		}
+		
+		return view;
 	}
 	
 	@Deprecated
@@ -93,3 +104,4 @@ public class DataGridController extends ExceptionController {
 		}
 	}
 }
+
