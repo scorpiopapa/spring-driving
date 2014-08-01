@@ -21,6 +21,22 @@
 		<script type="text/javascript" src="../resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
 		<script type="text/javascript" src="../resources/js/common.js"></script>
 <script type="text/javascript">
+$(function() {
+	$('#name').select();
+	
+	$('#name').keyup(function(){
+		if(event.keyCode == 13){
+			$('#password').select();
+		}
+	});
+
+	$('#password').keyup(function(){
+		if(event.keyCode == 13){
+			login();
+		}
+	});
+});
+	
 function login(){
 	var form = new Object();
 	form.name = $('#name').val();
@@ -46,7 +62,6 @@ function login(){
 		}
 	});
 }
-
 </script>
 	</head>
 
@@ -59,13 +74,11 @@ function login(){
 						<form id="login_form" method="get">
 							<div class="form1">
 								<h3>账号</h3>
-								<input id="name" name="name" type="text" class="input1"/>
-								<!-- <div class="rightBtn"><img src="images/right.png"/></div> -->
+								<input id="name" name="name" type="text" class="input1" onclick="$('#name').select();"/>
 						    </div>
 							<div class="form1">
 								<h3>密码</h3>
-								<input id="password" name="password" type="password" class="input1"/>
-								<!-- <div class="rightBtn" ><img src="images/wrong.png"/></div> -->
+								<input id="password" name="password" type="password" class="input1" onclick="$('#password').select();"/>
 							</div>
 						</form>
 					</div> 
@@ -75,27 +88,5 @@ function login(){
 				</div>
 			</div>
 		</div>
-
-<!-- 		<div class="easyui-panel" style="width:400px;padding:10px;">
-	        <form id="login_form">
-	            <table>
-	                <tr>
-	                    <td>用户名:</td>
-	                    <td><input id="name" name="name" type="text"></input></td>
-	                </tr>
-	                <tr>
-	                    <td>密码:</td>
-	                    <td><input id="password" name="password" type="password"></input></td>
-	                    <td><input id="password" name="password" type="text"></input></td>
-	                </tr>
-	                <tr>
-	                    <td><input type="submit" value="提交"/></td>
-	                    <td><input type="button" value="提交" onclick="login()"/></td>
-	                    <td><input type="reset" value="清除"/></td>
-	                    <td><input type="button" value="清除1"/></td>
-	                </tr>
-	            </table>
-	        </form>
-	    </div> -->
 	</body>
 </html>

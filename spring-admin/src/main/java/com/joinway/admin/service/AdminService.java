@@ -104,14 +104,14 @@ public class AdminService {
 		List<TreeMenu> trees = null;
 
 		trees = tableRepository.find(TreeMenu.class);
-		AdminUser au = tableRepository.find(userId, AdminUser.class);
-		
-		if ("super".equals(au.getLoginName())) {
-			trees = tableRepository.find(TreeMenu.class);
-			trees = Filter.create(trees, Condition.create("status", DBValueConstants.YES)).result();
-		} else {
-			trees = repository.findUserTreeMenus(userId);
-		}
+//		AdminUser au = tableRepository.find(userId, AdminUser.class);
+//		
+//		if ("super".equals(au.getLoginName())) {
+//			trees = tableRepository.find(TreeMenu.class);
+//			trees = Filter.create(trees, Condition.create("status", DBValueConstants.YES)).result();
+//		} else {
+//			trees = repository.findUserTreeMenus(userId);
+//		}
 
 		TreeMenuView view = new TreeMenuView();
 

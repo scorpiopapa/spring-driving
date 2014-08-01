@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.joinway.admin.bean.form.LoginForm;
 import com.joinway.admin.service.AdminService;
 import com.joinway.mobile.BaseTest;
+import com.joinway.utils.CipherUtils;
 
 /**
  * 这里包含service业务逻辑的测试用例
@@ -28,5 +29,9 @@ public class AdminServiceTest extends BaseTest {
 //		LogoutForm form = new LogoutForm();
 //		form.setName("a");
 		service.logout();
+	}
+	
+	@Test public void test(){
+		System.out.println(CipherUtils.encrypt("super123"));
 	}
 }

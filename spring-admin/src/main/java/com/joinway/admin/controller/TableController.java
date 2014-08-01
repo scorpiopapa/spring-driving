@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiMethod;
 import org.jsondoc.core.annotation.ApiResponseObject;
 import org.jsondoc.core.pojo.ApiVerb;
@@ -39,14 +38,14 @@ import com.joinway.web.audit.ExceptionController;
 import com.joinway.web.audit.annotation.Audit;
 import com.joinway.web.security.annotation.SecurityCheck;
 
-@Api(name = "DataGrid Controller", description = "......")
+//@Api(name = "DataGrid Controller", description = "")
 @Controller
 @RequestMapping("admin")
 @Validated
 @SecurityCheck
-public class DataGridController extends ExceptionController {
+public class TableController extends ExceptionController {
 	
-	private final static Logger log = LoggerFactory.getLogger(DataGridController.class);
+	private final static Logger log = LoggerFactory.getLogger(TableController.class);
 	
 	@Autowired @Qualifier("DefaultTableService") TableService service;
 	
@@ -116,6 +115,7 @@ public class DataGridController extends ExceptionController {
 		
 		return ts != null ? ts : service;
 	}
+	
 	@Deprecated
 	void printParams(HttpServletRequest request){
 		Enumeration<String> enums = request.getParameterNames();

@@ -49,7 +49,7 @@
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="annotationClass" value="org.springframework.stereotype.Repository" />
-		<property name="basePackage" value="com.joinway.jiayd.mapper,com.joinway.db.mapper" />
+		<property name="basePackage" value="com.joinway.admin.mapper,com.joinway.db.mapper,com.joinway.appx.mapper" />
 	</bean>
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
