@@ -31,6 +31,8 @@ import com.joinway.mobile.bean.view.LogoutView;
 import com.joinway.mobile.service.MobileService;
 import com.joinway.web.audit.ExceptionController;
 import com.joinway.web.audit.annotation.Audit;
+import com.joinway.web.security.annotation.Login;
+import com.joinway.web.security.annotation.Logout;
 
 @Api(name = "Mobile", description = "手机 用户登录，登出")
 @Controller
@@ -67,6 +69,7 @@ public class MobileController extends ExceptionController {
 	)
 	@RequestMapping(value="login", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
+	@Login
 	@Audit
 	@InputLog
 	@OutputLog
@@ -82,6 +85,7 @@ public class MobileController extends ExceptionController {
 	)
 	@RequestMapping(value="logout", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
+	@Logout
 	@Audit
 	@InputLog
 	@OutputLog

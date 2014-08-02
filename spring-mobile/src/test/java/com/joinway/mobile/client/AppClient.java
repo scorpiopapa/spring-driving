@@ -1,6 +1,7 @@
 package com.joinway.mobile.client;
 
 import com.joinway.mobile.bean.form.LoginForm;
+import com.joinway.mobile.bean.form.LogoutForm;
 import com.joinway.mobile.bean.form.RegisterForm;
 import com.joinway.net.http.HttpClientAdaptor;
 
@@ -18,7 +19,7 @@ public class AppClient {
 		login();
 //		register();
 //		menu();
-//		logout();
+		logout();
 //		Object o = null;
 //		Object oo = (Object)o;
 //		out.println(oo);
@@ -42,7 +43,7 @@ public class AppClient {
 //		form.setMobileType("A");
 //		form.setImId("123");
 		
-		form.setName("lee1234");
+		form.setName("lee123");
 		form.setPassword("123456");
 		form.setMobileType("A");
 //		form.setImId("123");
@@ -50,17 +51,10 @@ public class AppClient {
 		client.post(form, BASE_URL + "/login");
 	}
 
-	static void menu() throws Exception {
-//		LoginForm form = new LoginForm();
-//		form.setName("lee");
-//		form.setPassword("123");
-		
-		client.get("app/navigator.json");
-	}
-	
-	
 	static void logout() throws Exception {
-		client.get("app/logout.json");
+		LogoutForm form = new LogoutForm();
+		form.setUserId(3);
+		client.post(form, BASE_URL + "/logout");
 	}
 	
 //	static String postRequest(String url, List<NameValuePair> nvps) throws Exception {

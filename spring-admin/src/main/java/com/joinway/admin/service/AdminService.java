@@ -35,11 +35,8 @@ import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.console.bean.domain.LoginUser;
-import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.utils.CipherUtils;
-import com.joinway.utils.data.Filter;
-import com.joinway.utils.data.bean.Condition;
 
 @Service
 public class AdminService {
@@ -143,7 +140,7 @@ public class AdminService {
 	public PushView resendPush(ResendForm form, UserContext uc) throws Exception {
 		List<PushKey> devices = buildPushKeys(form.getUserId(), form.getTargetUserIds());
 		
-		pushService.resendMass(uc.getLoginName(), devices, form.getPageName());
+		pushService.resendMassBroadcast(uc.getLoginName(), devices, form.getPageName());
 		
 		return new PushView();
 	}
