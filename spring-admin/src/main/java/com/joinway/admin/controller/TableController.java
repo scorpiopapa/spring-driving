@@ -40,7 +40,7 @@ import com.joinway.web.security.annotation.SecurityCheck;
 
 //@Api(name = "DataGrid Controller", description = "")
 @Controller
-@RequestMapping("admin")
+@RequestMapping("")
 @Validated
 @SecurityCheck
 public class TableController extends ExceptionController {

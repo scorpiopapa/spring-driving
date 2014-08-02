@@ -40,7 +40,7 @@ import com.joinway.web.security.annotation.SecurityCheck;
  *
  */
 @Controller
-@RequestMapping("admin")
+@RequestMapping("")
 @Validated
 public class AdminController extends ExceptionController {
 
