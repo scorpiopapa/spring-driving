@@ -11,6 +11,8 @@ public class UserNoticeHistoryV extends DomainEntity {
 	 */
 	private static final long serialVersionUID = -5681020546395127003L;
 
+	int noticeId;
+	
 	int userId;
 	
 	String name;
@@ -81,6 +83,13 @@ public class UserNoticeHistoryV extends DomainEntity {
 		this.loginName = loginName;
 	}
 	
+	public int getNoticeId() {
+		return noticeId;
+	}
+
+	public void setNoticeId(int noticeId) {
+		this.noticeId = noticeId;
+	}
 }
 
 

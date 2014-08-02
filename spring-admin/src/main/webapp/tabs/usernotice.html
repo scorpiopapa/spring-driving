@@ -78,12 +78,13 @@ function doResend(){
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-        	<th data-options="field:'id'">编号</th>
+        	<th data-options="field:'id',hidden:'true'"></th>
+        	<th data-options="field:'noticeId'">通知编号</th>
+        	<th data-options="field:'userId'">用户编号</th>
             <th data-options="field:'name'">姓名</th>
             <th data-options="field:'cellPhone'">手机号码</th>
             <th data-options="field:'status',formatter:formatReceiveType">接收状态</th>
             <th data-options="field:'acceptTime'">接收时间</th>
-            <th data-options="field:'userId',hidden:'true'"></th>
         </tr>
     </thead>
 </table>
