@@ -67,7 +67,7 @@ function showPushDetail(){
 		
 		UC.resendPage = pageName;
 		
-		var title = '通知' + rows[0].id;
+		var title = '通知' + rows[0].id + ' - ' + rows[0].title;
 		
 		var tab = $(jtabId);
 		if(tab.tabs('exists', title)){
@@ -75,7 +75,7 @@ function showPushDetail(){
 		}else{
 			tab.tabs('add', {
 				title: title,
-				href: 'tabs/usernotice.html',
+				href: 'tabs/notice/history/mass.do?noticeId=' + rows[0].id,
 				closable: true
 			});
 		}
