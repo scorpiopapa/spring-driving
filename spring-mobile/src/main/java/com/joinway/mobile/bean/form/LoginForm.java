@@ -16,7 +16,7 @@ public class LoginForm extends AuthForm {
 	 */
 	private static final long serialVersionUID = -6560550145301724019L;
 
-	@ApiObjectField(description = "jpush的registerId")
+	@ApiObjectField(description = "jpush的RegistraationID")
 	@NotBlank
 	@LogMask
 	String imId;
