@@ -199,12 +199,14 @@ function push(form, url){
 		//async: false,
 		data : form,
 		success : function(data) {
-			showInformationMessage('发送完毕');
+			//showInformationMessage('发送完毕');
 		},
 		error: function(){
 			showErrorMessage('发送失败');
 		}
 	});
+	
+	showInformationMessage('发送完毕');
 }
 
 function getIdDescOrder(){

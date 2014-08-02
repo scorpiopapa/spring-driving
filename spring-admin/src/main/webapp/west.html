@@ -18,7 +18,7 @@ $(function(){
 			if(tab.tabs('exists', node.text)){
 				tab.tabs("select", node.text); 
 			}else{
-				$('#tab').tabs('add', {
+				tab.tabs('add', {
 					title: node.text,
 					href: node.attribute.url,
 					closable: true

@@ -80,6 +80,7 @@ public class MobileService {
 		loginUser.setLoginCount(count + 1);
 		loginUser.setLastLoginTime(today);
 		loginUser.setLoginStatus(DBValueConstants.YES);
+		loginUser.setImId(form.getImId());
 		loginUser.setCellPhoneType(form.getMobileType());
 		tableRepository.save(loginUser);
 		

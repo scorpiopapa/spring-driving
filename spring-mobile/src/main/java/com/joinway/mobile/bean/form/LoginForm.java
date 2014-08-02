@@ -16,23 +16,23 @@ public class LoginForm extends AuthForm {
 	 */
 	private static final long serialVersionUID = -6560550145301724019L;
 
-//	@ApiObjectField(description = "jpush的registerId")
-//	@NotBlank
-//	@LogMask
-//	String imId;
+	@ApiObjectField(description = "jpush的registerId")
+	@NotBlank
+	@LogMask
+	String imId;
 	
 	@ApiObjectField(description = "手机类型:A-Android;I-IOS")
 	@Pattern(regexp="^A|I$")
 	@LogMask
 	String mobileType;
 	
-//	public String getImId() {
-//		return imId;
-//	}
-//
-//	public void setImId(String imId) {
-//		this.imId = imId;
-//	}
+	public String getImId() {
+		return imId;
+	}
+
+	public void setImId(String imId) {
+		this.imId = imId;
+	}
 
 	public String getMobileType() {
 		return mobileType;

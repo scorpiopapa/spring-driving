@@ -26,6 +26,8 @@ public class LoginUser extends DomainEntity{
 	@DomainField(CaseFormat.Upper)
 	String cellPhoneType;
 
+	String imId;
+	
 	int loginCount;
 	
 	String enableStatus = DBValueConstants.YES;
@@ -88,6 +90,14 @@ public class LoginUser extends DomainEntity{
 
 	public void setCellPhoneType(String cellPhoneType) {
 		this.cellPhoneType = cellPhoneType;
+	}
+
+	public String getImId() {
+		return imId;
+	}
+
+	public void setImId(String imId) {
+		this.imId = imId;
 	}
 
 }

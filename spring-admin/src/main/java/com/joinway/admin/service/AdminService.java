@@ -138,9 +138,9 @@ public class AdminService {
 	
 	@Transactional(rollbackFor=Throwable.class)
 	public PushView resendPush(ResendForm form, UserContext uc) throws Exception {
-		List<PushKey> devices = buildPushKeys(form.getUserId(), form.getTargetUserIds());
+		List<PushKey> keys = buildPushKeys(form.getUserId(), form.getTargetUserIds());
 		
-		pushService.resendMassBroadcast(uc.getLoginName(), devices, form.getPageName());
+		pushService.resendMassBroadcast(uc.getLoginName(), keys, form.getPageName());
 		
 		return new PushView();
 	}
@@ -154,7 +154,7 @@ public class AdminService {
 			LoginUser loginUser = tableRepository.find(Integer.valueOf(userId), LoginUser.class);
 			
 			if(loginUser != null){
-				keys.add(new PushKey(Integer.valueOf(userId), loginUser.getCellPhoneType()));
+				keys.add(new PushKey(Integer.valueOf(userId), loginUser.getImId(), loginUser.getCellPhoneType()));
 			}else{
 				log.warn("user id {}  was not found", userId);
 			}

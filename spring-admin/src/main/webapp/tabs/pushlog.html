@@ -67,12 +67,18 @@ function showPushDetail(){
 		
 		UC.resendPage = pageName;
 		
+		var title = '通知' + rows[0].id;
+		
 		var tab = $(jtabId);
-		$('#tab').tabs('add', {
-			title: rows[0].title,
-			href: 'tabs/usernotice.html',
-			closable: true
-		});
+		if(tab.tabs('exists', title)){
+			tab.tabs("select", title); 
+		}else{
+			tab.tabs('add', {
+				title: title,
+				href: 'tabs/usernotice.html',
+				closable: true
+			});
+		}
 	} 
 
 }
