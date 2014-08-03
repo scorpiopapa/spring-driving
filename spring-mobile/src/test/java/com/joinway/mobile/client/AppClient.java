@@ -19,7 +19,7 @@ public class AppClient {
 		login();
 //		register();
 //		menu();
-		logout();
+//		logout();
 //		Object o = null;
 //		Object oo = (Object)o;
 //		out.println(oo);
@@ -46,7 +46,7 @@ public class AppClient {
 		form.setName("lee123");
 		form.setPassword("123456");
 		form.setMobileType("A");
-//		form.setImId("123");
+		form.setImId("123");
 
 		client.post(form, BASE_URL + "/login");
 	}

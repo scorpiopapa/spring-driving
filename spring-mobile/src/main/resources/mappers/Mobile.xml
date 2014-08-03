@@ -10,6 +10,7 @@
 		<result column="ENABLE_STATUS" property="enableStatus"/>
 		<result column="LOGIN_STATUS" property="loginStatus"/>
 		<result column="LAST_LOGIN_TIME" property="lastLoginTime"/>
+		<result column="CREATE_TIME" property="createTime"/>
 	</resultMap>
 
 	<select id="selectLoginUser" resultMap="LoginUser">
