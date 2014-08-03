@@ -13,30 +13,106 @@ public class DriveTrainee extends DomainEntity {
 	 */
 	private static final long serialVersionUID = -1622195219006896158L;
 
-	String cellPhone;
-	
-	String phone;
-	
+	/**
+	 * 姓名
+	 */
 	String name;
 	
+	/**
+	 * 性别
+	 */
 	@DomainField(CaseFormat.Upper)
 	String gender;
 	
-	int age;
+	Date birthday;
+	
+	String nationality;
+
+	/**
+	 * 固话
+	 */
+	String phone;
+	
+	String cellPhone;
+
+	String idCardType;
 	
 	String idCard;
 	
+	String idCardAddress;
+	
+	String company;
+	
+	/**
+	 * 邮寄地址
+	 */
+	String postAddress;
+	
+	/**
+	 * 联系地址
+	 */
+	String address;
+	
+	/**
+	 * 暂住证明
+	 */
+	String tempCardId;
+	
+	/**
+	 * 邮政编码
+	 */
+	String postCode;
+	
+//	int age;
+	
+	/**
+	 * 指定教练
+	 */
 	String coach;
 	
-	String testStatus;
+	/**
+	 * 推荐人
+	 */
+	String introducer;
 	
-	String zone;
+	/**
+	 * 学习类型
+	 */
+	String trainType;
 	
-	String address;
+	/**
+	 * 班级信息
+	 */
+	String trainClass;
+	
+	/**
+	 * 学员来源
+	 */
+	String source;
+	
+	/**
+	 * 原有车型
+	 */
+	String origCarType;
 	
 	String comment;
 
-	Date registerTime;
+	/**
+	 * 车辆类型
+	 */
+	String carType;
+
+	/**
+	 * 所属区域
+	 */
+	String zone;
+	
+	/**
+	 * 学习车型
+	 */
+	String testCarType;
+	
+	Date registerDate;
 	
 	public String getCellPhone() {
 		return cellPhone;
@@ -94,14 +170,6 @@ public class DriveTrainee extends DomainEntity {
 		this.comment = comment;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	public String getIdCard() {
 		return idCard;
 	}
@@ -118,20 +186,132 @@ public class DriveTrainee extends DomainEntity {
 		this.coach = teacher;
 	}
 
-	public String getTestStatus() {
-		return testStatus;
+	public Date getBirthday() {
+		return birthday;
 	}
 
-	public void setTestStatus(String testStatus) {
-		this.testStatus = testStatus;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
-	public Date getRegisterTime() {
-		return registerTime;
+	public String getNationality() {
+		return nationality;
 	}
 
-	public void setRegisterTime(Date registerTime) {
-		this.registerTime = registerTime;
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
 	}
-	
+
+	public String getIdCardType() {
+		return idCardType;
+	}
+
+	public void setIdCardType(String idCardType) {
+		this.idCardType = idCardType;
+	}
+
+	public String getIdCardAddress() {
+		return idCardAddress;
+	}
+
+	public void setIdCardAddress(String idCardAddress) {
+		this.idCardAddress = idCardAddress;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getPostAddress() {
+		return postAddress;
+	}
+
+	public void setPostAddress(String postAddress) {
+		this.postAddress = postAddress;
+	}
+
+	public String getPostCode() {
+		return postCode;
+	}
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+
+	public String getIntroducer() {
+		return introducer;
+	}
+
+	public void setIntroducer(String introducer) {
+		this.introducer = introducer;
+	}
+
+	public String getTrainType() {
+		return trainType;
+	}
+
+	public void setTrainType(String trainType) {
+		this.trainType = trainType;
+	}
+
+	public String getTrainClass() {
+		return trainClass;
+	}
+
+	public void setTrainClass(String trainClass) {
+		this.trainClass = trainClass;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getOrigCarType() {
+		return origCarType;
+	}
+
+	public void setOrigCarType(String origCarType) {
+		this.origCarType = origCarType;
+	}
+
+	public String getCarType() {
+		return carType;
+	}
+
+	public void setCarType(String carType) {
+		this.carType = carType;
+	}
+
+	public String getTestCarType() {
+		return testCarType;
+	}
+
+	public void setTestCarType(String testCarType) {
+		this.testCarType = testCarType;
+	}
+
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+
+	public String getTempCardId() {
+		return tempCardId;
+	}
+
+	public void setTempCardId(String tempCardId) {
+		this.tempCardId = tempCardId;
+	}
+
 }

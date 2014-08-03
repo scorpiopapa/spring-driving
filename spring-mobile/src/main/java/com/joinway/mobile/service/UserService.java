@@ -25,7 +25,7 @@ public class UserService {
 		view.setCoach(user.getCoach());
 		view.setIdCard(user.getIdCard());
 		view.setName(user.getName());
-		view.setTestStatus(user.getTestStatus());
+//		view.setTestStatus(user.getTestStatus());
 		
 		return view;
 	}

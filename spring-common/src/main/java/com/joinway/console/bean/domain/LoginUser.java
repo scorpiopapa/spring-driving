@@ -36,6 +36,8 @@ public class LoginUser extends DomainEntity{
 	
 	Date lastLoginTime;
 
+	Date createTime;
+	
 	public String getLoginName() {
 		return loginName;
 	}
@@ -98,6 +100,14 @@ public class LoginUser extends DomainEntity{
 
 	public void setImId(String imId) {
 		this.imId = imId;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 }

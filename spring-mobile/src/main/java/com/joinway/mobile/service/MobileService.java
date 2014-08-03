@@ -35,6 +35,8 @@ public class MobileService {
 			throw new DuplicateDataException("用户已注册");
 		}
 		
+		Date today = Calendar.getInstance().getTime();
+		
 		/*
 		 * 保存用户注册信息
 		 */
@@ -42,18 +44,19 @@ public class MobileService {
 		loginUser.setLoginName(form.getName());
 		loginUser.setPassword(CipherUtils.encrypt(form.getPassword()));
 		loginUser.setLoginCount(0);
+		loginUser.setCreateTime(today);
 		
 		tableRepository.save(loginUser);
 		
 		/*
 		 * 保存用户信息
 		 */
-		Date today = Calendar.getInstance().getTime();
+		
 		DriveTrainee user = new DriveTrainee();
 		user.setId(loginUser.getId());
 		user.setCellPhone(form.getCellPhone());
 		user.setName(form.getUserName());
-		user.setRegisterTime(today);
+		user.setRegisterDate(today);
 		
 		tableRepository.insert(user);
 		
