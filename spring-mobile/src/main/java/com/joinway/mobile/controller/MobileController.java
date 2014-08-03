@@ -28,6 +28,7 @@ import com.joinway.mobile.bean.form.LogoutForm;
 import com.joinway.mobile.bean.form.RegisterForm;
 import com.joinway.mobile.bean.view.LoginView;
 import com.joinway.mobile.bean.view.LogoutView;
+import com.joinway.mobile.bean.view.VersionView;
 import com.joinway.mobile.service.MobileService;
 import com.joinway.web.audit.ExceptionController;
 import com.joinway.web.audit.annotation.Audit;
@@ -91,6 +92,18 @@ public class MobileController extends ExceptionController {
 	@OutputLog
 	public LogoutView logout(@ApiBodyObject @Valid @RequestBody LogoutForm form) throws Exception {
 		return service.logout(form);
+	}
+
+	@ApiMethod(path="version", verb=ApiVerb.POST, description="查看最新版本", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiResponseObject
+	@RequestMapping(value="version", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@Login
+	@Audit
+	@InputLog
+	@OutputLog
+	public VersionView version() throws Exception {
+		return service.getLatestVersion();
 	}
 
 }

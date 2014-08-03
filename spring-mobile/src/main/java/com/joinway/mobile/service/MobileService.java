@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.joinway.appx.repository.SystemRepository;
 import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
-import com.joinway.console.bean.domain.LoginUser;
 import com.joinway.console.bean.domain.DriveTrainee;
+import com.joinway.console.bean.domain.LoginUser;
 import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.mobile.bean.form.LoginForm;
@@ -18,6 +19,7 @@ import com.joinway.mobile.bean.form.LogoutForm;
 import com.joinway.mobile.bean.form.RegisterForm;
 import com.joinway.mobile.bean.view.LoginView;
 import com.joinway.mobile.bean.view.LogoutView;
+import com.joinway.mobile.bean.view.VersionView;
 import com.joinway.mobile.repository.MobileRepository;
 import com.joinway.utils.CipherUtils;
 
@@ -27,6 +29,8 @@ public class MobileService {
 	@Autowired MobileRepository mobileRepository;
 	
 	@Autowired TableRepository tableRepository;
+	
+	@Autowired SystemRepository systemRepository;
 	
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView register(RegisterForm form) throws Exception {
@@ -112,6 +116,14 @@ public class MobileService {
 		tableRepository.save(loginUser);
 		
 		return new LogoutView();
+	}
+	
+	public VersionView getLatestVersion() throws Exception {
+		VersionView view = new VersionView();
+		view.setVersion(systemRepository.getStringValue(SystemRepository.ClientVersion));
+		view.setUrl(systemRepository.getStringValue(SystemRepository.ClientDownlaodUrl));
+		
+		return view;
 	}
 }
 
