@@ -94,9 +94,9 @@ public class MobileController extends ExceptionController {
 		return service.logout(form);
 	}
 
-	@ApiMethod(path="version", verb=ApiVerb.POST, description="查看最新版本", produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiMethod(path="version", verb=ApiVerb.GET, description="查看最新版本", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
-	@RequestMapping(value="version", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="version", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Login
 	@Audit
