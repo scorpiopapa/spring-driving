@@ -16,8 +16,8 @@ public class AppClient {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		login();
-//		register();
+//		login();
+		register();
 //		menu();
 //		logout();
 //		Object o = null;
@@ -28,7 +28,7 @@ public class AppClient {
 	static void register() throws Exception {
 		RegisterForm form = new RegisterForm();
 		form.setCellPhone("13998429427");
-		form.setName("lee1234");
+		form.setName("lee12345");
 		form.setPassword("123456");
 		form.setUserName("lee1234");
 		
