@@ -19,7 +19,8 @@ width: 80px;
 var coachTable = 'coach';
 
 $(function() {
-	initDataGrid('#coach_grid', appName + 'search/' + coachTable + '.json');
+	var orderBy = getIdDescOrder();
+	initDataGrid('#coach_grid', appName + 'search/' + coachTable + '.json?orderBy=' + orderBy);
 });
 
 /**
@@ -27,25 +28,62 @@ $(function() {
  */
 function doSearchCoach() {
 	searchDataGrid('#coach_grid', {
-		name : $('#coach_text').val()
+		cellPhone : $('#coach_text').val()
 	});
 }
 
 /**
  * 修改刷新条件
  */
-function doRefreshCoach() {
+function doRefreshDriveTrainee() {
 	refreshDataGrid('#coach_grid', {
-		name : ''
+		cellPhone : ''
 	});
+}
+
+function formatGender(val, row){
+	var value = val;
+	if(val == 'F'){
+		value = '女'
+	}else if(val == 'M'){
+		value = '男'
+	}
+	
+	return value;
+}
+
+function doPostEditUser(row){
+	if(row.gender == 'F'){
+		$('#mass_female').attr('checked', 'checked1');
+	}else if(row.gender == 'M'){
+		$('#mass_male').attr('checked', 'checked');
+	}else{
+		$('#mass_female').removeAttr('checked');
+		$('#mass_male').removeAttr('checked');
+	}
 }
 </script>
 <table id="coach_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#coach_toolbar'">
     <thead>
         <tr>
         <th data-options="field:'ck'" checkbox="true"></th>
-            <th data-options="field:'id',width:80">ID</th>
-            <!-- 添加字段 -->
+            <th data-options="field:'id',align:'center'">教练编号</th>
+            <th data-options="field:'cellPhone'">手机号</th>
+            <th data-options="field:'name'">姓名</th>
+            <th data-options="field:'carBand'">车牌号</th>
+            <th data-options="field:'gender',formatter:formatGender">性别</th>
+            <th data-options="field:'phone'">固话</th>
+            <th data-options="field:'carType'">车型</th>
+            <th data-options="field:'classType'">科目</th>
+            <th data-options="field:'trainClass'">班级</th>
+            <th data-options="field:'department'">部门</th>
+            <th data-options="field:'license'">初次领证</th>
+            <th data-options="field:'workDetail'">参加工作</th>
+            <th data-options="field:'idCard'">身份证号</th>
+            <th data-options="field:'coachContent'">准教范围</th>
+            <th data-options="field:'coachLiscense'">准教证号</th>
+            <th data-options="field:'address'">住址</th>
+            <th data-options="field:'comment'">备注</th>
         </tr>
     </thead>
 </table>
@@ -53,28 +91,136 @@ function doRefreshCoach() {
     <div style="margin-bottom:5px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#coach_form', '#coach_dlg')">添加</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#coach_grid', '#coach_form', '#coach_dlg')">编辑</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshCoach()">刷新</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#coach_grid', coachTable)">删除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshDriveTrainee()">刷新</a>
+        <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#coach_grid', coachTable)">删除</a> -->
     </div>
   <!-- 添加查询条件  -->      
-        名称<input id="coach_text" type="text"/>
+        手机号<input id="coach_text" type="text"/>
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">查询</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a>
 </div>
 
-<div id="coach_dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px" closed="true" buttons="#coach_dlg_buttons">
+<div id="coach_dlg" class="easyui-dialog" style="width:650px;height:450px;padding:10px 20px" closed="true" buttons="#coach_dlg_buttons">
      <form id="coach_form" method="post" novalidate>
-     	<input name="id" type="hidden">
+         <input name="id" type="hidden">
      	<!-- 添加编辑列 -->
-         <div class="coach_item">
-             <label>名称</label>
-             <input name="name" >
-             
-         </div>
-         <div class="coach_item">
-             <label>描述<</label>
-             <textarea name="description" rows="5" cols="40"></textarea>
-         </div>
+     	<table>
+     		<tr>
+     			<td>
+     				<div class="coach_item">
+			             <label>姓名</label>
+			             <input name="name" >
+			         </div>
+     			</td>
+     			<td>
+     				<div class="coach_item">
+			             <label>手机号</label>
+			             <input name="cellPhone" >
+			         </div>
+     			</td>
+     		</tr>
+     		<tr>
+     			<td>
+     				<div class="coach_item">
+			             <label>车牌号</label>
+			             <input name="carBand" >
+			         </div>
+     			</td>
+     			<td>
+     				<div class="coach_item">
+			             <label>性别</label>
+			             <input id="mass_male" name="gender" type="radio" value="M">男
+             			 <input id="mass_female" name="gender" type="radio" value="F">女
+			         </div>
+     			</td>
+     		</tr>
+     		<tr>
+     			<td>
+     				<div class="coach_item">
+			             <label>固话</label>
+			             <input name="phone" >
+			         </div>
+     			</td>
+     			<td>
+     				<div class="coach_item">
+			             <label>车型</label>
+			             <input name="carType" >
+			         </div>
+     			</td>
+     		</tr>
+     		<tr>
+     			<td>
+     				 <div class="coach_item">
+			             <label>科目</label>
+			             <input name="classType" >
+			         </div>
+     			</td>
+     			<td>
+     				 <div class="coach_item">
+			             <label>班级</label>
+			             <input name="trainClass" >
+			         </div>
+     			</td>
+     		</tr>
+     		<tr>
+     			<td>
+     				  <div class="coach_item">
+			             <label>部门</label>
+			             <input name="department" >
+			         </div>
+     			</td>
+     			<td>
+     				 <div class="coach_item">
+			             <label>初次领证</label>
+			             <input name="license" >
+			         </div>
+     			</td>
+     		</tr>
+     		<tr>
+     			<td>
+     				  <div class="coach_item">
+			             <label>参加工作</label>
+			             <input name="workDetail" >
+			         </div>
+     			</td>
+     			<td>
+     				 <div class="coach_item">
+			             <label>身份证号</label>
+			             <input name="idCard" >
+			         </div>
+     			</td>
+     		</tr>
+     		<tr>
+     			<td>
+     				  <div class="coach_item">
+			             <label>准教范围</label>
+			             <input name="coachContent" >
+			         </div>
+     			</td>
+     			<td>
+     				 <div class="coach_item">
+			             <label>准教证号</label>
+			             <input name="coachLiscense" >
+			         </div>
+     			</td>
+     		</tr>
+     		<tr>
+     			<td colspan="2">
+     				  <div class="coach_item">
+			             <label>住址</label>
+			             <input name="address" >
+			         </div>
+     			</td>
+     		</tr>
+     		<tr>
+     			<td colspan="2">
+     				 <div class="coach_item">
+			             <label>备注</label>
+			             <input name="comment" >
+			         </div>
+     			</td>
+     		</tr>
+     	</table>
      </form>
  </div>
  <div id="coach_dlg_buttons">
