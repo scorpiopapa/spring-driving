@@ -1,0 +1,84 @@
+<style type="text/css">
+#coach_form {
+margin: 0;
+padding: 10px 30px;
+}
+
+.coach_item {
+margin-bottom: 5px;
+}
+
+.coach_item label {
+display: inline-block;
+width: 80px;
+}
+</style>
+
+<script type="text/javascript" src="resources/js/common.js"></script>
+<script type="text/javascript">
+var coachTable = 'coach';
+
+$(function() {
+	initDataGrid('#coach_grid', appName + 'search/' + coachTable + '.json');
+});
+
+/**
+ * 修改查询条件
+ */
+function doSearchCoach() {
+	searchDataGrid('#coach_grid', {
+		name : $('#coach_text').val()
+	});
+}
+
+/**
+ * 修改刷新条件
+ */
+function doRefreshCoach() {
+	refreshDataGrid('#coach_grid', {
+		name : ''
+	});
+}
+</script>
+<table id="coach_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#coach_toolbar'">
+    <thead>
+        <tr>
+        <th data-options="field:'ck'" checkbox="true"></th>
+            <th data-options="field:'id',width:80">ID</th>
+            <!-- 添加字段 -->
+        </tr>
+    </thead>
+</table>
+<div id="coach_toolbar" style="padding:5px;height:auto">
+    <div style="margin-bottom:5px">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#coach_form', '#coach_dlg')">添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#coach_grid', '#coach_form', '#coach_dlg')">编辑</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshCoach()">刷新</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#coach_grid', coachTable)">删除</a>
+    </div>
+  <!-- 添加查询条件  -->      
+        名称<input id="coach_text" type="text"/>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">查询</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a>
+</div>
+
+<div id="coach_dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px" closed="true" buttons="#coach_dlg_buttons">
+     <form id="coach_form" method="post" novalidate>
+     	<input name="id" type="hidden">
+     	<!-- 添加编辑列 -->
+         <div class="coach_item">
+             <label>名称</label>
+             <input name="name" >
+             
+         </div>
+         <div class="coach_item">
+             <label>描述<</label>
+             <textarea name="description" rows="5" cols="40"></textarea>
+         </div>
+     </form>
+ </div>
+ <div id="coach_dlg_buttons">
+     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveItem('#coach_grid', '#coach_form', '#coach_dlg', coachTable)">保存</a>
+     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="closeDialog('#coach_dlg')">取消</a>
+ </div>
+
