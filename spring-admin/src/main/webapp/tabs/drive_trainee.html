@@ -110,7 +110,7 @@ function doPostEditUser(row){
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_toolbar')">清除</a>
 </div>
 
-<div id="drive_trainee_dlg" class="easyui-dialog" style="width:650px;height:580px;padding:10px 20px" closed="true" buttons="#drive_trainee_dlg_buttons">
+<div id="drive_trainee_dlg" class="easyui-dialog" style="width:650px;height:600px;padding:10px 20px" closed="true" buttons="#drive_trainee_dlg_buttons">
      <form id="drive_trainee_form" method="post" novalidate>
          <input name="id" type="hidden">
      	<!-- 添加编辑列 -->
@@ -288,7 +288,7 @@ function doPostEditUser(row){
      			<td colspan="2">
      				 <div class="drive_trainee_item">
 			             <label>备注</label>
-			             <input name="comment" >
+			             <textarea name="comment" rows="3" style="width: 400px;"></textarea>
 			         </div>
      			</td>
      		</tr>
