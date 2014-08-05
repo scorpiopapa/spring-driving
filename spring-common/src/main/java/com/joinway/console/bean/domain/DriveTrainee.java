@@ -61,7 +61,7 @@ public class DriveTrainee extends DomainEntity {
 	/**
 	 * 邮政编码
 	 */
-	int postCode;
+	String postCode;
 	
 //	int age;
 	
@@ -93,14 +93,14 @@ public class DriveTrainee extends DomainEntity {
 	/**
 	 * 原有车型
 	 */
-	int origCarType;
+	String origCarType;
 	
 	String comment;
 
 	/**
 	 * 车辆类型
 	 */
-	int carType;
+	String carType;
 
 	/**
 	 * 所属区域
@@ -110,7 +110,7 @@ public class DriveTrainee extends DomainEntity {
 	/**
 	 * 学习车型
 	 */
-	int testCarType;
+	String testCarType;
 	
 	Date registerDate;
 	
@@ -267,35 +267,35 @@ public class DriveTrainee extends DomainEntity {
 	}
 
 
-	public int getPostCode() {
+	public String getPostCode() {
 		return postCode;
 	}
 
-	public void setPostCode(int postCode) {
+	public void setPostCode(String postCode) {
 		this.postCode = postCode;
 	}
 
-	public int getOrigCarType() {
+	public String getOrigCarType() {
 		return origCarType;
 	}
 
-	public void setOrigCarType(int origCarType) {
+	public void setOrigCarType(String origCarType) {
 		this.origCarType = origCarType;
 	}
 
-	public int getCarType() {
+	public String getCarType() {
 		return carType;
 	}
 
-	public void setCarType(int carType) {
+	public void setCarType(String carType) {
 		this.carType = carType;
 	}
 
-	public int getTestCarType() {
+	public String getTestCarType() {
 		return testCarType;
 	}
 
-	public void setTestCarType(int testCarType) {
+	public void setTestCarType(String testCarType) {
 		this.testCarType = testCarType;
 	}
 

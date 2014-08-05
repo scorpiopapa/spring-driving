@@ -31,13 +31,13 @@ public class Coach extends DomainEntity {
 	
 	String cellPhone;
 
-	int carType;
+	String carType;
 	
-	int classType;
+	String classType;
 	
-	int trainClass;
+	String trainClass;
 	
-	int department;
+	String department;
 	
 	/**
 	 * 初次领证
@@ -165,36 +165,35 @@ public class Coach extends DomainEntity {
 		return serialVersionUID;
 	}
 
-	public int getCarType() {
+	public String getCarType() {
 		return carType;
 	}
 
-	public void setCarType(int carType) {
+	public void setCarType(String carType) {
 		this.carType = carType;
 	}
 
-	public int getClassType() {
+	public String getClassType() {
 		return classType;
 	}
 
-	public void setClassType(int classType) {
+	public void setClassType(String classType) {
 		this.classType = classType;
 	}
 
-	public int getTrainClass() {
+	public String getTrainClass() {
 		return trainClass;
 	}
 
-	public void setTrainClass(int trainClass) {
+	public void setTrainClass(String trainClass) {
 		this.trainClass = trainClass;
 	}
 
-	public int getDepartment() {
+	public String getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(int department) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
-
 }
