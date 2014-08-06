@@ -35,8 +35,11 @@ import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.console.bean.domain.LoginUser;
+import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.utils.CipherUtils;
+import com.joinway.utils.data.Filter;
+import com.joinway.utils.data.bean.Condition;
 
 @Service
 public class AdminService {
@@ -101,14 +104,14 @@ public class AdminService {
 		List<TreeMenu> trees = null;
 
 		trees = tableRepository.find(TreeMenu.class);
-//		AdminUser au = tableRepository.find(userId, AdminUser.class);
-//		
-//		if ("super".equals(au.getLoginName())) {
-//			trees = tableRepository.find(TreeMenu.class);
-//			trees = Filter.create(trees, Condition.create("status", DBValueConstants.YES)).result();
-//		} else {
-//			trees = repository.findUserTreeMenus(userId);
-//		}
+		AdminUser au = tableRepository.find(userId, AdminUser.class);
+		
+		if ("super".equals(au.getLoginName())) {
+			trees = tableRepository.find(TreeMenu.class);
+			trees = Filter.create(trees, Condition.create("status", DBValueConstants.YES)).result();
+		} else {
+			trees = repository.findUserTreeMenus(userId);
+		}
 
 		TreeMenuView view = new TreeMenuView();
 
