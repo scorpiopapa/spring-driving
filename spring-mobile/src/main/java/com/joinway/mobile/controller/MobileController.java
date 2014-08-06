@@ -109,6 +109,10 @@ public class MobileController extends ExceptionController {
 
 	@ApiMethod(path="password", verb=ApiVerb.POST, description="修改密码", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ApiResponseObject
+	@ApiErrors(apierrors={
+			@ApiError(code=ErrorCodeConstants.INVALID, description="密码错误")
+		}
+	)
 	@RequestMapping(value="password", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Audit
