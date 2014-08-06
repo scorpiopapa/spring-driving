@@ -24,17 +24,17 @@
 		<dependency>
 			<groupId>com.joinway</groupId>
 			<artifactId>appx</artifactId>
-			<version>1.1.3-SNAPSHOT</version>
+			<version>1.1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.joinway</groupId>
 			<artifactId>utils</artifactId>
-			<version>1.1.3-SNAPSHOT</version>
+			<version>1.1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.joinway</groupId>
 			<artifactId>net</artifactId>
-			<version>1.1.3-SNAPSHOT</version>
+			<version>1.1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.joinway</groupId>
