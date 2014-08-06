@@ -16,9 +16,11 @@ import com.joinway.db.constant.DBValueConstants;
 import com.joinway.db.repository.TableRepository;
 import com.joinway.mobile.bean.form.LoginForm;
 import com.joinway.mobile.bean.form.LogoutForm;
+import com.joinway.mobile.bean.form.PasswordForm;
 import com.joinway.mobile.bean.form.RegisterForm;
 import com.joinway.mobile.bean.view.LoginView;
 import com.joinway.mobile.bean.view.LogoutView;
+import com.joinway.mobile.bean.view.PasswordView;
 import com.joinway.mobile.bean.view.VersionView;
 import com.joinway.mobile.repository.MobileRepository;
 import com.joinway.utils.CipherUtils;
@@ -32,6 +34,7 @@ public class MobileService {
 	
 	@Autowired SystemRepository systemRepository;
 	
+	@Deprecated
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView register(RegisterForm form) throws Exception {
 		LoginUser loginUser = mobileRepository.findLoginUser(form.getName().toLowerCase());
@@ -124,6 +127,19 @@ public class MobileService {
 		view.setUrl(systemRepository.getStringValue(SystemRepository.ClientDownlaodUrl));
 		
 		return view;
+	}
+	
+	public PasswordView changePassword(PasswordForm form) throws Exception {
+		LoginUser loginUser = mobileRepository.findLoginUser(form.getName().toLowerCase(), CipherUtils.encrypt(form.getOldPassword()));
+		
+		if(loginUser == null){
+			throw new ValidationException("密码错误");
+		}
+		
+		loginUser.setPassword(CipherUtils.encrypt(form.getNewPassword()));
+		tableRepository.save(loginUser);
+		
+		return new PasswordView();
 	}
 }
 

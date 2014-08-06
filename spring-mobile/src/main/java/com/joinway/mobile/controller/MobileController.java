@@ -25,9 +25,11 @@ import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.bean.logging.annotation.OutputLog;
 import com.joinway.mobile.bean.form.LoginForm;
 import com.joinway.mobile.bean.form.LogoutForm;
+import com.joinway.mobile.bean.form.PasswordForm;
 import com.joinway.mobile.bean.form.RegisterForm;
 import com.joinway.mobile.bean.view.LoginView;
 import com.joinway.mobile.bean.view.LogoutView;
+import com.joinway.mobile.bean.view.PasswordView;
 import com.joinway.mobile.bean.view.VersionView;
 import com.joinway.mobile.service.MobileService;
 import com.joinway.web.audit.ExceptionController;
@@ -45,12 +47,12 @@ public class MobileController extends ExceptionController {
 	
 	@Autowired MobileService service;
 	
-	@ApiMethod(path="register", verb=ApiVerb.POST, description="用户注册", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	@ApiResponseObject
-	@ApiErrors(apierrors={
-			@ApiError(code=ErrorCodeConstants.DUPLICATE_DATA, description="用户已注册")
-		}
-	)
+//	@ApiMethod(path="register", verb=ApiVerb.POST, description="用户注册", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+//	@ApiResponseObject
+//	@ApiErrors(apierrors={
+//			@ApiError(code=ErrorCodeConstants.DUPLICATE_DATA, description="用户已注册")
+//		}
+//	)
 	@RequestMapping(value="register", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Audit
@@ -98,12 +100,22 @@ public class MobileController extends ExceptionController {
 	@ApiResponseObject
 	@RequestMapping(value="version", produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	@Login
 	@Audit
 	@InputLog
 	@OutputLog
 	public VersionView version() throws Exception {
 		return service.getLatestVersion();
+	}
+
+	@ApiMethod(path="password", verb=ApiVerb.POST, description="修改密码", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ApiResponseObject
+	@RequestMapping(value="password", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@Audit
+	@InputLog
+	@OutputLog
+	public PasswordView password(@ApiBodyObject @Valid @RequestBody PasswordForm form) throws Exception {
+		return service.changePassword(form);
 	}
 
 }

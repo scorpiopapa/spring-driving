@@ -2,6 +2,7 @@ package com.joinway.mobile.client;
 
 import com.joinway.mobile.bean.form.LoginForm;
 import com.joinway.mobile.bean.form.LogoutForm;
+import com.joinway.mobile.bean.form.PasswordForm;
 import com.joinway.mobile.bean.form.RegisterForm;
 import com.joinway.net.http.HttpClientAdaptor;
 
@@ -17,8 +18,8 @@ public class AppClient {
 	 */
 	public static void main(String[] args) throws Exception {
 //		login();
-		register();
-//		menu();
+//		register();
+		changePassword();
 //		logout();
 //		Object o = null;
 //		Object oo = (Object)o;
@@ -28,8 +29,9 @@ public class AppClient {
 	static void register() throws Exception {
 		RegisterForm form = new RegisterForm();
 		form.setCellPhone("13998429427");
-		form.setName("lee12345");
+		form.setName("lee1232");
 		form.setPassword("123456");
+//		form.setPassword("654321");
 		form.setUserName("lee1234");
 		
 		client.post(form, BASE_URL + "/register");
@@ -43,8 +45,8 @@ public class AppClient {
 //		form.setMobileType("A");
 //		form.setImId("123");
 		
-		form.setName("lee123");
-		form.setPassword("123456");
+		form.setName("lee1232");
+		form.setPassword("654321");
 		form.setMobileType("A");
 		form.setImId("123");
 
@@ -56,41 +58,13 @@ public class AppClient {
 		form.setUserId(3);
 		client.post(form, BASE_URL + "/logout");
 	}
-	
-//	static String postRequest(String url, List<NameValuePair> nvps) throws Exception {
-//		out.println(nvps);
-//		
-//	    HttpPost post = new HttpPost(BASE_URL + url);
-//	    
-//	    post.setEntity(new UrlEncodedFormEntity(nvps, Consts.UTF_8));
-//	    post.addHeader(SecurityConstants.RequestHeader.KEY, SecurityConstants.RequestHeader.VALUE);
-//	    
-//	    HttpResponse response = client.execute(post);
-//	    out.println(response.getStatusLine());
-//	    
-//	    HttpEntity entity = response.getEntity();
-//	    String json = EntityUtils.toString(entity);
-//	    out.println(json);
-//	    
-//	    return json;
-//	}
-//
-//	static String getRequest(String url, String query) throws Exception {
-//		HttpGet get = new HttpGet(BASE_URL + url + query);
-//		
-//		HttpResponse response = client.execute(get);
-//		out.println(response.getStatusLine());
-//		
-//		HttpEntity entity = response.getEntity();
-//	    String json = EntityUtils.toString(entity);
-//	    out.println(json);
-//	    
-//	    return json;
-//	}
-//	
-//	static String getRequest(String url) throws Exception {
-//		return getRequest(url, "");
-//	}
-	
+
+	static void changePassword() throws Exception {
+		PasswordForm form = new PasswordForm();
+		form.setName("lee1232");
+		form.setOldPassword("654321");
+		form.setNewPassword("123456");
+		client.post(form, BASE_URL + "/password");
+	}
 
 }

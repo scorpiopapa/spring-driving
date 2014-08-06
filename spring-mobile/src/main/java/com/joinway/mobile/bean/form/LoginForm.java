@@ -18,7 +18,7 @@ public class LoginForm extends AuthForm {
 
 	@ApiObjectField(description = "jpush的RegistraationID")
 	@NotBlank
-	@LogMask
+//	@LogMask
 	String imId;
 	
 	@ApiObjectField(description = "手机类型:A-Android;I-IOS")

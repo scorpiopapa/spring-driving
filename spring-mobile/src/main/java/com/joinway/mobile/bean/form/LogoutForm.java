@@ -18,7 +18,7 @@ public class LogoutForm extends Form {
 
 	@ApiObjectField(description = "登录用户ID")
 	@Min(1)
-	@LogMask
+//	@LogMask
 	int userId;
 
 	public int getUserId() {
