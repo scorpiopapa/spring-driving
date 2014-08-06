@@ -28,7 +28,10 @@ $(function() {
  */
 function doSearchDriveTrainee() {
 	searchDataGrid('#drive_trainee_grid', {
-		cellPhone : $('#drive_trainee_text').val()
+		cellPhone : $('#drive_trainee_text').val(),
+		name : $('#drive_trainee_text_name').val(),
+		registerDate : $('#drive_trainee_text_registerdate').val(),
+		trainType : $('#drive_trainee_text_trainType').val()
 	});
 }
 
@@ -37,8 +40,15 @@ function doSearchDriveTrainee() {
  */
 function doRefreshDriveTrainee() {
 	refreshDataGrid('#drive_trainee_grid', {
-		cellPhone : ''
+		cellPhone : '',
+		name : '',
+		registerDate : '',
+		trainType : ''
 	});
+	$('#drive_trainee_text').val("");
+	$('#drive_trainee_text_name').val("");
+	$('#drive_trainee_text_registerdate').val("");
+	$('#drive_trainee_text_trainType').val("");
 }
 
 function formatGender(val, row){
@@ -62,7 +72,10 @@ function doPostEditUser(row){
 		$('#mass_male').removeAttr('checked');
 	}
 }
-
+function changeLoginName(){
+	var cellPhone = $('input[name=cellPhone]').val();
+	$('#loginName').val(cellPhone);
+}
 </script>
 <table id="drive_trainee_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#drive_trainee_toolbar'">
     <thead>
@@ -99,22 +112,47 @@ function doPostEditUser(row){
 </table>
 <div id="drive_trainee_toolbar" style="padding:5px;height:auto">
     <div style="margin-bottom:5px">
-        <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#drive_trainee_form', '#drive_trainee_dlg')">添加</a> -->
+         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#drive_trainee_form', '#drive_trainee_dlg')">添加</a> 
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#drive_trainee_grid', '#drive_trainee_form', '#drive_trainee_dlg')">编辑</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshDriveTrainee()">刷新</a>
         <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#drive_trainee_grid', drive_traineeTable)">删除</a> -->
     </div>
   <!-- 添加查询条件  -->      
-        手机号<input id="drive_trainee_text" type="text"/>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchDriveTrainee()">查询</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_toolbar')">清除</a>
+  <table style="width: 100%;" border="0">
+  	<tr>
+  		<td style="width: 21%;">&nbsp;&nbsp;&nbsp;&nbsp;姓名<input id="drive_trainee_text_name" type="text"/></td>
+  		<td style="width: 21%;">手机号<input id="drive_trainee_text" type="text"/></td>
+  		<td style="width: 21%;">报名日期<input id="drive_trainee_text_registerdate" type="text"/></td>
+  		<td style="width: 21%;">学习类型<input id="drive_trainee_text_trainType" type="text"/></td>
+  		<td style="width: 16%;"><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchDriveTrainee()">筛选</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_toolbar')">清除</a></td>
+  	</tr>
+  </table>
+       
 </div>
 
-<div id="drive_trainee_dlg" class="easyui-dialog" style="width:650px;height:600px;padding:10px 20px" closed="true" buttons="#drive_trainee_dlg_buttons">
+<div id="drive_trainee_dlg" class="easyui-dialog" style="width:650px;height:620px;padding:10px 20px" closed="true" buttons="#drive_trainee_dlg_buttons">
      <form id="drive_trainee_form" method="post" novalidate>
          <input name="id" type="hidden">
      	<!-- 添加编辑列 -->
      	<table style="width: 100%;">
+     		<tr>
+     			<td style="width: 50%;">
+     				<div class="drive_trainee_item">
+			             <label>用户名</label>
+			             <input id="loginName" name="loginName" >
+			         </div>
+     			</td>
+     			<td>
+     				<div class="drive_trainee_item">
+			             <label>密码</label>
+			             <input name="password" >
+			         </div>
+     			</td>
+     		</tr>
+     		</table>
+     		<hr>
+     		<table style="width: 100%;">
      		<tr>
      			<td style="width: 50%;">
      				<div class="drive_trainee_item">
@@ -125,7 +163,7 @@ function doPostEditUser(row){
      			<td>
      				<div class="drive_trainee_item">
 			             <label>手机号</label>
-			             <input name="cellPhone" >
+			             <input name="cellPhone" onkeyup="changeLoginName();" onblur="changeLoginName();">
 			         </div>
      			</td>
      		</tr>
@@ -288,7 +326,7 @@ function doPostEditUser(row){
      			<td colspan="2">
      				 <div class="drive_trainee_item">
 			             <label>备注</label>
-			             <textarea name="comment" rows="3" style="width: 417px;"></textarea>
+			             <input name="comment" style="width: 417px;"/>
 			         </div>
      			</td>
      		</tr>

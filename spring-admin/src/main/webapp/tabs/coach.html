@@ -28,7 +28,9 @@ $(function() {
  */
 function doSearchCoach() {
 	searchDataGrid('#coach_grid', {
-		cellPhone : $('#coach_text').val()
+		cellPhone : $('#coach_text').val(),
+		name : $('#coach_text_name').val(),
+		carBand : $('#coach_text_carBand').val()
 	});
 }
 
@@ -37,8 +39,13 @@ function doSearchCoach() {
  */
 function doRefreshDriveTrainee() {
 	refreshDataGrid('#coach_grid', {
-		cellPhone : ''
+		cellPhone : '',
+		name : '',
+		carBand : ''
 	});
+	$('#coach_text').val();
+	$('#coach_text_name').val();
+	$('#coach_text_carBand').val();
 }
 
 function formatGender(val, row){
@@ -94,10 +101,16 @@ function doPostEditUser(row){
         <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshDriveTrainee()">刷新</a>
         <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#coach_grid', coachTable)">删除</a> -->
     </div>
-  <!-- 添加查询条件  -->      
-        手机号<input id="coach_text" type="text"/>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">查询</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a>
+  <!-- 添加查询条件  --> 
+  <table style="width: 100%;">
+  	<tr>
+  		<td style="width: 25%;">教练姓名<input id="coach_text_name" type="text"/></td>
+  		<td style="width: 25%;">手机号<input id="coach_text" type="text"/></td>
+  		<td style="width: 25%;">车牌号<input id="coach_text_carBand" type="text"/></td>
+  		<td style="width: 25%;"><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">筛选</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a></td>
+  	</tr>
+  </table>     
 </div>
 
 <div id="coach_dlg" class="easyui-dialog" style="width:650px;height:450px;padding:10px 20px" closed="true" buttons="#coach_dlg_buttons">
