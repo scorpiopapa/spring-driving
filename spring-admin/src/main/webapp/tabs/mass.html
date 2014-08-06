@@ -25,14 +25,19 @@ $(function() {
 
 function doSearchUser() {
 	searchDataGrid('#mass_grid', {
-		cellPhone : $('#mass_text').val()
+		cellPhone : $('#mass_text').val(),
+		name : $('#mass_text_name').val()
 	});
 }
 
 function doRefreshUser() {
 	refreshDataGrid('#mass_grid', {
-		cellPhone : ''
+		cellPhone : '',
+		name : ''
 	});
+	$('#mass_text').val("");
+	$('#mass_text_name').val("");
+});
 }
 
 function formatGender(val, row){
@@ -120,10 +125,15 @@ function doPushUserMessage(jcntId){
         <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#mass_grid', userTable)">删除</a> -->
     </div>
         <!-- 手机号 <input id="mass_text" class="easyui-numberbox" data-options="min:0,precision:0"/> -->
-  	手机号码 <input id="mass_text" type="text"/>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUser()">查询</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#mass_toolbar')">清除</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushUserMessageDialog()">发送</a>
+        <table>
+        	<tr>
+        		<td>姓名<input id="mass_text_name" type="text"/></td>
+        		<td>手机号码 <input id="mass_text" type="text"/></td>
+        		<td><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUser()">筛选</a>
+        			<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#mass_toolbar')">清除</a>
+        			<a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushUserMessageDialog()">发送</a></td>
+        	</tr>
+        </table>
 </div>
 
 <div id="mass_dlg" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px" closed="true" buttons="#mass_dlg_buttons">

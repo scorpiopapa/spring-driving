@@ -43,7 +43,11 @@ $(function() {
  */
 function doSearchPushlog() {
 	searchDataGrid('#pushlog_grid', {
-		title : $('#pushlog_text').val()
+		title : $('#pushlog_text_title').val(),
+		target : $('#pushlog_text_target').val(),
+		text : $('#pushlog_text').val(),
+		sendTime : $('#pushlog_text_sendTimeStart').val(),
+		sendTime : $('#pushlog_text_sendTimeEnd').val()
 	});
 }
 
@@ -52,8 +56,17 @@ function doSearchPushlog() {
  */
 function doRefreshPushlog() {
 	refreshDataGrid('#pushlog_grid', {
-		title : ''
+		title : '',
+		target : '',
+		text : '',
+		sendTime : '',
+		sendTime : ''
 	});
+	$('#pushlog_text_title').val("");
+	$('#pushlog_text_target').val("");
+	$('#pushlog_text').val("");
+	$('#pushlog_text_sendTimeStart').val("");
+	$('#pushlog_text_sendTimeEnd').val("");
 }
 
 function formatPushTarget(val, row){
@@ -127,9 +140,22 @@ function showPushDetail(){
 </table>
 <div id="pushlog_toolbar" style="padding:5px;height:auto">
   <!-- 添加查询条件  -->      
-        标题<input id="pushlog_text" type="text"/>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchPushlog()">查询</a>
+  <table style="width: 100%;">
+  	<tr>
+  		<td>标题<input id="pushlog_text_title" type="text"/></td>
+  		<td>内容<input id="pushlog_text" type="text"/></td>
+  		<td>通知类型<select id="pushlog_text_target" style="width: 100px;">
+  			<option value="">全部</option>
+  			<option value="B">广播</option>
+  			<option value="M">群发</option>
+  		</select>
+  		</td>
+  		<td>发送时间<input id="pushlog_text_sendTimeStart" type="text" class="easyui-datebox"/></td>
+  		<td><input id="pushlog_text_sendTimeEnd" type="text" class="easyui-datebox"/></td>
+  		<td><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchPushlog()">筛选</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#pushlog_toolbar')">清除</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-redo" onclick="showPushDetail()">查看</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-redo" onclick="showPushDetail()">查看</a></td>
+  	</tr>
+  </table>
 </div>
 
