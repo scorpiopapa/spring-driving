@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.joinway.appx.bean.view.TableResultView;
-import com.joinway.appx.service.CustomTableService;
-import com.joinway.appx.service.DefaultTableService;
+import com.joinway.appx.repository.TableRepository;
+import com.joinway.appx.service.table.CustomTableService;
+import com.joinway.appx.service.table.DefaultTableService;
 import com.joinway.console.bean.domain.LoginUser;
-import com.joinway.db.repository.TableRepository;
 
 @Service
 public class DriveTraineeTableService extends DefaultTableService implements CustomTableService {

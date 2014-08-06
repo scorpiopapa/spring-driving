@@ -2,12 +2,12 @@ package com.joinway.admin.bean.domain;
 
 import java.util.Date;
 
+import com.joinway.appx.bean.domain.DomainEntity;
+import com.joinway.appx.constant.DBValueConstants;
 import com.joinway.bean.db.annotation.DomainField;
 import com.joinway.bean.db.type.CaseFormat;
 import com.joinway.bean.logging.annotation.LogIgnore;
 import com.joinway.bean.logging.annotation.LogMask;
-import com.joinway.db.bean.domain.DomainEntity;
-import com.joinway.db.constant.DBValueConstants;
 
 public class AdminUser extends DomainEntity{
 

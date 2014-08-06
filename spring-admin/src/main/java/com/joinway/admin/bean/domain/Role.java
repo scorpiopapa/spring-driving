@@ -1,6 +1,6 @@
 package com.joinway.admin.bean.domain;
 
-import com.joinway.db.bean.domain.DomainEntity;
+import com.joinway.appx.bean.domain.DomainEntity;
 
 public class Role extends DomainEntity {
 

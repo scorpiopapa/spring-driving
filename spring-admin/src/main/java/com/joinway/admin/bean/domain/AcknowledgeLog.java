@@ -2,7 +2,7 @@ package com.joinway.admin.bean.domain;
 
 import java.util.Date;
 
-import com.joinway.db.bean.domain.DomainEntity;
+import com.joinway.appx.bean.domain.DomainEntity;
 
 public class AcknowledgeLog extends DomainEntity {
 

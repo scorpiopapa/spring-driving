@@ -3,9 +3,9 @@ package com.joinway.mobile.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.joinway.appx.repository.TableRepository;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.console.bean.domain.DriveTrainee;
-import com.joinway.db.repository.TableRepository;
 import com.joinway.mobile.bean.view.UserView;
 
 @Service
