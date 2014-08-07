@@ -38,6 +38,8 @@ function doSearchCoach() {
  * 修改刷新条件
  */
 function doRefreshDriveTrainee() {
+	$('#coach_grid').datagrid('reload');
+	/*
 	refreshDataGrid('#coach_grid', {
 		cellPhone : '',
 		name : '',
@@ -46,6 +48,7 @@ function doRefreshDriveTrainee() {
 	$('#coach_text').val("");
 	$('#coach_text_name').val("");
 	$('#coach_text_carBand').val("");
+	*/
 }
 
 function formatGender(val, row){
