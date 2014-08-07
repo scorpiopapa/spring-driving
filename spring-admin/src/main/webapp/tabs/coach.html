@@ -69,6 +69,52 @@ function doPostEditUser(row){
 		$('#mass_male').removeAttr('checked');
 	}
 }
+
+function saveItem(jgridId, jformId, jdlgId, tableName) {
+	//console.log(tableName);
+	if(!checkForm()){
+		return false;
+	}
+	dealDefultVlaue();
+	$(jformId).form('submit', {
+		url : appName + 'save/' + tableName + '.json',
+		onSubmit : function() {
+			return $(this).form('validate');
+		},
+		success : function(data) {
+			console.log(data);
+			var view = JSON.parse(data);
+			console.log(view);
+			if (view.code == 0) {
+				// save success
+				closeDialog(jdlgId);
+				refreshDataGrid(jgridId);
+			} else {
+				showErrorMessage('保存失败');
+			}
+		}
+	});
+}
+function dealDefultVlaue(){
+	var password = $('#password').val();
+	if($.trim(password) == null || $.trim(password) == ""){
+		$('#password').val('888888');
+	}
+	var loginName = $.trim($('#loginName').val());
+	if(loginName == null || loginName == ""){
+		var cellPhone = $('#cellPhone').val();
+		$('#loginName').val(cellPhone);
+	}
+}
+
+function checkForm(){
+	var cellPhone = $('#cellPhone').val();
+	if(cellPhone != null && cellPhone != "" && cellPhone.length != 11){
+		showErrorMessage("手机号格式不正确");
+		return false;
+	}
+	return true;
+}
 </script>
 <table id="coach_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#coach_toolbar'">
     <thead>
@@ -105,7 +151,7 @@ function doPostEditUser(row){
   <table style="width: 100%;">
   	<tr>
   		<td style="width: 25%;">教练姓名<input id="coach_text_name" type="text"/></td>
-  		<td style="width: 25%;">手机号<input id="coach_text" type="text"/></td>
+  		<td style="width: 25%;">手机号<input id="coach_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
   		<td style="width: 25%;">车牌号<input id="coach_text_carBand" type="text"/></td>
   		<td style="width: 25%;"><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">筛选</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a></td>
@@ -113,22 +159,39 @@ function doPostEditUser(row){
   </table>     
 </div>
 
-<div id="coach_dlg" class="easyui-dialog" style="width:650px;height:450px;padding:10px 20px" closed="true" buttons="#coach_dlg_buttons">
+<div id="coach_dlg" class="easyui-dialog" style="width:650px;height:480px;padding:10px 20px" closed="true" buttons="#coach_dlg_buttons">
      <form id="coach_form" method="post" novalidate>
          <input name="id" type="hidden">
-     	<!-- 添加编辑列 -->
-     	<table>
+         <table style="width: 100%;">
      		<tr>
-     			<td>
+     			<td style="width: 50%;">
+     				<div class="coach_item">
+			             <label>用户名</label>
+			             <input id="loginName" name="loginName" placeholder="默认为手机号">
+			         </div>
+     			</td>
+     			<td style="width: 50%;">
+     				<div class="coach_item">
+			             <label>密码</label>
+			             <input id="password" name="password" placeholder="默认为888888">
+			         </div>
+     			</td>
+     		</tr>
+     	</table>
+     	<hr>
+     	<!-- 添加编辑列 -->
+     	<table style="width: 100%;">
+     		<tr>
+     			<td style="width: 50%;">
      				<div class="coach_item">
 			             <label>姓名</label>
 			             <input name="name" >
 			         </div>
      			</td>
-     			<td>
+     			<td style="width: 50%;">
      				<div class="coach_item">
 			             <label>手机号</label>
-			             <input name="cellPhone" >
+			             <input id="cellPhone" name="cellPhone" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
 			         </div>
      			</td>
      		</tr>
@@ -221,7 +284,7 @@ function doPostEditUser(row){
      			<td colspan="2">
      				  <div class="coach_item">
 			             <label>住址</label>
-			             <input name="address" >
+			             <input name="address" style="width: 417px;>
 			         </div>
      			</td>
      		</tr>
@@ -229,7 +292,7 @@ function doPostEditUser(row){
      			<td colspan="2">
      				 <div class="coach_item">
 			             <label>备注</label>
-			             <input name="comment" >
+			             <input name="comment" style="width: 417px;">
 			         </div>
      			</td>
      		</tr>

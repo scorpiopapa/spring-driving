@@ -172,7 +172,7 @@ function checkForm(){
   <table style="width: 100%;" border="0">
   	<tr>
   		<td style="width: 21%;">&nbsp;&nbsp;&nbsp;&nbsp;姓名<input id="drive_trainee_text_name" type="text"/></td>
-  		<td style="width: 21%;">手机号<input id="drive_trainee_text" type="text"/></td>
+  		<td style="width: 21%;">手机号<input id="drive_trainee_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
   		<td style="width: 21%;">报名日期<input id="drive_trainee_text_registerdate" type="text"/></td>
   		<td style="width: 21%;">学习类型<input id="drive_trainee_text_trainType" type="text"/></td>
   		<td style="width: 16%;"><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchDriveTrainee()">筛选</a>
