@@ -219,3 +219,13 @@ function getIdDescOrder(){
 	
 	return JSON.stringify(orderBy);
 }
+
+function formatGender(val, row){
+	var value = val;
+	if(val == 'F'){
+		value = '女'
+	}else if(val == 'M'){
+		value = '男'
+	}
+	return value;
+}

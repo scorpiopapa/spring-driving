@@ -47,17 +47,6 @@ function doRefreshDriveTrainee() {
 	$('#drive_trainee_grid').datagrid('reload');
 }
 
-function formatGender(val, row){
-	var value = val;
-	if(val == 'F'){
-		value = '女'
-	}else if(val == 'M'){
-		value = '男'
-	}
-	
-	return value;
-}
-
 function doPostEditUser(row){
 	if(row.gender == 'F'){
 		$('#mass_female').attr('checked', 'checked1');

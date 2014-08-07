@@ -37,7 +37,7 @@ function doSearchCoach() {
 /**
  * 修改刷新条件
  */
-function doRefreshDriveTrainee() {
+function doRefreshCoach() {
 	$('#coach_grid').datagrid('reload');
 	/*
 	refreshDataGrid('#coach_grid', {
@@ -51,16 +51,6 @@ function doRefreshDriveTrainee() {
 	*/
 }
 
-function formatGender(val, row){
-	var value = val;
-	if(val == 'F'){
-		value = '女'
-	}else if(val == 'M'){
-		value = '男'
-	}
-	
-	return value;
-}
 
 function doPostEditUser(row){
 	if(row.gender == 'F'){
@@ -147,7 +137,7 @@ function checkForm(){
     <div style="margin-bottom:5px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#coach_form', '#coach_dlg')">添加</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#coach_grid', '#coach_form', '#coach_dlg')">编辑</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshDriveTrainee()">刷新</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshCoach()">刷新</a>
         <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#coach_grid', coachTable)">删除</a> -->
     </div>
   <!-- 添加查询条件  --> 
