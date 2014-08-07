@@ -17,7 +17,6 @@ width: 80px;
 <script type="text/javascript" src="resources/js/common.js"></script>
 <script type="text/javascript">
 var drive_traineeTable = 'drive_trainee';
-
 $(function() {
 	var orderBy = getIdDescOrder();
 	initDataGrid('#drive_trainee_grid', appName + 'search/' + drive_traineeTable + '.json?orderBy=' + orderBy);
@@ -97,11 +96,6 @@ function dealDefultVlaue(){
 		var cellPhone = $('#cellPhone').val();
 		$('#loginName').val(cellPhone);
 	}
-	
-	var nationality = $('#nationality').val();
-	if($.trim(nationality) == null || $.trim(nationality) == ""){
-		$('#nationality').val('中国');
-	}
 }
 
 function checkForm(){
@@ -111,6 +105,20 @@ function checkForm(){
 		return false;
 	}
 	return true;
+}
+
+function showAddDialog(jformId, jdlgId, title){
+	$(jformId).form('clear');
+	var nationality = $('#nationality').val();
+	if($.trim(nationality) == null || $.trim(nationality) == ""){
+		$('#nationality').val('中国');
+	}
+	$(jdlgId).dialog({
+		title: title ? title : '添加',
+		modal: true
+	});
+	
+	$(jdlgId).dialog('open');
 }
 </script>
 <table id="drive_trainee_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#drive_trainee_toolbar'">
@@ -215,7 +223,7 @@ function checkForm(){
      			<td>
      				<div class="drive_trainee_item">
 			             <label>国籍</label>
-			             <input id="nationality" name="nationality" value="中国">
+			             <input id="nationality" type="text" name="nationality" value="中国" />
 			         </div>
      			</td>
      			<td>
