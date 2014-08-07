@@ -44,6 +44,7 @@ public class DriveTraineeTableService extends DefaultTableService implements Cus
 			repository.save(loginUser);
 			
 			DriveTrainee driveTrainee = super.buildEntity(params, DriveTrainee.class);
+			driveTrainee.setRegisterDate(new Date());
 			driveTrainee.setId(loginUser.getId());
 			repository.save(driveTrainee);
 			

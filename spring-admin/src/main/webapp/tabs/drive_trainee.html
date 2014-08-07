@@ -156,10 +156,20 @@ function checkForm(){
   <!-- 添加查询条件  -->      
   <table style="width: 100%;" border="0">
   	<tr>
-  		<td style="width: 21%;">&nbsp;&nbsp;&nbsp;&nbsp;姓名<input id="drive_trainee_text_name" type="text"/></td>
-  		<td style="width: 21%;">手机号<input id="drive_trainee_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
-  		<td style="width: 21%;">报名日期 从<input id="drive_trainee_registerdate_from" class="easyui-datebox" style="width:100px">到<input id="drive_trainee_registerdate_to" class="easyui-datebox" style="width:100px"></td>
-  		<td style="width: 21%;">学习类型<input id="drive_trainee_text_trainType" type="text"/></td>
+  		<td style="width: 8%;text-align: right;">姓名</td>
+  		<td style="width: 20%;"><input id="drive_trainee_text_name" type="text"/></td>
+  		<td style="width: 5%;text-align: right;">手机号</td>
+  		<td style="width: 20%;"><input id="drive_trainee_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
+  		<td style="width: 5%;text-align: right;">学习类型</td>
+  		<td style="width: 20%;"><input id="drive_trainee_text_trainType" type="text"/></td>
+  		<td style="width: 20%;"></td>
+  	</tr>
+  	<tr>
+  		<td style="width: 8%;text-align: right;">报名日期从</td>
+  		<td><input id="drive_trainee_registerdate_from" class="easyui-datebox" style="width:155px"></td>
+  		<td style="width: 5%;text-align: center;">到</td>
+  		<td><input id="drive_trainee_registerdate_to" class="easyui-datebox" style="width:155px"></td>
+  		<td colspan="2"></td>
   		<td style="width: 16%;"><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchDriveTrainee()">筛选</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_toolbar')">清除</a></td>
   	</tr>
@@ -167,27 +177,10 @@ function checkForm(){
        
 </div>
 
-<div id="drive_trainee_dlg" class="easyui-dialog" style="width:650px;height:620px;padding:10px 20px" closed="true" buttons="#drive_trainee_dlg_buttons">
+<div id="drive_trainee_dlg" class="easyui-dialog" style="width:650px;height:660px;padding:10px 20px" closed="true" buttons="#drive_trainee_dlg_buttons">
      <form id="drive_trainee_form" method="post" novalidate>
          <input name="id" type="hidden">
      	<!-- 添加编辑列 -->
-     	<table style="width: 100%;">
-     		<tr>
-     			<td style="width: 50%;">
-     				<div class="drive_trainee_item">
-			             <label>用户名</label>
-			             <input id="loginName" name="loginName" placeholder="默认为手机号">
-			         </div>
-     			</td>
-     			<td>
-     				<div class="drive_trainee_item">
-			             <label>密码</label>
-			             <input id="password" name="password" placeholder="默认为888888">
-			         </div>
-     			</td>
-     		</tr>
-     		</table>
-     		<hr>
      		<table style="width: 100%;">
      		<tr>
      			<td style="width: 50%;">
@@ -212,51 +205,45 @@ function checkForm(){
      			</td>
      			<td>
      				<div class="drive_trainee_item">
-			             <label>报名日期</label>
-			             <input id="registerDate" name="registerDate" type="text" class="easyui-datebox"></input> 
-			         </div>
-     			</td>
-     		</tr>
-     		<tr>
-     			<td>
-     				<div class="drive_trainee_item">
 			             <label>性别</label>
 			             <input id="mass_male" name="gender" type="radio" value="M">男
              			 <input id="mass_female" name="gender" type="radio" value="F">女
 			         </div>
      			</td>
+     		</tr>
+     		<tr>
      			<td>
      				<div class="drive_trainee_item">
 			             <label>国籍</label>
-			             <input id="nationality" name="nationality" placeholder="默认为中国">
+			             <input id="nationality" name="nationality">
 			         </div>
      			</td>
-     		</tr>
-     		<tr>
      			<td>
      				 <div class="drive_trainee_item">
 			             <label>固话</label>
 			             <input name="phone" >
 			         </div>
      			</td>
+     		</tr>
+     		<tr>
      			<td>
      				 <div class="drive_trainee_item">
 			             <label>证件类别</label>
 			             <input name="idCardType" >
 			         </div>
      			</td>
-     		</tr>
-     		<tr>
      			<td>
      				  <div class="drive_trainee_item">
 			             <label>证件号码</label>
 			             <input name="idCard" >
 			         </div>
      			</td>
-     			<td>
+     		</tr>
+     		<tr>
+     			<td colspan="2">
      				 <div class="drive_trainee_item">
 			             <label>证件地址</label>
-			             <input name="idCardAddress" >
+			             <input name="idCardAddress" style="width: 417px;">
 			         </div>
      			</td>
      		</tr>
@@ -269,22 +256,24 @@ function checkForm(){
      			</td>
      			<td>
      				 <div class="drive_trainee_item">
-			             <label>邮寄地址</label>
-			             <input name="postAddress" >
+			             <label>暂住证明</label>
+			             <input name="tempCardId" >
 			         </div>
      			</td>
      		</tr>
      		<tr>
-     			<td>
-     				  <div class="drive_trainee_item">
+     			<td colspan="2">
+     				 <div class="drive_trainee_item">
 			             <label>联系地址</label>
-			             <input name="address" >
+			             <input name="postAddress" style="width: 417px;"/>
 			         </div>
      			</td>
-     			<td>
+     		</tr>
+     		<tr>
+     			<td colspan="2">
      				 <div class="drive_trainee_item">
-			             <label>暂住证明</label>
-			             <input name="tempCardId" >
+			             <label>联系地址</label>
+			             <input name="address" style="width: 417px;"/>
 			         </div>
      			</td>
      		</tr>
@@ -367,6 +356,23 @@ function checkForm(){
      			</td>
      		</tr>
      	</table>
+     	<hr>
+     	<table style="width: 100%;">
+     		<tr>
+     			<td style="width: 50%;">
+     				<div class="drive_trainee_item">
+			             <label>用户名</label>
+			             <input id="loginName" name="loginName" placeholder="默认为手机号">
+			         </div>
+     			</td>
+     			<td>
+     				<div class="drive_trainee_item">
+			             <label>密码</label>
+			             <input id="password" name="password" placeholder="默认为888888">
+			         </div>
+     			</td>
+     		</tr>
+     		</table>
      </form>
  </div>
  <div id="drive_trainee_dlg_buttons">

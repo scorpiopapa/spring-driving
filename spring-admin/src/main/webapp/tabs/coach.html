@@ -39,16 +39,6 @@ function doSearchCoach() {
  */
 function doRefreshCoach() {
 	$('#coach_grid').datagrid('reload');
-	/*
-	refreshDataGrid('#coach_grid', {
-		cellPhone : '',
-		name : '',
-		carBand : ''
-	});
-	$('#coach_text').val("");
-	$('#coach_text_name').val("");
-	$('#coach_text_carBand').val("");
-	*/
 }
 
 
@@ -155,23 +145,6 @@ function checkForm(){
 <div id="coach_dlg" class="easyui-dialog" style="width:650px;height:480px;padding:10px 20px" closed="true" buttons="#coach_dlg_buttons">
      <form id="coach_form" method="post" novalidate>
          <input name="id" type="hidden">
-         <table style="width: 100%;">
-     		<tr>
-     			<td style="width: 50%;">
-     				<div class="coach_item">
-			             <label>用户名</label>
-			             <input id="loginName" name="loginName" placeholder="默认为手机号">
-			         </div>
-     			</td>
-     			<td style="width: 50%;">
-     				<div class="coach_item">
-			             <label>密码</label>
-			             <input id="password" name="password" placeholder="默认为888888">
-			         </div>
-     			</td>
-     		</tr>
-     	</table>
-     	<hr>
      	<!-- 添加编辑列 -->
      	<table style="width: 100%;">
      		<tr>
@@ -286,6 +259,23 @@ function checkForm(){
      				 <div class="coach_item">
 			             <label>备注</label>
 			             <input name="comment" style="width: 417px;">
+			         </div>
+     			</td>
+     		</tr>
+     	</table>
+     	<hr>
+     	   <table style="width: 100%;">
+     		<tr>
+     			<td style="width: 50%;">
+     				<div class="coach_item">
+			             <label>用户名</label>
+			             <input id="loginName" name="loginName" placeholder="默认为手机号">
+			         </div>
+     			</td>
+     			<td style="width: 50%;">
+     				<div class="coach_item">
+			             <label>密码</label>
+			             <input id="password" name="password" placeholder="默认为888888">
 			         </div>
      			</td>
      		</tr>
