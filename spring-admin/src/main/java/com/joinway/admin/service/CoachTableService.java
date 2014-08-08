@@ -26,31 +26,6 @@ public class CoachTableService extends DefaultTableService implements CustomTabl
 	public String getTargetTableName() {
 		return "COACH";
 	}
-
-	@InputLog
-	@OutputLog
-	@Transactional(rollbackFor=Throwable.class)
-	public TableResultView saveTable(String table, Map<String, String[]> params) throws Exception {
-		int id = super.getDomainKey(params);
-		
-		if(id == 0){
-			LoginUser loginUser = super.buildEntity(params, LoginUser.class);
-			loginUser.setPassword(CipherUtils.encrypt(loginUser.getPassword()));
-			
-			loginUser.setCreateTime(new Date());
-			repository.save(loginUser);
-			
-			Coach coach = super.buildEntity(params, Coach.class);
-			coach.setId(loginUser.getId());
-			repository.save(coach);
-			
-		}
-
-		TableResultView view = new TableResultView();
-		view.setId(id);
-		return view;
-	}
-
 	
 }
 
