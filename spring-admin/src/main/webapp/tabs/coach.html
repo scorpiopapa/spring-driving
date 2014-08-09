@@ -119,12 +119,12 @@ function checkFormCoach(){
         <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#coach_grid', coachTable)">删除</a> -->
     </div>
   <!-- 添加查询条件  --> 
-  <table style="width: 100%;">
+  <table style="width: 800px;" border="0">
   	<tr>
-  		<td style="width: 25%;">教练姓名<input id="coach_text_name" type="text"/></td>
-  		<td style="width: 25%;">手机号<input id="coach_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
-  		<td style="width: 25%;">车牌号<input id="coach_text_carBand" type="text"/></td>
-  		<td style="width: 25%;"><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">筛选</a>
+  		<td style="width: 220px;">教练姓名<input id="coach_text_name" type="text"/></td>
+  		<td style="width: 200px;">手机号<input id="coach_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
+  		<td style="width: 200px;">车牌号<input id="coach_text_carBand" type="text"/></td>
+  		<td style="width: 180px;"><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">筛选</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a></td>
   	</tr>
   </table>     
@@ -138,27 +138,27 @@ function checkFormCoach(){
      		<tr>
      			<td style="width: 50%;">
      				<div class="coach_item">
-			             <label>姓名</label>
-			             <input name="name" >
+			             <label>姓名<font color="red">*</font></label>
+			             <input name="name" class="easyui-validatebox" data-options="required:true">
 			         </div>
      			</td>
      			<td style="width: 50%;">
      				<div class="coach_item">
-			             <label>手机号</label>
-			             <input id="cellPhoneCoach" name="cellPhone" class="easyui-numberbox" data-options="decimalSeparator:''"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
+			             <label>手机号<font color="red">*</font></label>
+			             <input id="cellPhoneCoach" name="cellPhone" class="easyui-numberbox easyui-validatebox" data-options="decimalSeparator:'',required:true"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
 			         </div>
      			</td>
      		</tr>
      		<tr>
      			<td>
      				<div class="coach_item">
-			             <label>车牌号</label>
-			             <input name="carBand" >
+			             <label>车牌号<font color="red">*</font></label>
+			             <input name="carBand" class="easyui-validatebox" data-options="required:true">
 			         </div>
      			</td>
      			<td>
      				<div class="coach_item">
-			             <label>性别</label>
+			             <label>性别<font color="red">*</font></label>
 			             <input id="mass_male" name="gender" type="radio" value="M">男
              			 <input id="mass_female" name="gender" type="radio" value="F">女
 			         </div>
@@ -215,8 +215,8 @@ function checkFormCoach(){
      			</td>
      			<td>
      				 <div class="coach_item">
-			             <label>身份证号</label>
-			             <input name="idCard" class="easyui-numberbox" data-options="decimalSeparator:''"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
+			             <label>身份证号<font color="red">*</font></label>
+			             <input name="idCard" class="easyui-numberbox easyui-validatebox" data-options="decimalSeparator:'',required:true"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
 			         </div>
      			</td>
      		</tr>
@@ -229,8 +229,8 @@ function checkFormCoach(){
      			</td>
      			<td>
      				 <div class="coach_item">
-			             <label>准教证号</label>
-			             <input name="coachLiscense" class="easyui-numberbox" data-options="decimalSeparator:''"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
+			             <label>准教证号<font color="red">*</font></label>
+			             <input name="coachLiscense" class="easyui-numberbox easyui-validatebox" data-options="decimalSeparator:'',required:true"  onafterpaste="this.value=this.value.replace(/\D/g,'')">
 			         </div>
      			</td>
      		</tr>

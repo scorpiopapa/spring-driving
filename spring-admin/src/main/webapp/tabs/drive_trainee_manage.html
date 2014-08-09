@@ -103,26 +103,59 @@ function changeLoginName(){
         <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#drive_trainee_manage_grid', drive_trainee_manageTable)">删除</a> -->
     </div>
   <!-- 添加查询条件  -->      
-    <table style="width: 100%;" border="0">
+    <table style="width: 880px;" border="0">
   	<tr>
-  		<td style="width: 8%;text-align: right;">姓名</td>
-  		<td style="width: 20%;"><input id="drive_trainee_manage_text_name" type="text"/></td>
-  		<td style="width: 5%;text-align: right;">手机号</td>
-  		<td style="width: 20%;"><input id="drive_trainee_manage_text" type="text" class="easyui-numberbox" data-options="decimalSeparator:''"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
-  		<td style="width: 5%;text-align: right;">学习类型</td>
-  		<td style="width: 20%;"><input id="drive_trainee_manage_text_trainType" type="text"/></td>
-  		<td style="width: 20%;"></td>
-  	</tr>
-  	<tr>
-  		<td style="width: 8%;text-align: right;">报名日期从</td>
-  		<td><input id="drive_trainee_manage_text_registerdate_from" class="easyui-datebox" style="width:155px"></td>
-  		<td style="width: 5%;text-align: center;">到</td>
-  		<td><input id="drive_trainee_manage_text_registerdate_to" class="easyui-datebox" style="width:155px"></td>
-  		<td colspan="2"></td>
-  		<td style="width: 16%;">
+  		<td style="width: 60px;text-align: right;">姓名</td>
+  		<td style="width: 100px;"><input id="drive_trainee_manage_text_name" type="text"/></td>
+  		<td style="width: 40px;text-align: right;">手机号</td>
+  		<td style="width: 100px;"><input id="drive_trainee_manage_text" type="text" class="easyui-numberbox" data-options="decimalSeparator:''"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
+  		<td style="width: 50px;text-align: right;">学习类型</td>
+  		<td style="width: 100px;"><input id="drive_trainee_manage_text_trainType" type="text"/></td>
+  		<td style="width: 100px;text-align: right;" colspan="2" >
   			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchDriveTraineeManage()">筛选</a>
   			<a href="#" class="easyui-linkbutton" onclick="">处理进度</a>
         	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_manage_toolbar')">清除</a>
+  		</td>
+  	</tr>
+  	<tr>
+  		<td style="width: 60px;text-align: right;">报名日期从</td>
+  		<td><input id="drive_trainee_manage_text_registerdate_from" class="easyui-datebox" style="width:155px"></td>
+  		<td style="width: 40px;text-align: center;">到</td>
+  		<td><input id="drive_trainee_manage_text_registerdate_to" class="easyui-datebox" style="width:155px"></td>
+  		<td style="width: 50px;;text-align: right;">处理状态</td>
+  		<td>
+  			<select name="dealStatus" style="width:155px">
+  				<option value="">全部</option>
+  				<option value="0">未初审</option>
+  				<option value="1">初审中</option>
+  				<option value="2">初审不合格</option>
+  			</select>
+        </td>
+        <td style="width: 50px;text-align: right;">考试状态</td>
+  		<td style="text-align: left;">
+  			<select name="dealStatus" style="width:155px">
+  				<option value="">全部</option>
+  				<option value="0">科目一未报名</option>
+  				<option value="1">科目一报名</option>
+  				<option value="2">科目一准考</option>
+  				<option value="2">科目一不合格</option>
+  				<option value="2">科目一弃考</option>
+  				<option value="0">科目二未报名</option>
+  				<option value="1">科目二报名</option>
+  				<option value="2">科目二准考</option>
+  				<option value="2">科目二不合格</option>
+  				<option value="2">科目二弃考</option>
+  				<option value="0">科目三未报名</option>
+  				<option value="1">科目三报名</option>
+  				<option value="2">科目三准考</option>
+  				<option value="2">科目三不合格</option>
+  				<option value="2">科目三弃考</option>
+  				<option value="0">科目四未报名</option>
+  				<option value="1">科目四报名</option>
+  				<option value="2">科目四准考</option>
+  				<option value="2">科目四不合格</option>
+  				<option value="2">科目四弃考</option>
+  			</select>
         </td>
   	</tr>
   </table>

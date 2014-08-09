@@ -112,7 +112,9 @@ function doPushUserMessage(jcntId){
         	<tr>
         		<td>姓名<input id="mass_text_name" type="text"/></td>
         		<td>手机号码 <input id="mass_text" type="text"/></td>
-        		<td><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUser()">筛选</a>
+        		<td>
+        			<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshUser()">刷新</a>
+        			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUser()">筛选</a>
         			<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#mass_toolbar')">清除</a>
         			<a href="#" class="easyui-linkbutton" iconCls="icon-large-smartart" onclick="showPushUserMessageDialog()">发送</a></td>
         	</tr>
