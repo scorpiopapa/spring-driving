@@ -15,8 +15,6 @@ public class DriveTraineeV extends DomainEntity {
 
 	String loginName;
 
-	String password;
-	
 	/**
 	 * 姓名
 	 */
@@ -335,14 +333,6 @@ public class DriveTraineeV extends DomainEntity {
 
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getDealStatus() {

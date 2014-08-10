@@ -50,12 +50,12 @@ function doRefreshDriveTrainee() {
 
 function doPostEditUser(row){
 	if(row.gender == 'F'){
-		$('#mass_female').attr('checked', 'checked1');
+		$('#mass_female_drivetrainee').attr('checked', 'checked1');
 	}else if(row.gender == 'M'){
-		$('#mass_male').attr('checked', 'checked');
+		$('#mass_male_drivetrainee').attr('checked', 'checked');
 	}else{
-		$('#mass_female').removeAttr('checked');
-		$('#mass_male').removeAttr('checked');
+		$('#mass_female_drivetrainee').removeAttr('checked');
+		$('#mass_male_drivetrainee').removeAttr('checked');
 	}
 }
 function changeLoginName(){
@@ -73,6 +73,7 @@ function saveItemDriveTrainee(jgridId, jformId, jdlgId, tableName) {
 	if(!validLoginName()){
 		return false;
 	}
+	
 	$(jformId).form('submit', {
 		url : appName + 'save/' + tableName + '.json',
 		onSubmit : function() {
@@ -126,6 +127,7 @@ function showAddDialogDriveTrainee(jformId, jdlgId, title){
 	if($.trim(idCardType) == null || $.trim(idCardType) == ""){
 		$('#idCardTypeDriveTrainee').val('身份证');
 	}
+	$('#mass_male_drivetrainee').attr("checked", "checked");
 	$(jdlgId).dialog({
 		title: title ? title : '添加',
 		modal: true
@@ -194,7 +196,6 @@ function validLoginName(){
             <th data-options="field:'carType'">车辆类型</th>
             <th data-options="field:'zone'">所属区域</th>
             <th data-options="field:'testCarType'">学习车型</th>
-            <th hidden="true" style="display: none;" data-options="field:'loginName'">用户名</th>
         </tr>
     </thead>
 </table>
@@ -255,14 +256,14 @@ function validLoginName(){
      			<td>
      				<div class="drive_trainee_item">
 			             <label>出生日期<font color="red">*</font></label>
-			             <input id="birthdayDriveTrainee" name="birthday" type="text" class="easyui-datebox"></input> 
+			             <input id="birthdayDriveTrainee" name="birthday"  class="easyui-datebox"  required="true" ></input> 
 			         </div>
      			</td>
      			<td>
      				<div class="drive_trainee_item">
 			             <label>性别<font color="red">*</font></label>
-			             <input id="mass_male" name="gender" type="radio" value="M">男
-             			 <input id="mass_female" name="gender" type="radio" value="F">女
+			             <input id="mass_male_drivetrainee" name="gender" type="radio" value="M">男
+             			 <input id="mass_female_drivetrainee" name="gender" type="radio" value="F">女
 			         </div>
      			</td>
      		</tr>

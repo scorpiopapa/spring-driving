@@ -44,12 +44,12 @@ function doRefreshCoach() {
 
 function doPostEditUser(row){
 	if(row.gender == 'F'){
-		$('#mass_female').attr('checked', 'checked1');
+		$('#mass_female_coach').attr('checked', 'checked1');
 	}else if(row.gender == 'M'){
-		$('#mass_male').attr('checked', 'checked');
+		$('#mass_male_coach').attr('checked', 'checked');
 	}else{
-		$('#mass_female').removeAttr('checked');
-		$('#mass_male').removeAttr('checked');
+		$('#mass_female_coach').removeAttr('checked');
+		$('#mass_male_coach').removeAttr('checked');
 	}
 }
 
@@ -85,6 +85,18 @@ function checkFormCoach(){
 		return false;
 	}
 	return true;
+}
+
+
+function showAddDialogCoach(jformId, jdlgId, title){
+	$(jformId).form('clear');
+	$('#mass_male_coach').attr("checked", "checked");
+	$(jdlgId).dialog({
+		title: title ? title : '添加',
+		modal: true
+	});
+	
+	$(jdlgId).dialog('open');
 }
 </script>
 <table id="coach_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#coach_toolbar'">
@@ -125,7 +137,7 @@ function checkFormCoach(){
   		<td style="width: 200px;">手机号<input id="coach_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
   		<td style="width: 200px;">车牌号<input id="coach_text_carBand" type="text"/></td>
   		<td style="width: 250px;">
-  			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#coach_form', '#coach_dlg')">添加</a>
+  			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialogCoach('#coach_form', '#coach_dlg')">添加</a>
         	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#coach_grid', '#coach_form', '#coach_dlg')">编辑</a>
   			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">筛选</a>
         	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a></td>
@@ -162,8 +174,8 @@ function checkFormCoach(){
      			<td>
      				<div class="coach_item">
 			             <label>性别<font color="red">*</font></label>
-			             <input id="mass_male" name="gender" type="radio" value="M">男
-             			 <input id="mass_female" name="gender" type="radio" value="F">女
+			             <input id="mass_male_coach" name="gender" type="radio" value="M">男
+             			 <input id="mass_female_coach" name="gender" type="radio" value="F">女
 			         </div>
      			</td>
      		</tr>

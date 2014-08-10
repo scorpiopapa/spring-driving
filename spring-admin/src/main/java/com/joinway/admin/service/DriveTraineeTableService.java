@@ -48,6 +48,8 @@ public class DriveTraineeTableService extends DefaultTableService implements Cus
 				
 				driveTrainee.setRegisterDate(nowDate);
 				driveTrainee.setId(loginUser.getId());
+				driveTrainee.setExamStatus("1");
+				driveTrainee.setDealStatus("0");
 				tableRepository.save(driveTrainee);
 				
 			}else{
