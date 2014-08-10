@@ -1,8 +1,8 @@
 package com.joinway.console.bean.domain;
 
-import com.joinway.appx.bean.domain.DomainEntity;
-import com.joinway.bean.db.annotation.DomainField;
-import com.joinway.bean.db.type.CaseFormat;
+import com.joinway.bean.domain.DomainEntity;
+import com.joinway.bean.domain.annotation.DomainField;
+import com.joinway.bean.domain.type.CaseFormat;
 
 public class Coach extends DomainEntity {
 

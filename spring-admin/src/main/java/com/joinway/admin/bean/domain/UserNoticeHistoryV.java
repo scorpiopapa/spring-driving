@@ -2,7 +2,7 @@ package com.joinway.admin.bean.domain;
 
 import java.util.Date;
 
-import com.joinway.appx.bean.domain.DomainEntity;
+import com.joinway.bean.domain.DomainEntity;
 
 public class UserNoticeHistoryV extends DomainEntity {
 

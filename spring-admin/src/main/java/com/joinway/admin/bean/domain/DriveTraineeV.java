@@ -2,9 +2,9 @@ package com.joinway.admin.bean.domain;
 
 import java.util.Date;
 
-import com.joinway.appx.bean.domain.DomainEntity;
-import com.joinway.bean.db.annotation.DomainField;
-import com.joinway.bean.db.type.CaseFormat;
+import com.joinway.bean.domain.DomainEntity;
+import com.joinway.bean.domain.annotation.DomainField;
+import com.joinway.bean.domain.type.CaseFormat;
 
 public class DriveTraineeV extends DomainEntity {
 

@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.joinway.appx.constant.DBValueConstants;
 import com.joinway.appx.repository.SystemRepository;
 import com.joinway.appx.repository.TableRepository;
+import com.joinway.bean.constant.DBValueConstants;
 import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.console.bean.domain.DriveTrainee;
