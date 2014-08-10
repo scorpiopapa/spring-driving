@@ -176,7 +176,11 @@ public class AdminService {
 		return view;
 
 	}
-
+	public int getLoginNameCount(String loginName, String id) throws Exception {
+		
+		int count = repository.findLoginNameCount(loginName, id);
+		return count;
+	}
 //	boolean isSuperUser(int userId) throws Exception {
 //		boolean ret = false;
 //

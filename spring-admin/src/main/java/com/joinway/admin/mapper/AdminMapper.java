@@ -16,6 +16,8 @@ public interface AdminMapper {
 	
 	List<TreeMenu> selectUserTreeMenus(@Param("userId") int userId);
 	
+	int selectLoginNameCount(@Param("loginName") String loginName, @Param("userId") String userId);
+	
 //	List<UserNoticeHistory> selectUserNoticeHistory(@Param("page") String page);
 	
 }

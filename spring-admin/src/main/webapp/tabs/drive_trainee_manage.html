@@ -16,7 +16,7 @@ width: 80px;
 
 <script type="text/javascript" src="resources/js/common.js"></script>
 <script type="text/javascript">
-var drive_trainee_manageTable = 'drive_trainee';
+var drive_trainee_manageTable = 'drive_trainee_v';
 
 $(function() {
 	var orderBy = getIdDescOrder();
@@ -37,7 +37,9 @@ function doSearchDriveTraineeManage() {
 		cellPhone : $('#drive_trainee_manage_text').val(),
 		name : $('#drive_trainee_manage_text_name').val(),
 		registerDate : JSON.stringify(registerDateQuery),
-		trainType : $('#drive_trainee_manage_text_trainType').val()
+		trainType : $('#drive_trainee_manage_text_trainType').val(),
+		dealStatus : $('#drive_trainee_manage_text_dealStatus').val(),
+		examStatus : $('#drive_trainee_manage_text_examStatus').val()
 	});
 }
 
@@ -62,6 +64,17 @@ function doPostEditUser(row){
 function changeLoginName(){
 	var cellPhone = $('input[name=cellPhone]').val();
 	$('#loginName').val(cellPhone);
+}
+function formatDealStatus(val, row){
+	var value = val;
+	if(val == '0'){
+		value = '未初审'
+	}else if(val == '1'){
+		value = '初审中'
+	}else if(val == '2'){
+		value = '初审不合格'
+	}
+	return value;
 }
 </script>
 <table id="drive_trainee_manage_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#drive_trainee_manage_toolbar'">
@@ -94,11 +107,14 @@ function changeLoginName(){
             <th data-options="field:'carType'">车辆类型</th>
             <th data-options="field:'zone'">所属区域</th>
             <th data-options="field:'testCarType'">学习车型</th>
+            <th data-options="field:'dealStatus',formatter:formatDealStatus">处理状态</th>
+            <th data-options="field:'statusName'">考试状态</th>
         </tr>
     </thead>
 </table>
 <div id="drive_trainee_manage_toolbar" style="padding:5px;height:auto">
     <div style="margin-bottom:5px">
+    <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshDriveTraineeManage()">刷新</a>
         <!--<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshDriveTraineeManage()">刷新</a>-->
         <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#drive_trainee_manage_grid', drive_trainee_manageTable)">删除</a> -->
     </div>
@@ -118,13 +134,13 @@ function changeLoginName(){
   		</td>
   	</tr>
   	<tr>
-  		<td style="width: 60px;text-align: right;">报名日期从</td>
+  		<td style="width: 60px;text-align: right;">报名日期</td>
   		<td><input id="drive_trainee_manage_text_registerdate_from" class="easyui-datebox" style="width:155px"></td>
   		<td style="width: 40px;text-align: center;">到</td>
   		<td><input id="drive_trainee_manage_text_registerdate_to" class="easyui-datebox" style="width:155px"></td>
   		<td style="width: 50px;;text-align: right;">处理状态</td>
   		<td>
-  			<select name="dealStatus" style="width:155px">
+  			<select id="drive_trainee_manage_text_dealStatus" name="dealStatus" style="width:155px">
   				<option value="">全部</option>
   				<option value="0">未初审</option>
   				<option value="1">初审中</option>
@@ -133,7 +149,7 @@ function changeLoginName(){
         </td>
         <td style="width: 50px;text-align: right;">考试状态</td>
   		<td style="text-align: left;">
-  			<select name="dealStatus" style="width:155px">
+  			<select id="drive_trainee_manage_text_examStatus" name="examStatus" style="width:155px">
   				<option value="">全部</option>
   				<option value="0">科目一未报名</option>
   				<option value="1">科目一报名</option>

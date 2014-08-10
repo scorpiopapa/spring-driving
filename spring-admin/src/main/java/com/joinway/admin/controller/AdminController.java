@@ -1,5 +1,12 @@
 package com.joinway.admin.controller;
 
+import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.jsondoc.core.annotation.ApiBodyObject;
@@ -9,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,9 +32,12 @@ import com.joinway.admin.bean.view.LogoutView;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
 import com.joinway.admin.service.AdminService;
+import com.joinway.admin.service.DriveTraineeTableService;
 import com.joinway.admin.utils.SessionHelper;
+import com.joinway.appx.bean.view.DataGridView;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
+import com.joinway.bean.logging.annotation.LogIgnore;
 import com.joinway.bean.logging.annotation.OutputLog;
 import com.joinway.web.audit.ExceptionController;
 import com.joinway.web.audit.annotation.Audit;
@@ -47,6 +58,7 @@ public class AdminController extends ExceptionController {
 	private final static Logger log = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired AdminService service;
+	
 	
 	@RequestMapping(value="register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -170,6 +182,24 @@ public class AdminController extends ExceptionController {
 //		// ..sso
 //		AppContext.set(SecurityConstants.SSO.UID_KEY, uc.getUserId());
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/loginNameCount")
+	public int getLoginNameCount(HttpServletRequest request) throws Exception{
+		String loginName = request.getParameter("loginName");
+		String driveTraineeId = request.getParameter("driveTraineeId");
+		return service.getLoginNameCount(loginName ,driveTraineeId);
+	}
+	
+//	@RequestMapping(value="search/{table}", produces=MediaType.APPLICATION_JSON_VALUE)
+//	@ResponseBody
+//	@Audit("search")
+//	@InputLog
+//	@OutputLog
+//	public DataGridView find(@PathVariable("table") String table, @LogIgnore HttpServletRequest request) throws Exception {
+//		driveTraineeTableServiec.
+//		return 
+//	}
 }
 
 

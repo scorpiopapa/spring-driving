@@ -117,6 +117,16 @@ public class DriveTraineeV extends DomainEntity {
 	String testCarType;
 	
 	Date registerDate;
+	/**
+	 * 处理状态
+	 */
+	String dealStatus;
+	/**
+	 * 考试状态
+	 */
+	String examStatus;
+	
+	String statusName;
 	
 	public String getCellPhone() {
 		return cellPhone;
@@ -334,7 +344,30 @@ public class DriveTraineeV extends DomainEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public String getDealStatus() {
+		return dealStatus;
+	}
+
+	public void setDealStatus(String dealStatus) {
+		this.dealStatus = dealStatus;
+	}
+
+	public String getExamStatus() {
+		return examStatus;
+	}
+
+	public void setExamStatus(String examStatus) {
+		this.examStatus = examStatus;
+	}
+
+	public String getStatusName() {
+		return statusName;
+	}
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
 	
 }
 

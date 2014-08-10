@@ -29,7 +29,9 @@ public class AdminRepository {
 	public AdminUser findAdminUser(String name){
 		return mapper.selectAdminUser(name, null);
 	}
-	
+	public int findLoginNameCount(String loginName, String id){
+		return mapper.selectLoginNameCount(loginName, id);
+	}
 //	public List<UserNoticeHistory> find(String page){
 //		return mapper.selectUserNoticeHistory(page);
 //	}

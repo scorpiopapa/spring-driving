@@ -42,12 +42,17 @@ $(function() {
  * 修改查询条件
  */
 function doSearchPushlog() {
+	
+	var sendTimeQuery = new Object();
+	sendTimeQuery.type = 'date';
+	sendTimeQuery.from = $('#pushlog_text_sendTimeStart').datebox("getValue");
+	sendTimeQuery.to = $('#pushlog_text_sendTimeEnd').datebox("getValue");
+
 	searchDataGrid('#pushlog_grid', {
 		title : $('#pushlog_text_title').val(),
 		target : $('#pushlog_text_target').val(),
 		text : $('#pushlog_text').val(),
-		sendTime : $('#pushlog_text_sendTimeStart').val(),
-		sendTime : $('#pushlog_text_sendTimeEnd').val()
+		sendTime : JSON.stringify(sendTimeQuery)
 	});
 }
 
@@ -140,11 +145,11 @@ function showPushDetail(){
 </table>
 <div id="pushlog_toolbar" style="padding:5px;height:auto">
   <!-- 添加查询条件  -->      
-  <table style="width: 100%;" border="0">
+  <table style="width: 900px" border="0">
   	<tr>
   		<td style="width: 50px;">标题</td>
   		<td style="width: 50px;"><input id="pushlog_text_title" type="text"/></td>
-  		<td style="width: 50px;">内容</td>
+  		<td style="width: 40px;text-align: right;">内容</td>
   		<td style="width: 50px;"><input id="pushlog_text" type="text"/></td>
   		<td style="width: 50px;">通知类型</td>
   		<td style="width: 50px;"><select id="pushlog_text_target" style="width: 155px;">
@@ -153,19 +158,19 @@ function showPushDetail(){
   			<option value="M">群发</option>
   		</select>
   		</td>
-  		<td style="width: 130px;">
+  		<td style="width: 230px;">
   			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchPushlog()">筛选</a>
 	        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#pushlog_toolbar')">清除</a>
 	        <a href="#" class="easyui-linkbutton" iconCls="icon-redo" onclick="showPushDetail()">查看</a>
   		</td>
-  		</tr>
-  		<tr>
+  	 </tr>
+  	 <tr>
   		<td style="width: 50px;">发送时间</td>
   		<td style="width: 50px;"><input id="pushlog_text_sendTimeStart" type="text" class="easyui-datebox"/></td>
-  		<td style="width: 50px;">到</td>
+  		<td style="width: 40px;text-align: center;">到</td>
   		<td style="width: 50px;"><input id="pushlog_text_sendTimeEnd" type="text" class="easyui-datebox"/></td>
   		<td style="width: 50px;">查询状态</td>
-  		<td style="width: 50px;"><select id="pushlog_text_target" style="width: 155px;">
+  		<td style="width: 50px;"><select id="pushlog_text_unAcceptCount" style="width: 155px;">
   			<option value="">全部</option>
   			<option value="1">全部查看</option>
   			<option value="0">未全部查看</option>

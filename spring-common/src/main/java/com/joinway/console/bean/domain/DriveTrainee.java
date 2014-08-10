@@ -78,6 +78,7 @@ public class DriveTrainee extends DomainEntity {
 	/**
 	 * 学习类型
 	 */
+	@DomainField(CaseFormat.Upper)
 	String trainType;
 	
 	/**
@@ -113,6 +114,14 @@ public class DriveTrainee extends DomainEntity {
 	String testCarType;
 	
 	Date registerDate;
+	/**
+	 * 处理状态
+	 */
+	String dealStatus;
+	/**
+	 * 考试状态
+	 */
+	String examStatus;
 	
 	public String getCellPhone() {
 		return cellPhone;
@@ -313,6 +322,22 @@ public class DriveTrainee extends DomainEntity {
 
 	public void setTempCardId(String tempCardId) {
 		this.tempCardId = tempCardId;
+	}
+
+	public String getDealStatus() {
+		return dealStatus;
+	}
+
+	public void setDealStatus(String dealStatus) {
+		this.dealStatus = dealStatus;
+	}
+
+	public String getExamStatus() {
+		return examStatus;
+	}
+
+	public void setExamStatus(String examStatus) {
+		this.examStatus = examStatus;
 	}
 
 }

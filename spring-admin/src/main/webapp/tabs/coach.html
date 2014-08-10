@@ -112,20 +112,23 @@ function checkFormCoach(){
     </thead>
 </table>
 <div id="coach_toolbar" style="padding:5px;height:auto">
-    <div style="margin-bottom:5px">
+    <!-- <div style="margin-bottom:5px">
         <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#coach_form', '#coach_dlg')">添加</a>
         <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#coach_grid', '#coach_form', '#coach_dlg')">编辑</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshCoach()">刷新</a>
-        <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#coach_grid', coachTable)">删除</a> -->
-    </div>
+         <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshCoach()">刷新</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteItem('#coach_grid', coachTable)">删除</a> 
+    </div>-->
   <!-- 添加查询条件  --> 
-  <table style="width: 800px;" border="0">
+  <table style="width: 870px;" border="0">
   	<tr>
   		<td style="width: 220px;">教练姓名<input id="coach_text_name" type="text"/></td>
   		<td style="width: 200px;">手机号<input id="coach_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
   		<td style="width: 200px;">车牌号<input id="coach_text_carBand" type="text"/></td>
-  		<td style="width: 180px;"><a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">筛选</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a></td>
+  		<td style="width: 250px;">
+  			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialog('#coach_form', '#coach_dlg')">添加</a>
+        	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#coach_grid', '#coach_form', '#coach_dlg')">编辑</a>
+  			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">筛选</a>
+        	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a></td>
   	</tr>
   </table>     
 </div>
