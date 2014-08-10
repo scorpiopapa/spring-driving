@@ -38,6 +38,13 @@
 		WHERE T.STATUS = 'Y' AND AU.ID = #{userId}
 	</select>
 	
+	<select id="selectLoginNameCount" resultType="int" parameterType="java.lang.String">
+		SELECT COUNT(1) num FROM LOGIN_USER T
+		WHERE T.LOGIN_NAME = #{loginName}
+		<if test="userId != null and userId !=''">
+			AND T.ID != #{userId}
+		</if>
+	</select>
 <!-- 	<select id="selectUserNoticeHistory" resultType="com.joinway.admin.bean.domain.UserNoticeHistory">
 		SELECT UNL.USER_ID userId
 			, UNL.STATUS
