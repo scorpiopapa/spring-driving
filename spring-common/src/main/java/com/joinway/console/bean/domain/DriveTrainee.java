@@ -117,11 +117,11 @@ public class DriveTrainee extends DomainEntity {
 	/**
 	 * 处理状态
 	 */
-	String dealStatus;
+	int dealStatus;
 	/**
 	 * 考试状态
 	 */
-	String examStatus;
+	int examStatus;
 	
 	public String getCellPhone() {
 		return cellPhone;
@@ -324,20 +324,19 @@ public class DriveTrainee extends DomainEntity {
 		this.tempCardId = tempCardId;
 	}
 
-	public String getDealStatus() {
+	public int getDealStatus() {
 		return dealStatus;
 	}
 
-	public void setDealStatus(String dealStatus) {
+	public void setDealStatus(int dealStatus) {
 		this.dealStatus = dealStatus;
 	}
 
-	public String getExamStatus() {
+	public int getExamStatus() {
 		return examStatus;
 	}
 
-	public void setExamStatus(String examStatus) {
+	public void setExamStatus(int examStatus) {
 		this.examStatus = examStatus;
 	}
-
 }
