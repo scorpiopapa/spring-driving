@@ -12,4 +12,6 @@ public interface DriveTraineeMapper {
 	
 	
 	void updateDriveTrainee(DriveTrainee driveTrainee);
+	
+	void dealStatus(@Param("id") int id, @Param("dealStatus") String dealStatus);;
 }

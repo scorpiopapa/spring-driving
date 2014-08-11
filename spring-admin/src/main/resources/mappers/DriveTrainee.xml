@@ -38,5 +38,9 @@
 		  COMMENT = #{comment}
 		WHERE ID = #{id}
 	</update>
-
+<update id="dealStatus" parameterType="int">
+		UPDATE DRIVE_TRAINEE
+		SET EXAM_STATUS = #{dealStatus}
+		WHERE ID = #{id}
+	</update>
 </mapper>

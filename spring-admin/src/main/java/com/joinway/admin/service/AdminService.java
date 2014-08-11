@@ -27,6 +27,7 @@ import com.joinway.admin.bean.view.Menu;
 import com.joinway.admin.bean.view.PushView;
 import com.joinway.admin.bean.view.TreeMenuView;
 import com.joinway.admin.repository.AdminRepository;
+import com.joinway.admin.repository.DriveTraineeRepository;
 import com.joinway.admin.utils.UIHelper;
 import com.joinway.appx.bean.push.PushKey;
 import com.joinway.appx.repository.SystemRepository;
@@ -53,6 +54,8 @@ public class AdminService {
 	@Autowired SystemRepository systemRepository;
 	
 	@Autowired MessagePushService pushService;
+	
+	@Autowired DriveTraineeRepository driveTraineeRepository;
 	
 	@Transactional(rollbackFor=Throwable.class)
 	public LoginView register(RegisterForm form) throws Exception {
@@ -180,6 +183,21 @@ public class AdminService {
 		
 		int count = repository.findLoginNameCount(loginName, id);
 		return count;
+	}
+	
+	@Transactional(rollbackFor=Throwable.class)
+	public boolean dealStauts(String ids, String dealStatus) throws Exception {
+		boolean falg = true;
+		try{
+			String id[] = ids.split(",");
+			for(int i = 0; i < id.length; i++){
+				driveTraineeRepository.dealStatus(Integer.parseInt(id[i]), dealStatus);
+			}
+		}catch(Exception e){
+			falg = false;
+			throw e;
+		}
+		return falg;
 	}
 //	boolean isSuperUser(int userId) throws Exception {
 //		boolean ret = false;

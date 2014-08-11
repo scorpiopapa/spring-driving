@@ -21,6 +21,7 @@ public class DriveTraineeRepository{
 	public void updateDriveTrainee(DriveTrainee driveTrainee){
 		 mapper.updateDriveTrainee(driveTrainee);
 	}
-	
-
+	public void dealStatus(int id, String dealStatus){
+		 mapper.dealStatus(id, dealStatus);
+	}
 }

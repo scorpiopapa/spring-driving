@@ -111,7 +111,7 @@ function dealDefultVlaueDriveTrainee(){
 function checkFormDriveTrainee(){
 	var cellPhone = $('#cellPhoneDriveTrainee').val();
 	if(cellPhone != null && cellPhone != "" && cellPhone.length != 11){
-		showErrorMessage("手机号格式不正确");
+		showWarningMessage("手机号格式不正确");
 		return false;
 	}
 	return true;
@@ -154,7 +154,7 @@ function validLoginName(){
 	    success : function(data) {
 	        if(data != 0){
 	        	flag = false;
-	        	showErrorMessage("用户名已存在,请重新输入");
+	        	showWarningMessage("用户名已存在,请重新输入");
 	        }else{
 	        	flag = true;
 	        }
@@ -215,10 +215,10 @@ function validLoginName(){
   		<td style="width: 40px;text-align: right;">手机号</td>
   		<td style="width: 100px;"><input id="drive_trainee_text" type="text" class="easyui-numberbox" data-options="decimalSeparator:''"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
   		<td style="width: 290px;" colspan="2">
-  			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialogDriveTrainee('#drive_trainee_form', '#drive_trainee_dlg')">添加</a> 
-        	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#drive_trainee_grid', '#drive_trainee_form', '#drive_trainee_dlg')">编辑</a>
   			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchDriveTrainee()">筛选</a>
         	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_toolbar')">清除</a>
+  			<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="showAddDialogDriveTrainee('#drive_trainee_form', '#drive_trainee_dlg')">添加</a> 
+        	<a href="#" class="easyui-linkbutton" iconCls="icon-edit"onclick="showEditDialog('#drive_trainee_grid', '#drive_trainee_form', '#drive_trainee_dlg')">编辑</a>
   		</td>
   	</tr>
   	<tr>

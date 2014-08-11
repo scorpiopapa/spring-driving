@@ -200,6 +200,14 @@ public class AdminController extends ExceptionController {
 //		driveTraineeTableServiec.
 //		return 
 //	}
+	
+	@ResponseBody
+	@RequestMapping(value="/dealStauts")
+	public boolean dealStauts(HttpServletRequest request) throws Exception{
+		String dealStatus = request.getParameter("dealStatus");
+		String ids = request.getParameter("ids");
+		return service.dealStauts(ids ,dealStatus);
+	}
 }
 
 

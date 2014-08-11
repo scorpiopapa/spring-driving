@@ -137,10 +137,11 @@ function showAddDialogCoach(jformId, jdlgId, title){
   		<td style="width: 200px;">手机号<input id="coach_text" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')"/></td>
   		<td style="width: 200px;">车牌号<input id="coach_text_carBand" type="text"/></td>
   		<td style="width: 250px;">
-  			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="showAddDialogCoach('#coach_form', '#coach_dlg')">添加</a>
-        	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="showEditDialog('#coach_grid', '#coach_form', '#coach_dlg')">编辑</a>
   			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchCoach()">筛选</a>
-        	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a></td>
+        	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#coach_toolbar')">清除</a>
+  			<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="showAddDialogCoach('#coach_form', '#coach_dlg')">添加</a>
+        	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="showEditDialog('#coach_grid', '#coach_form', '#coach_dlg')">编辑</a>
+  		</td>
   	</tr>
   </table>     
 </div>

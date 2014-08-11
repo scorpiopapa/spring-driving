@@ -38,7 +38,6 @@ function doSearchDriveTraineeManage() {
 		name : $('#drive_trainee_manage_text_name').val(),
 		registerDate : JSON.stringify(registerDateQuery),
 		trainType : $('#drive_trainee_manage_text_trainType').val(),
-		dealStatus : $('#drive_trainee_manage_text_dealStatus').val(),
 		examStatus : $('#drive_trainee_manage_text_examStatus').val()
 	});
 }
@@ -75,6 +74,50 @@ function formatDealStatus(val, row){
 		value = '初审不合格'
 	}
 	return value;
+}
+
+function dealProgress(){
+	var rows = $("#drive_trainee_manage_grid").datagrid('getSelections');
+	var ids = listToString(rows);
+	var dealStatus = $('#drive_trainee_manage_text_dealStatus').val();
+	if(dealStatus == null || dealStatus == ""){
+		showWarningMessage('请选择处理状态');
+		return false;
+	}
+	if(!rows || rows.length == 0){
+		showWarningMessage('请选择要处理的数据');
+	}else{
+		var url = '/spring-admin/dealStauts.json';
+		$.ajax({
+		    url : url,
+		    type : "GET",
+		    contentType : "application/json",
+		    dataType : "json",
+		    data : {
+		    	ids : ids,
+		    	dealStatus : dealStatus
+		    },
+		    async : false,
+		    success : function(data) {
+		        if(data == true || data == "true"){
+		        	showInformationMessage("操作成功");
+		        	doRefreshDriveTraineeManage();
+		        }
+		     },
+		    error : function(XMLHttpRequest, textStatus, errorThrown) {
+		        alert("error");
+		    }
+		});
+	} 
+}
+
+function listToString(list){
+	var str= "";
+	for(var i = 0; i < list.length; i++){
+	  str += list[i].id+",";
+	}
+	str = str.substr(0, str.length - 1); 
+	return str;
 }
 </script>
 <table id="drive_trainee_manage_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#drive_trainee_manage_toolbar'">
@@ -128,7 +171,7 @@ function formatDealStatus(val, row){
   		<td style="width: 100px;"><input id="drive_trainee_manage_text_trainType" type="text"/></td>
   		<td style="width: 100px;text-align: right;" colspan="2" >
   			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchDriveTraineeManage()">筛选</a>
-  			<a href="#" class="easyui-linkbutton" onclick="">处理进度</a>
+  			<a href="#" class="easyui-linkbutton" onclick="dealProgress();">处理进度</a>
         	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_manage_toolbar')">清除</a>
   		</td>
   	</tr>
@@ -137,19 +180,36 @@ function formatDealStatus(val, row){
   		<td><input id="drive_trainee_manage_text_registerdate_from" class="easyui-datebox" style="width:155px"></td>
   		<td style="width: 40px;text-align: center;">到</td>
   		<td><input id="drive_trainee_manage_text_registerdate_to" class="easyui-datebox" style="width:155px"></td>
-  		<td style="width: 50px;;text-align: right;">处理状态</td>
+  		<td style="width: 50px;;text-align: right;">考试状态</td>
   		<td>
-  			<select id="drive_trainee_manage_text_dealStatus" name="dealStatus" style="width:155px">
-  				<option value="">全部</option>
-  				<option value="0">未初审</option>
-  				<option value="1">初审中</option>
-  				<option value="2">初审不合格</option>
-  			</select>
-        </td>
-        <td style="width: 50px;text-align: right;">考试状态</td>
-  		<td style="text-align: left;">
   			<select id="drive_trainee_manage_text_examStatus" name="examStatus" style="width:155px">
   				<option value="">全部</option>
+  				<option value="0">科目一未报名</option>
+  				<option value="1">科目一报名</option>
+  				<option value="2">科目一准考</option>
+  				<option value="3">科目一不合格</option>
+  				<option value="4">科目一弃考</option>
+  				<option value="5">科目二未报名</option>
+  				<option value="6">科目二报名</option>
+  				<option value="7">科目二准考</option>
+  				<option value="8">科目二不合格</option>
+  				<option value="9">科目二弃考</option>
+  				<option value="10">科目三未报名</option>
+  				<option value="11">科目三报名</option>
+  				<option value="12">科目三准考</option>
+  				<option value="13">科目三不合格</option>
+  				<option value="14">科目三弃考</option>
+  				<option value="15">科目四未报名</option>
+  				<option value="16">科目四报名</option>
+  				<option value="17">科目四准考</option>
+  				<option value="18">科目四不合格</option>
+  				<option value="19">科目四弃考</option>
+  			</select>
+        </td>
+        <td style="width: 50px;text-align: right;">处理状态</td>
+  		<td style="text-align: left;">
+  			<select id="drive_trainee_manage_text_dealStatus" name="dealStatus" style="width:155px">
+  				<option value="">==请选择==</option>
   				<option value="0">科目一未报名</option>
   				<option value="1">科目一报名</option>
   				<option value="2">科目一准考</option>

@@ -16,7 +16,7 @@ width: 80px;
 
 <script type="text/javascript" src="resources/js/common.js"></script>
 <script type="text/javascript">
-var userTable = 'drive_trainee';
+var userTable = 'drive_trainee_v';
 
 $(function() {
 	var orderBy = getIdDescOrder();
@@ -26,7 +26,8 @@ $(function() {
 function doSearchUser() {
 	searchDataGrid('#mass_grid', {
 		cellPhone : $('#mass_text').val(),
-		name : $('#mass_text_name').val()
+		name : $('#mass_text_name').val(),
+		examStatus : $('#drive_trainee_manage_text_examStatus').val()
 	});
 }
 
@@ -96,7 +97,8 @@ function doPushUserMessage(jcntId){
             <th data-options="field:'zone'">所在地区</th>
             <th data-options="field:'address'">地址</th>
             <th data-options="field:'comment'">备注</th>
-            <th data-options="field:'registerTime'">注册时间</th>
+            <th data-options="field:'registerDate'">注册时间</th>
+            <th data-options="field:'statusName'">考试状态</th>
         </tr>
     </thead>
 </table>
@@ -112,6 +114,32 @@ function doPushUserMessage(jcntId){
         	<tr>
         		<td>姓名<input id="mass_text_name" type="text"/></td>
         		<td>手机号码 <input id="mass_text" type="text"/></td>
+        		<td style="width: 50px;;text-align: right;">考试状态</td>
+		  		<td>
+		  			<select id="drive_trainee_manage_text_examStatus" name="examStatus" style="width:155px">
+		  				<option value="">全部</option>
+		  				<option value="0">科目一未报名</option>
+		  				<option value="1">科目一报名</option>
+		  				<option value="2">科目一准考</option>
+		  				<option value="3">科目一不合格</option>
+		  				<option value="4">科目一弃考</option>
+		  				<option value="5">科目二未报名</option>
+		  				<option value="6">科目二报名</option>
+		  				<option value="7">科目二准考</option>
+		  				<option value="8">科目二不合格</option>
+		  				<option value="9">科目二弃考</option>
+		  				<option value="10">科目三未报名</option>
+		  				<option value="11">科目三报名</option>
+		  				<option value="12">科目三准考</option>
+		  				<option value="13">科目三不合格</option>
+		  				<option value="14">科目三弃考</option>
+		  				<option value="15">科目四未报名</option>
+		  				<option value="16">科目四报名</option>
+		  				<option value="17">科目四准考</option>
+		  				<option value="18">科目四不合格</option>
+		  				<option value="19">科目四弃考</option>
+		  			</select>
+		        </td>
         		<td>
         			<!--  <a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="doRefreshUser()">刷新</a>-->
         			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearchUser()">筛选</a>
