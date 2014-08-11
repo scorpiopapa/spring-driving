@@ -48,13 +48,35 @@ function doSearchPushlog() {
 	sendTimeQuery.from = $('#pushlog_text_sendTimeStart').datebox("getValue");
 	sendTimeQuery.to = $('#pushlog_text_sendTimeEnd').datebox("getValue");
 
+	var reviewStatus = $("#pushlog_text_unAcceptCount").val();
+	
+	var reviewQuery = new Object();
+	reviewQuery.type = 'number';
+	
+	var unAcceptCountCriteria = '';
+	
+	if(reviewStatus == 'F'){
+		// 已全部查看
+		reviewQuery.from = 0;
+		reviewQuery.to = 0;
+		
+		unAcceptCountCriteria = JSON.stringify(reviewQuery);
+	}else if(reviewStatus == 'U'){
+		// 未全部查看
+		reviewQuery.from = 1;
+		
+		unAcceptCountCriteria = JSON.stringify(reviewQuery);
+	}else{
+		// 全部状态
+		unAcceptCountCriteria = '';
+	}
+	
 	searchDataGrid('#pushlog_grid', {
 		title : $('#pushlog_text_title').val(),
 		target : $('#pushlog_text_target').val(),
 		text : $('#pushlog_text').val(),
-		sendTime : JSON.stringify(sendTimeQuery)
-		//,
-		//unAcceptCount : $("#pushlog_text_unAcceptCount").val()
+		sendTime : JSON.stringify(sendTimeQuery),
+		unAcceptCount : unAcceptCountCriteria
 	});
 }
 
@@ -171,11 +193,11 @@ function showPushDetail(){
   		<td style="width: 50px;"><input id="pushlog_text_sendTimeStart" type="text" class="easyui-datebox"/></td>
   		<td style="width: 40px;text-align: center;">到</td>
   		<td style="width: 50px;"><input id="pushlog_text_sendTimeEnd" type="text" class="easyui-datebox"/></td>
-  		<td style="width: 50px;">查询状态</td>
+  		<td style="width: 50px;">查看状态</td>
   		<td style="width: 50px;"><select id="pushlog_text_unAcceptCount" style="width: 155px;">
   			<option value="">全部</option>
-  			<option value="1">全部查看</option>
-  			<option value="0">未全部查看</option>
+  			<option value="F">已全部查看</option>
+  			<option value="U">未全部查看</option>
   		</select>
   	</tr>
   </table>
