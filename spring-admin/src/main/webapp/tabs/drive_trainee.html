@@ -18,6 +18,8 @@ width: 80px;
 <script type="text/javascript">
 var drive_traineeTable = 'drive_trainee';
 var drive_trainee_v = 'drive_trainee_v';
+var driveTraineeQuery;
+
 $(function() {
 	var orderBy = getIdDescOrder();
 	initDataGrid('#drive_trainee_grid', appName + 'search/' + drive_trainee_v + '.json?orderBy=' + orderBy);
@@ -27,17 +29,24 @@ $(function() {
  * 修改查询条件
  */
 function doSearchDriveTrainee() {
+	driveTraineeQuery = getQueryJson();
+	searchDataGrid('#drive_trainee_grid', driveTraineeQuery);
+}
+
+function getQueryJson(){
 	var registerDateQuery = new Object();
 	registerDateQuery.type = 'date';
 	registerDateQuery.from = $('#drive_trainee_registerdate_from').datebox("getValue");
 	registerDateQuery.to = $('#drive_trainee_registerdate_to').datebox("getValue");
 
-	searchDataGrid('#drive_trainee_grid', {
+	var json = {
 		cellPhone : $('#drive_trainee_text').val(),
 		name : $('#drive_trainee_text_name').val(),
 		registerDate : JSON.stringify(registerDateQuery),
 		trainType : $('#drive_trainee_text_trainType').val()
-	});
+	};
+	
+	return json;
 }
 
 /**
@@ -137,7 +146,7 @@ function showAddDialogDriveTrainee(jformId, jdlgId, title){
 }
 
 function validLoginName(){
-	var url = '/spring-admin/loginNameCount.json';
+	var url = 'loginNameCount.json';
 	var loginName = $('#loginNameDriveTrainee').val();
 	var driveTraineeId = $('#drive_trainee_id').val();
 	var flag = false;
@@ -164,6 +173,25 @@ function validLoginName(){
 	    }
 	});
 	return flag;
+}
+
+function saveDriveTraineeQuery(){
+	var form = new Object();
+	form.columns = 'id,用户编号;cellPhone,手机号;name,姓名;birthday,出生日期;registerDate,报名日期;gender,性别;nationality,国籍;phone,固话;'
+				   + 'idCardType,证件类别;idCard,证件号码;idCardAddress,证件地址;company,工作单位;postAddress,邮寄地址;address,联系地址;'
+				   + 'tempCardId,暂住证明;postCode,邮政编码;introducer,推荐人;coach,指定教练;trainType,学习类型;trainClass,班级信息;'
+				   + 'source,学员来源;origCarType,原有车型;comment,备注;carType,车辆类型;zone,所属区域;testCarType,学习车型;';	
+	
+	form.table = drive_traineeTable;
+	
+	var query = driveTraineeQuery ? driveTraineeQuery : getQueryJson();
+	form.query = JSON.stringify(query);
+	
+	form.tableDisplayName = '学员信息';
+	
+	console.log(form);
+	
+	saveExcel(form);
 }
 </script>
 <table id="drive_trainee_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#drive_trainee_toolbar'">
@@ -219,6 +247,7 @@ function validLoginName(){
         	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_toolbar')">清除</a>
   			<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="showAddDialogDriveTrainee('#drive_trainee_form', '#drive_trainee_dlg')">添加</a> 
         	<a href="#" class="easyui-linkbutton" iconCls="icon-edit"onclick="showEditDialog('#drive_trainee_grid', '#drive_trainee_form', '#drive_trainee_dlg')">编辑</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-save" onclick="saveDriveTraineeQuery()">保存</a>
   		</td>
   	</tr>
   	<tr>
