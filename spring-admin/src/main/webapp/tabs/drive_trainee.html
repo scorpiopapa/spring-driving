@@ -18,6 +18,7 @@ width: 80px;
 <script type="text/javascript">
 var drive_traineeTable = 'drive_trainee';
 var drive_trainee_v = 'drive_trainee_v';
+var driveTraineeQuery;
 $(function() {
 	var orderBy = getIdDescOrder();
 	initDataGrid('#drive_trainee_grid', appName + 'search/' + drive_trainee_v + '.json?orderBy=' + orderBy);
@@ -27,17 +28,24 @@ $(function() {
  * 修改查询条件
  */
 function doSearchDriveTrainee() {
+	driveTraineeQuery = getQueryJson();
+	searchDataGrid('#drive_trainee_grid', driveTraineeQuery);
+}
+
+function getQueryJson(){
 	var registerDateQuery = new Object();
 	registerDateQuery.type = 'date';
 	registerDateQuery.from = $('#drive_trainee_registerdate_from').datebox("getValue");
 	registerDateQuery.to = $('#drive_trainee_registerdate_to').datebox("getValue");
 
-	searchDataGrid('#drive_trainee_grid', {
+	var json = {
 		cellPhone : $('#drive_trainee_text').val(),
 		name : $('#drive_trainee_text_name').val(),
 		registerDate : JSON.stringify(registerDateQuery),
 		trainType : $('#drive_trainee_text_trainType').val()
-	});
+	};
+	
+	return json;
 }
 
 /**
@@ -163,6 +171,43 @@ function validLoginName(){
 	        alert("error");
 	    }
 	});
+
+function exportExcel(){
+	var form = new Object();
+	form.columns = "id,....;cellPhone,...";
+	form.table = drive_traineeTable;
+	var query = driveTraineeQuery ? driveTraineeQuery : getQueryJson();
+	form.query = JSON.stringify(query);
+	console.log(form);
+	
+	var fileName;
+	
+	$.ajax({
+		url: 'export.json', 
+		type: 'POST',
+		//contentType : "application/json;charset=UTF-8",
+		//dataType : "json",
+		//contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		//dataType: '',
+		async: false,
+		//data: JSON.stringify(form),
+		data: form,
+    	success: function(data) {
+	        if(data.code != 0){
+	        	// error
+	        }else{
+	        	fileName = data.fileName;
+	        }
+    	},
+    	error: function(XMLHttpRequest, textStatus, errorThrown) {
+    		// alert
+    	}
+    });
+	
+	console.log(fileName);
+	
+	window.location.href = 'download/' + fileName + '.json'
+}
 	return flag;
 }
 </script>
@@ -219,6 +264,7 @@ function validLoginName(){
         	<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="clearCriteria('#drive_trainee_toolbar')">清除</a>
   			<a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="showAddDialogDriveTrainee('#drive_trainee_form', '#drive_trainee_dlg')">添加</a> 
         	<a href="#" class="easyui-linkbutton" iconCls="icon-edit"onclick="showEditDialog('#drive_trainee_grid', '#drive_trainee_form', '#drive_trainee_dlg')">编辑</a>
+<a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="exportExcel()">..</a>
   		</td>
   	</tr>
   	<tr>
