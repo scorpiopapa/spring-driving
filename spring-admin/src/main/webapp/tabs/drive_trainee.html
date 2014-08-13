@@ -176,22 +176,26 @@ function validLoginName(){
 }
 
 function saveDriveTraineeQuery(){
-	var form = new Object();
-	form.columns = 'id,用户编号;cellPhone,手机号;name,姓名;birthday,出生日期;registerDate,报名日期;gender,性别;nationality,国籍;phone,固话;'
-				   + 'idCardType,证件类别;idCard,证件号码;idCardAddress,证件地址;company,工作单位;postAddress,邮寄地址;address,联系地址;'
-				   + 'tempCardId,暂住证明;postCode,邮政编码;introducer,推荐人;coach,指定教练;trainType,学习类型;trainClass,班级信息;'
-				   + 'source,学员来源;origCarType,原有车型;comment,备注;carType,车辆类型;zone,所属区域;testCarType,学习车型;';	
-	
-	form.table = drive_traineeTable;
-	
-	var query = driveTraineeQuery ? driveTraineeQuery : getQueryJson();
-	form.query = JSON.stringify(query);
-	
-	form.tableDisplayName = '学员信息';
-	
-	console.log(form);
-	
-	saveExcel(form);
+	showConfirmMessage('是否确定导出查询的数据结果？', function(r){
+		if(r){
+			var form = new Object();
+			form.columns = 'id,用户编号;cellPhone,手机号;name,姓名;birthday,出生日期;registerDate,报名日期;gender,性别;nationality,国籍;phone,固话;'
+						   + 'idCardType,证件类别;idCard,证件号码;idCardAddress,证件地址;company,工作单位;postAddress,邮寄地址;address,联系地址;'
+						   + 'tempCardId,暂住证明;postCode,邮政编码;introducer,推荐人;coach,指定教练;trainType,学习类型;trainClass,班级信息;'
+						   + 'source,学员来源;origCarType,原有车型;comment,备注;carType,车辆类型;zone,所属区域;testCarType,学习车型;';	
+			
+			form.table = drive_traineeTable;
+			
+			var query = driveTraineeQuery ? driveTraineeQuery : getQueryJson();
+			form.query = JSON.stringify(query);
+			
+			form.tableDisplayName = '学员信息';
+			
+			console.log(form);
+			
+			saveExcel(form);
+		}
+	});
 }
 </script>
 <table id="drive_trainee_grid" class="easyui-datagrid" style="width:700px;height:250px" data-options="toolbar:'#drive_trainee_toolbar'">
@@ -203,7 +207,7 @@ function saveDriveTraineeQuery(){
             <th data-options="field:'name'">姓名</th>
             <th data-options="field:'birthday'">出生日期</th>
             <th data-options="field:'registerDate'">报名日期</th>
-            <th data-options="field:'gender',formatter:formatGender">性别</th>
+            <th data-options="field:'gender'">性别</th>
             <th data-options="field:'nationality'">国籍</th>
             <th data-options="field:'phone'">固话</th>
             <th data-options="field:'idCardType'">证件类别</th>
@@ -224,6 +228,7 @@ function saveDriveTraineeQuery(){
             <th data-options="field:'carType'">车辆类型</th>
             <th data-options="field:'zone'">所属区域</th>
             <th data-options="field:'testCarType'">学习车型</th>
+            <th data-options="field:'statusName'">考试状态</th>
         </tr>
     </thead>
 </table>
@@ -291,8 +296,8 @@ function saveDriveTraineeQuery(){
      			<td>
      				<div class="drive_trainee_item">
 			             <label>性别<font color="red">*</font></label>
-			             <input id="mass_male_drivetrainee" name="gender" type="radio" value="M">男
-             			 <input id="mass_female_drivetrainee" name="gender" type="radio" value="F">女
+			             <input id="mass_male_drivetrainee" name="gender" type="radio" value="男">男
+             			 <input id="mass_female_drivetrainee" name="gender" type="radio" value="女">女
 			         </div>
      			</td>
      		</tr>

@@ -4,10 +4,15 @@
 </style>
 <script type="text/javascript">
 function logout(){
-	$.get(appName + 'logout.json', function(data) {
-		//console.log(data);
-		window.location.href = 'login.html';
+	showConfirmMessage('是否确认退出系统？', function(r){
+		if(r){
+			$.get(appName + 'logout.json', function(data) {
+				//console.log(data);
+				window.location.href = 'login.html';
+			});
+		}
 	});
+	
 };
 
 </script>
