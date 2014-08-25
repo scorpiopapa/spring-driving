@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joinway.admin.mapper.DriveTraineeMapper">
+	
+	<update id="updateLoginUser">
+		UPDATE LOGIN_USER
+		SET 
+		  LOGIN_NAME = #{loginName},
+		  PASSWORD = #{password}
+		WHERE ID = #{id}
+	</update>
+	<update id="updateDriveTrainee" parameterType="com.joinway.console.bean.domain.DriveTrainee">
+		UPDATE DRIVE_TRAINEE
+		SET 
+		  CELL_PHONE = #{cellPhone},
+		  PHONE = #{phone},
+		  NAME = #{name},
+		  GENDER = #{gender},
+		  ID_CARD = #{idCard},
+		  COACH = #{coach},
+		  ZONE = #{zone},
+		  ADDRESS = #{address},
+		  BIRTHDAY = #{birthday},
+		  NATIONALITY = #{nationality},
+		  ID_CARD_TYPE = #{idCardType},
+		  ID_CARD_ADDRESS = #{idCardAddress},
+		  COMPANY = #{company},
+		  POST_ADDRESS = #{postAddress},
+		  TEMP_CARD_ID = #{tempCardId},
+		  POST_CODE = #{postCode},
+		  INTRODUCER = #{introducer},
+		  TRAIN_TYPE = #{trainType},
+		  TRAIN_CLASS = #{trainClass},
+		  SOURCE = #{source},
+		  ORIG_CAR_TYPE = #{origCarType},
+		  CAR_TYPE = #{carType},
+		  TEST_CAR_TYPE = #{testCarType},
+		  COMMENT = #{comment}
+		WHERE ID = #{id}
+	</update>
+<update id="dealStatus" parameterType="int">
+		UPDATE DRIVE_TRAINEE
+		SET EXAM_STATUS = #{dealStatus}
+		WHERE ID = #{id}
+	</update>
+</mapper>

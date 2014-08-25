@@ -1,0 +1,23 @@
+<style>
+<!--
+-->
+</style>
+<script type="text/javascript">
+function logout(){
+	showConfirmMessage('是否确认退出系统？', function(r){
+		if(r){
+			$.get(appName + 'logout.json', function(data) {
+				//console.log(data);
+				window.location.href = 'login.html';
+			});
+		}
+	});
+	
+};
+
+</script>
+<img src="resources/images/banner.jpg" style="display:block; float:left">
+<span style=" padding:10px 20px; border-radius:4px; float:right;">
+	<a id="header_logout" href="javascript:void(0)" onclick="logout()"><font color="green"><b>退出</b></font></a>
+</span>
+

@@ -1,0 +1,31 @@
+<script type="text/javascript">
+$(function(){
+	//alert('aaaa');
+	$('#nav_menu').tree({
+		url: appName + 'navigator.json',
+		loadFilter: function(data){
+			if(data.code == 0){
+				return data.menus;
+			}else{
+				alert('menu load failed');
+				return "";
+			}
+		},
+		onClick:function(node){
+			if(node.children != null) return;
+			
+			var tab = $(jtabId);
+			if(tab.tabs('exists', node.text)){
+				tab.tabs("select", node.text); 
+			}else{
+				tab.tabs('add', {
+					title: node.text,
+					href: node.attribute.url,
+					closable: true
+				});
+			}
+		}
+	});
+});
+</script>
+<ul id="nav_menu" class="easyui-tree"></ul>
