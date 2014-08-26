@@ -37,7 +37,7 @@ import com.joinway.bean.constant.DBValueConstants;
 import com.joinway.bean.exception.DuplicateDataException;
 import com.joinway.bean.exception.ValidationException;
 import com.joinway.bean.logging.annotation.InputLog;
-import com.joinway.console.bean.domain.LoginUser;
+import com.joinway.common.bean.domain.LoginUser;
 import com.joinway.utils.CipherUtils;
 import com.joinway.utils.data.Filter;
 import com.joinway.utils.data.bean.Condition;

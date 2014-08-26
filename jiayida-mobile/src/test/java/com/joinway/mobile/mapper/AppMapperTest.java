@@ -5,7 +5,7 @@ import java.util.Date;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.joinway.console.bean.domain.LoginUser;
+import com.joinway.common.bean.domain.LoginUser;
 import com.joinway.mobile.BaseTest;
 import com.joinway.mobile.mapper.MobileMapper;
 

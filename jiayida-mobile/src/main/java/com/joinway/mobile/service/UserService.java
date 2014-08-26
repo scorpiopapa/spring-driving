@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.joinway.appx.repository.TableRepository;
 import com.joinway.bean.exception.ValidationException;
-import com.joinway.console.bean.domain.DriveTrainee;
+import com.joinway.common.bean.domain.DriveTrainee;
 import com.joinway.mobile.bean.view.UserView;
 
 @Service

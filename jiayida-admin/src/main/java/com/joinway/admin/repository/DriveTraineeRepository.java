@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.joinway.admin.mapper.DriveTraineeMapper;
-import com.joinway.console.bean.domain.DriveTrainee;
+import com.joinway.common.bean.domain.DriveTrainee;
 
 @Repository
 public class DriveTraineeRepository{

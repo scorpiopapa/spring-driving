@@ -1,9 +1,9 @@
-package com.joinway.console.bean.validator;
+package com.joinway.common.bean.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.joinway.console.bean.annotation.LoginName;
+import com.joinway.common.bean.annotation.LoginName;
 
 public class LoginNameValidator implements ConstraintValidator<LoginName, String> {
 	

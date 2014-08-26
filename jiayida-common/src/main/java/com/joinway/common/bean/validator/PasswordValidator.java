@@ -1,9 +1,9 @@
-package com.joinway.console.bean.validator;
+package com.joinway.common.bean.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.joinway.console.bean.annotation.Password;
+import com.joinway.common.bean.annotation.Password;
 
 public class PasswordValidator implements ConstraintValidator<Password, String> {
 

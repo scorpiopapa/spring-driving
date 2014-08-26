@@ -6,8 +6,8 @@ import org.jsondoc.core.annotation.ApiObjectField;
 import com.joinway.bean.form.Form;
 import com.joinway.bean.logging.annotation.LogIgnore;
 import com.joinway.bean.logging.annotation.LogMask;
-import com.joinway.console.bean.annotation.LoginName;
-import com.joinway.console.bean.annotation.Password;
+import com.joinway.common.bean.annotation.LoginName;
+import com.joinway.common.bean.annotation.Password;
 
 @ApiObject(name = "PasswordForm", description = "修改密码")
 public class PasswordForm extends Form {

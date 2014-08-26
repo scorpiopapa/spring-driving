@@ -1,4 +1,4 @@
-package com.joinway.console.bean.domain;
+package com.joinway.common.bean.domain;
 
 import java.util.Date;
 

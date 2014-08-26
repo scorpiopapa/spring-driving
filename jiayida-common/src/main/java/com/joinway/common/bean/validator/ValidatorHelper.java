@@ -1,4 +1,4 @@
-package com.joinway.console.bean.validator;
+package com.joinway.common.bean.validator;
 
 import org.apache.commons.lang3.StringUtils;
 

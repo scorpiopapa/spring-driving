@@ -14,8 +14,8 @@ import com.joinway.appx.service.table.CustomTableService;
 import com.joinway.appx.service.table.DefaultTableService;
 import com.joinway.bean.logging.annotation.InputLog;
 import com.joinway.bean.logging.annotation.OutputLog;
-import com.joinway.console.bean.domain.DriveTrainee;
-import com.joinway.console.bean.domain.LoginUser;
+import com.joinway.common.bean.domain.DriveTrainee;
+import com.joinway.common.bean.domain.LoginUser;
 import com.joinway.utils.CipherUtils;
 
 @Service

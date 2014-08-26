@@ -3,7 +3,7 @@ package com.joinway.admin.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.joinway.console.bean.domain.DriveTrainee;
+import com.joinway.common.bean.domain.DriveTrainee;
 
 @Repository
 public interface DriveTraineeMapper {
