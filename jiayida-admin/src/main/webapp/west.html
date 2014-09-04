@@ -3,11 +3,12 @@ $(function(){
 	//alert('aaaa');
 	$('#nav_menu').tree({
 		url: appName + 'navigator.json',
+		animate : true,
 		loadFilter: function(data){
 			if(data.code == 0){
 				return data.menus;
 			}else{
-				alert('menu load failed');
+				handleError(data.code);
 				return "";
 			}
 		},

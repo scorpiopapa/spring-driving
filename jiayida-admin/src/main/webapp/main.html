@@ -2,29 +2,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>春天驾校</title>
-    <link rel="stylesheet" type="text/css" href="resources/jquery-easyui/themes/metro-green/easyui.css">
+    <title>HollyChains后台管理系统</title>
+    <link rel="stylesheet" type="text/css" href="resources/jquery-easyui/themes/metro-red/easyui.css">
     <link rel="stylesheet" type="text/css" href="resources/jquery-easyui/themes/icon.css">
     <!-- <link rel="stylesheet" type="text/css" href="resources/jquery-easyui/demo/demo.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="resources/css/main.css"/> -->
     <script type="text/javascript" src="resources/jquery-easyui/jquery.min.js"></script>
     <script type="text/javascript" src="resources/jquery-easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="resources/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="resources/js/ajaxfileupload.js"></script>
     <script type="text/javascript" src="resources/js/common.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('#nav_menu').tree({
-		url: appName + 'navigator.json',
-		loadFilter: function(data){
-			if(data.code == 1){
-				return data.menus;
-			}else{
-				alert('menu load failed');
-				return "";
-			}
-		}
-	});
-});
 </script>
 </head>
 <body class="easyui-layout">
